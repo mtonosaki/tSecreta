@@ -1,4 +1,4 @@
-# tSecreta tSecret Swift Version
+# tSecreta (Swift Version)
 Private Password Manager developped with Swift for iOS project. This manager can syncronize secret data to Azure Blob Storage. To specify user account, tSecret use Azure Active Directory authentication.
 
 ![64](https://user-images.githubusercontent.com/34669114/143222587-1ed45429-32f7-43e1-aaab-f4e958a17429.png)
