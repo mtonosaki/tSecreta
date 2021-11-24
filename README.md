@@ -8,6 +8,7 @@ Private Password Manager developped with Swift for iOS project. This manager can
 
 
 1. Clone this repository to your local environment.
+1. Build the swift project with xcode on your mac.
 
 
 ## Azure Active Directory settings
