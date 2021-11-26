@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         callGraphAPI(sender)
     }
     
-    
+    // Init for AzureAD authentication
     func initMSAL() throws {
         guard let authorityURL = URL(string: "https://login.microsoftonline.com/common") else {
             print("Unable to create authority URL")
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
         }
         let msalParameters = MSALParameters()
         msalParameters.completionBlockQueue = DispatchQueue.main
-
+        
         applicationContext.getCurrentAccount(with: msalParameters, completionBlock: {
             (currentAccount, previousAccount, error) in
             if let error = error {
@@ -132,31 +132,35 @@ class ViewController: UIViewController {
     }
     
     func acquireTokenInteractively() {
-
-        guard let applicationContext = self.applicationContext else { return }
-        guard let webViewParameters = self.webViewParameters else { return }
-
+        
+        guard let applicationContext = self.applicationContext else {
+            return
+        }
+        guard let webViewParameters = self.webViewParameters else {
+            return
+        }
+        
         // #1
         let parameters = MSALInteractiveTokenParameters(scopes: self.aadScopes, webviewParameters: webViewParameters)
         parameters.promptType = .selectAccount
-
+        
         // #2
         applicationContext.acquireToken(with: parameters) {
             (result, error) in
-                // #3
-                if let error = error {
-                    print("Could not acquire token: \(error)")
-                    return
-                }
-                guard let result = result else {
-                    print("Could not acquire token: No result returned")
-                    return
-                }
-                // #4
-                self.accessToken = result.accessToken
-                print("Access token is \(self.accessToken)")
-                self.updateCurrentAccount(account: result.account)
-                self.getContentWithToken()
+            // #3
+            if let error = error {
+                print("Could not acquire token: \(error)")
+                return
+            }
+            guard let result = result else {
+                print("Could not acquire token: No result returned")
+                return
+            }
+            // #4
+            self.accessToken = result.accessToken
+            print("Access token is \(self.accessToken)")
+            self.updateCurrentAccount(account: result.account)
+            self.getContentWithToken()
         }
     }
     
@@ -165,55 +169,55 @@ class ViewController: UIViewController {
             return
         }
         let parameters = MSALSilentTokenParameters(scopes: self.aadScopes, account: account)
-
+        
         applicationContext.acquireTokenSilent(with: parameters){
             (result, error) in
-                if let error = error {
-                    let nsError = error as NSError
-                    if (nsError.domain == MSALErrorDomain) {
-
-                        if (nsError.code == MSALError.interactionRequired.rawValue) {
-
-                            DispatchQueue.main.async {
-                                self.acquireTokenInteractively()
-                            }
-                            return
+            if let error = error {
+                let nsError = error as NSError
+                if (nsError.domain == MSALErrorDomain) {
+                    
+                    if (nsError.code == MSALError.interactionRequired.rawValue) {
+                        
+                        DispatchQueue.main.async {
+                            self.acquireTokenInteractively()
                         }
+                        return
                     }
-                    print("Could not acquire token silently: \(error)")
-                    return
                 }
-                guard let result = result else {
-                    print("Could not acquire token: No result returned")
-                    return
-                }
-
-                self.accessToken = result.accessToken
-                print("Refreshed Access token is \(self.accessToken)")
-                //self.updateSignOutButton(enabled: true)
-                self.getContentWithToken()
+                print("Could not acquire token silently: \(error)")
+                return
+            }
+            guard let result = result else {
+                print("Could not acquire token: No result returned")
+                return
+            }
+            
+            self.accessToken = result.accessToken
+            print("Refreshed Access token is \(self.accessToken)")
+            //self.updateSignOutButton(enabled: true)
+            self.getContentWithToken()
         }
     }
-
+    
     func getContentWithToken() {
         let graphURI = getGraphEndpoint()
         let url = URL(string: graphURI)
         var request = URLRequest(url: url!)
-
+        
         // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
         request.setValue("Bearer \(self.accessToken)", forHTTPHeaderField: "Authorization")
-
+        
         URLSession.shared.dataTask(with: request) {
             data, response, error in
-                if let error = error {
-                    print("Couldn't get graph result: \(error)")
-                    return
-                }
-                guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) else {
-                    print("Couldn't deserialize result JSON")
-                    return
-                }
-                print("Result from Graph: \(result))")
+            if let error = error {
+                print("Couldn't get graph result: \(error)")
+                return
+            }
+            guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) else {
+                print("Couldn't deserialize result JSON")
+                return
+            }
+            print("Result from Graph: \(result))")
         }.resume()
     }
     
@@ -224,19 +228,19 @@ class ViewController: UIViewController {
         guard let account = self.currentAccount else {
             return
         }
-
+        
         do {
             let signoutParameters = MSALSignoutParameters(webviewParameters: self.webViewParameters!)
             signoutParameters.signoutFromBrowser = false
             applicationContext.signout(with: account, signoutParameters: signoutParameters, completionBlock: {
                 (success, error) in
-                    if let error = error {
-                        print("Couldn't sign out account with error: \(error)")
-                        return
-                    }
-                    print("Sign out completed successfully")
-                    self.accessToken = ""
-                    self.updateCurrentAccount(account: nil)
+                if let error = error {
+                    print("Couldn't sign out account with error: \(error)")
+                    return
+                }
+                print("Sign out completed successfully")
+                self.accessToken = ""
+                self.updateCurrentAccount(account: nil)
             })
         }
     }
