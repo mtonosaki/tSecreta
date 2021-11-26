@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0227FCFD2750A66300B19393 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 0227FCFC2750A66300B19393 /* MSAL */; };
+		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
 		02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98EE274E33090088B99D /* AppDelegate.swift */; };
 		02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F0274E33090088B99D /* SceneDelegate.swift */; };
 		02EB98F3274E33090088B99D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F2274E33090088B99D /* ViewController.swift */; };
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0227FCFE2750A72300B19393 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EB98EE274E33090088B99D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EB98F0274E33090088B99D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0227FCFD2750A66300B19393 /* MSAL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +110,7 @@
 				02EB98F7274E330A0088B99D /* Assets.xcassets */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
 				02EB98FC274E330A0088B99D /* Info.plist */,
+				0227FCFE2750A72300B19393 /* MySecret.swift */,
 			);
 			path = tSecreta;
 			sourceTree = "<group>";
@@ -143,6 +148,9 @@
 			dependencies = (
 			);
 			name = tSecreta;
+			packageProductDependencies = (
+				0227FCFC2750A66300B19393 /* MSAL */,
+			);
 			productName = tSecreta;
 			productReference = 02EB98EB274E33090088B99D /* tSecreta.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +223,9 @@
 				Base,
 			);
 			mainGroup = 02EB98E2274E33090088B99D;
+			packageReferences = (
+				0227FCFB2750A66300B19393 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
+			);
 			productRefGroup = 02EB98EC274E33090088B99D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02EB98F3274E33090088B99D /* ViewController.swift in Sources */,
+				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
 				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
 				02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */,
 			);
@@ -624,6 +636,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0227FCFB2750A66300B19393 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AzureAD/microsoft-authentication-library-for-objc";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0227FCFC2750A66300B19393 /* MSAL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0227FCFB2750A66300B19393 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
+			productName = MSAL;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02EB98E3274E33090088B99D /* Project object */;
 }
