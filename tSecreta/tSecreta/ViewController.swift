@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     // Init for AzureAD authentication
     func initMSAL() throws {
         guard let authorityURL = URL(string: "https://login.microsoftonline.com/common") else {
-            print("Unable to create authority URL")
+            print("Unable to create authority URL!")
             return
         }
         let authority = try MSALAADAuthority(url: authorityURL)
