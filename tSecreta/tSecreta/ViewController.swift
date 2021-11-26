@@ -9,43 +9,234 @@ import UIKit
 import MSAL
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var imageLogo: UIImageView!
+    
+    // Update the below to your client ID you received in the portal. The below is for running the demo only
+    let kGraphEndpoint = "https://graph.microsoft.com/" // the Microsoft Graph endpoint
+    let kAuthority = "https://login.microsoftonline.com/common" // this authority allows a personal Microsoft account and a work or school account in any organization's Azure AD tenant to sign in
+    
+    var accessToken = String()
+    var applicationContext : MSALPublicClientApplication?
+    var webViewParameters : MSALWebviewParameters?
+    var currentAccount: MSALAccount?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // to open azuread authentication
-        let adconfig = MySecret()
-        let config = MSALPublicClientApplicationConfig(clientId: adconfig.clientId)
-        if let application = try? MSALPublicClientApplication(configuration: config){
-            #if os(iOS)
-                let webviewParameters = MSALWebviewParameters(authPresentationViewController: self)
-            #else
-                let webviewParameters = MSALWebviewParameters()
-            #endif
-            
-            let interactiveParameters = MSALInteractiveTokenParameters(scopes: adconfig.scopes, webviewParameters: webviewParameters)
-            application.acquireToken(with: interactiveParameters, completionBlock: {
-                (result, error) in
-                guard let authResult = result, error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                // Get access token from result
-                let accessToken = authResult.accessToken
-                
-                // You will want to get the account identifier to retreeve and reuse the account for later acquireToken calls
-                let accountIdentifier = authResult.account.identifier
-            })
-        } else {
-            print("Unable to create applicaiton")
-        }
-                
         // Attached logo image from AppIcon
         // TODO: precision version image
         let img = UIImage(named: "AppIcon")
         imageLogo.image = img;
+        
+        do {
+            try self.initMSAL()
+        } catch let error {
+            print("Unable to create Application context \(error)");
+        }
+        self.loadCurrentAccount()
+        self.platformViewDidLoadSetup()
+    }
+    
+    func initMSAL() throws {
+        guard let authorityURL = URL(string: kAuthority) else {
+            print("Unable to create authority URL")
+            return
+        }
+        let authority = try MSALAADAuthority(url: authorityURL)
+        let msalConfiguration = MSALPublicClientApplicationConfig(clientId: MySecret().azureAD.kClientID, redirectUri: nil, authority: authority)
+        self.applicationContext = try MSALPublicClientApplication(configuration: msalConfiguration)
+        self.initWebViewParams()
+    }
+    
+    func initWebViewParams() {
+#if os(iOS)
+        self.webViewParameters = MSALWebviewParameters(authPresentationViewController: self)
+#else
+        self.webViewParameters = MSALWebviewParameters()
+#endif
+    }
+    
+    func updateCurrentAccount(account: MSALAccount?) {
+        self.currentAccount = account
+        //self.updateSignOutButton(enabled: account != nil)
+    }
+    
+    func platformViewDidLoadSetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(appCameToForeGround(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func appCameToForeGround(notification: Notification) {
+        self.loadCurrentAccount()
+    }
+    
+    func getGraphEndpoint() -> String {
+        return kGraphEndpoint.hasSuffix("/") ? (kGraphEndpoint + "v1.0/me/") : (kGraphEndpoint + "/v1.0/me/");
+    }
+    
+    @objc func callGraphAPI(_ sender: AnyObject) {
+        
+        self.loadCurrentAccount { (account) in
+            
+            guard let currentAccount = account else {
+                
+                // We check to see if we have a current logged in account.
+                // If we don't, then we need to sign someone in.
+                self.acquireTokenInteractively()
+                return
+            }
+            
+            self.acquireTokenSilently(currentAccount)
+        }
+    }
+    
+    typealias AccountCompletion = (MSALAccount?) -> Void
+    
+    func loadCurrentAccount(completion: AccountCompletion? = nil) {
+        
+        guard let applicationContext = self.applicationContext else { return }
+        
+        let msalParameters = MSALParameters()
+        msalParameters.completionBlockQueue = DispatchQueue.main
+        
+        applicationContext.getCurrentAccount(with: msalParameters, completionBlock: { (currentAccount, previousAccount, error) in
+            
+            if let error = error {
+                print("Couldn't query current account with error: \(error)")
+                return
+            }
+            
+            if let currentAccount = currentAccount {
+                
+                print("Found a signed in account \(String(describing: currentAccount.username)). Updating data for that account...")
+                
+                self.updateCurrentAccount(account: currentAccount)
+                
+                if let completion = completion {
+                    completion(self.currentAccount)
+                }
+                
+                return
+            }
+            
+            print("Account signed out. Updating UX")
+            self.accessToken = ""
+            self.updateCurrentAccount(account: nil)
+            
+            if let completion = completion {
+                completion(nil)
+            }
+        })
+    }
+    
+    func acquireTokenInteractively() {
+
+        guard let applicationContext = self.applicationContext else { return }
+        guard let webViewParameters = self.webViewParameters else { return }
+
+        // #1
+        let parameters = MSALInteractiveTokenParameters(scopes: MySecret().azureAD.aadScopes, webviewParameters: webViewParameters)
+        parameters.promptType = .selectAccount
+
+        // #2
+        applicationContext.acquireToken(with: parameters) {
+            (result, error) in
+                // #3
+                if let error = error {
+                    print("Could not acquire token: \(error)")
+                    return
+                }
+                guard let result = result else {
+                    print("Could not acquire token: No result returned")
+                    return
+                }
+                // #4
+                self.accessToken = result.accessToken
+                print("Access token is \(self.accessToken)")
+                self.updateCurrentAccount(account: result.account)
+                self.getContentWithToken()
+        }
+    }
+    
+    func acquireTokenSilently(_ account : MSALAccount!) {
+        guard let applicationContext = self.applicationContext else {
+            return
+        }
+        let parameters = MSALSilentTokenParameters(scopes: MySecret().azureAD.aadScopes, account: account)
+
+        applicationContext.acquireTokenSilent(with: parameters){
+            (result, error) in
+                if let error = error {
+                    let nsError = error as NSError
+                    if (nsError.domain == MSALErrorDomain) {
+
+                        if (nsError.code == MSALError.interactionRequired.rawValue) {
+
+                            DispatchQueue.main.async {
+                                self.acquireTokenInteractively()
+                            }
+                            return
+                        }
+                    }
+                    print("Could not acquire token silently: \(error)")
+                    return
+                }
+                guard let result = result else {
+                    print("Could not acquire token: No result returned")
+                    return
+                }
+
+                self.accessToken = result.accessToken
+                print("Refreshed Access token is \(self.accessToken)")
+                //self.updateSignOutButton(enabled: true)
+                self.getContentWithToken()
+        }
+    }
+
+    func getContentWithToken() {
+        let graphURI = getGraphEndpoint()
+        let url = URL(string: graphURI)
+        var request = URLRequest(url: url!)
+
+        // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
+        request.setValue("Bearer \(self.accessToken)", forHTTPHeaderField: "Authorization")
+
+        URLSession.shared.dataTask(with: request) {
+            data, response, error in
+                if let error = error {
+                    print("Couldn't get graph result: \(error)")
+                    return
+                }
+                guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) else {
+                    print("Couldn't deserialize result JSON")
+                    return
+                }
+                print("Result from Graph: \(result))")
+        }.resume()
+    }
+    
+    @objc func signOut(_ sender: AnyObject) {
+        guard let applicationContext = self.applicationContext else {
+            return
+        }
+        guard let account = self.currentAccount else {
+            return
+        }
+
+        do {
+            let signoutParameters = MSALSignoutParameters(webviewParameters: self.webViewParameters!)
+            signoutParameters.signoutFromBrowser = false
+            applicationContext.signout(with: account, signoutParameters: signoutParameters, completionBlock: {
+                (success, error) in
+                    if let error = error {
+                        print("Couldn't sign out account with error: \(error)")
+                        return
+                    }
+                    print("Sign out completed successfully")
+                    self.accessToken = ""
+                    self.updateCurrentAccount(account: nil)
+            })
+        }
     }
 }
 

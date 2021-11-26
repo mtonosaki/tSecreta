@@ -6,6 +6,7 @@
 //  MIT License (c)2021 Manabu Tonosaki all rights reserved.
 
 import UIKit
+import MSAL
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,6 +18,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let urlContext = URLContexts.first else {
+            return
+        }
+        let url = urlContext.url
+        let sourceApp = urlContext.options.sourceApplication
+        MSALPublicClientApplication.handleMSALResponse(url, sourceApplication: sourceApp)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
