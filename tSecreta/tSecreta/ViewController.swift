@@ -11,11 +11,9 @@ import MSAL
 class ViewController: UIViewController {
     
     @IBOutlet weak var imageLogo: UIImageView!
+    @IBOutlet weak var testButton: UIButton!
     
-    // Update the below to your client ID you received in the portal. The below is for running the demo only
-    let kGraphEndpoint = "https://graph.microsoft.com/" // the Microsoft Graph endpoint
-    let kAuthority = "https://login.microsoftonline.com/common" // this authority allows a personal Microsoft account and a work or school account in any organization's Azure AD tenant to sign in
-    
+    let aadScopes = ["user.read"];
     var accessToken = String()
     var applicationContext : MSALPublicClientApplication?
     var webViewParameters : MSALWebviewParameters?
@@ -29,6 +27,8 @@ class ViewController: UIViewController {
         let img = UIImage(named: "AppIcon")
         imageLogo.image = img;
         
+        
+        // Azure Active Directory preparation
         do {
             try self.initMSAL()
         } catch let error {
@@ -38,12 +38,18 @@ class ViewController: UIViewController {
         self.platformViewDidLoadSetup()
     }
     
+    @IBAction func testButtonTouchUpInside(_ sender: Any) {
+        callGraphAPI(sender)
+    }
+    
+    
     func initMSAL() throws {
-        guard let authorityURL = URL(string: kAuthority) else {
+        guard let authorityURL = URL(string: "https://login.microsoftonline.com/common") else {
             print("Unable to create authority URL")
             return
         }
         let authority = try MSALAADAuthority(url: authorityURL)
+        
         let msalConfiguration = MSALPublicClientApplicationConfig(clientId: MySecret().azureAD.kClientID, redirectUri: nil, authority: authority)
         self.applicationContext = try MSALPublicClientApplication(configuration: msalConfiguration)
         self.initWebViewParams()
@@ -71,21 +77,17 @@ class ViewController: UIViewController {
     }
     
     func getGraphEndpoint() -> String {
+        let kGraphEndpoint = "https://graph.microsoft.com/"
         return kGraphEndpoint.hasSuffix("/") ? (kGraphEndpoint + "v1.0/me/") : (kGraphEndpoint + "/v1.0/me/");
     }
     
-    @objc func callGraphAPI(_ sender: AnyObject) {
-        
-        self.loadCurrentAccount { (account) in
-            
+    func callGraphAPI(_ sender: Any) {
+        self.loadCurrentAccount {
+            (account) in
             guard let currentAccount = account else {
-                
-                // We check to see if we have a current logged in account.
-                // If we don't, then we need to sign someone in.
                 self.acquireTokenInteractively()
                 return
             }
-            
             self.acquireTokenSilently(currentAccount)
         }
     }
@@ -94,20 +96,20 @@ class ViewController: UIViewController {
     
     func loadCurrentAccount(completion: AccountCompletion? = nil) {
         
-        guard let applicationContext = self.applicationContext else { return }
-        
+        guard let applicationContext = self.applicationContext else {
+            return
+        }
         let msalParameters = MSALParameters()
         msalParameters.completionBlockQueue = DispatchQueue.main
-        
-        applicationContext.getCurrentAccount(with: msalParameters, completionBlock: { (currentAccount, previousAccount, error) in
-            
+
+        applicationContext.getCurrentAccount(with: msalParameters, completionBlock: {
+            (currentAccount, previousAccount, error) in
             if let error = error {
                 print("Couldn't query current account with error: \(error)")
                 return
             }
             
             if let currentAccount = currentAccount {
-                
                 print("Found a signed in account \(String(describing: currentAccount.username)). Updating data for that account...")
                 
                 self.updateCurrentAccount(account: currentAccount)
@@ -135,7 +137,7 @@ class ViewController: UIViewController {
         guard let webViewParameters = self.webViewParameters else { return }
 
         // #1
-        let parameters = MSALInteractiveTokenParameters(scopes: MySecret().azureAD.aadScopes, webviewParameters: webViewParameters)
+        let parameters = MSALInteractiveTokenParameters(scopes: self.aadScopes, webviewParameters: webViewParameters)
         parameters.promptType = .selectAccount
 
         // #2
@@ -162,7 +164,7 @@ class ViewController: UIViewController {
         guard let applicationContext = self.applicationContext else {
             return
         }
-        let parameters = MSALSilentTokenParameters(scopes: MySecret().azureAD.aadScopes, account: account)
+        let parameters = MSALSilentTokenParameters(scopes: self.aadScopes, account: account)
 
         applicationContext.acquireTokenSilent(with: parameters){
             (result, error) in

@@ -41,6 +41,14 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Pz-M7-vtW">
+                                <rect key="frame" x="174" y="334" width="59" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="TEST"/>
+                                <connections>
+                                    <action selector="testButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="68w-aU-vJN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.89411764705882346" green="0.0" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -49,13 +57,16 @@
                             <constraint firstItem="I6N-DF-nFa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="FM1-II-ihk"/>
                             <constraint firstItem="0rj-dw-2Nq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KSS-An-LBU"/>
                             <constraint firstItem="I6N-DF-nFa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0290179" id="cMy-HC-DoP"/>
+                            <constraint firstItem="4Pz-M7-vtW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ex6-x5-zvL"/>
                             <constraint firstItem="bpy-KY-mKz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="42" id="jN0-hO-oF7"/>
                             <constraint firstItem="I6N-DF-nFa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jkc-nE-Vwe"/>
                             <constraint firstItem="bpy-KY-mKz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rzc-nr-wnl"/>
+                            <constraint firstItem="4Pz-M7-vtW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="290" id="s4N-g1-L2B"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageLogo" destination="bpy-KY-mKz" id="qXM-fR-jec"/>
+                        <outlet property="testButton" destination="4Pz-M7-vtW" id="Ocb-TP-gwh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
