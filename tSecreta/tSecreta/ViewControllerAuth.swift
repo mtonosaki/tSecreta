@@ -72,9 +72,36 @@ class ViewController: UIViewController {
         }
     }
     
-    private func downloadCloudSecretData(callback: @escaping (Bool, String?) -> Void) {
+    private func downloadCloudSecretData(callback: @escaping (Bool, String?) ->  Void) {
+
+        guard let idraw = currentAccount?.identifier else {
+            callback(false, "To download, authenticate first.")
+            return
+        }
+        let id = idraw.components(separatedBy: ".")[0]
         self.addInfo("Downloading...")
-        callback(true, nil)
+
+        do {
+            let cn = try AZSCloudStorageAccount(fromConnectionString: MySecret().azureBlob.AzureStorageConnectionString)
+            let blobClient = cn.getBlobClient()
+            let blobContainer = blobClient.containerReference(fromName: "tsecret")
+            let blob = blobContainer.blockBlobReference(fromName: "MainData.\(id).dat")
+            blob.downloadToData(){
+                (error, data) in
+                if let error = error {
+                    self.addError(error.localizedDescription)
+                    callback(false, error.localizedDescription)
+                    return
+                }
+                if let data = data {
+                    self.addInfo("Downloaded \(data.count) bytes")
+                    callback(true, nil)
+                }
+            }
+        }
+        catch let ex {
+            addFatal("Azue Error \(ex.localizedDescription)")
+        }
     }
     
     private func moveToListView() {

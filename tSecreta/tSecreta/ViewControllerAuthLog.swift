@@ -71,7 +71,7 @@ class LogView : UIView {
         print("[\(level)] \(dateFormat.string(from: dt)) \(message)")
     }
     
-    private let fontSitePt = 10.0
+    private let fontSitePt = 11.0
 
     override func draw(_ rect: CGRect) {
         // NSAttributedString(
@@ -82,10 +82,12 @@ class LogView : UIView {
         dateFormat.dateFormat = "HH:mm:ss"
         for logitem in logItems.reversed() {
             var attr: [NSAttributedString.Key: Any] = [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSitePt, weight: UIFont.Weight(rawValue: 2.0)),
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: fontSitePt)
+                //NSAttributedString.Key.font: UIFont(name: "Hiragino Sans", size: fontSitePt)!
+                //NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSitePt, weight: UIFont.Weight(rawValue: 1.0)),
             ]
             switch logitem.logLevel {
-            case .info: attr[NSAttributedString.Key.foregroundColor] = UIColor.green
+            case .info: attr[NSAttributedString.Key.foregroundColor] = UIColor.cyan
             case .debug: attr[NSAttributedString.Key.foregroundColor] = UIColor.darkGray
             case .warning: attr[NSAttributedString.Key.foregroundColor] = UIColor.white
             case .error: attr[NSAttributedString.Key.foregroundColor] = UIColor.yellow

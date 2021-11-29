@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0227FCFD2750A66300B19393 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 0227FCFC2750A66300B19393 /* MSAL */; };
 		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
+		02464FC127551ABA009024F5 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02464FC027551ABA009024F5 /* AZSClient.framework */; };
 		02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */; };
 		02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */; };
 		02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */; };
@@ -42,9 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022148E9275510C100D098A5 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		022148EA275511EA00D098A5 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		0227FCFE2750A72300B19393 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 		0227FD002750AE2700B19393 /* Readme.AzureAD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.AzureAD.md; sourceTree = "<group>"; };
 		0227FD012750C60900B19393 /* tSecreta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tSecreta.entitlements; sourceTree = "<group>"; };
+		02464FC027551ABA009024F5 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
 		02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthCloud.swift; sourceTree = "<group>"; };
 		02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthDevice.swift; sourceTree = "<group>"; };
 		02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthLog.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02464FC127551ABA009024F5 /* AZSClient.framework in Frameworks */,
 				0227FCFD2750A66300B19393 /* MSAL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022148E8275510C100D098A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				022148E9275510C100D098A5 /* libxml2.2.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		02B0FE162754F4E2007337F6 /* FeatureAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +129,7 @@
 				02EB9904274E330A0088B99D /* tSecretaTests */,
 				02EB990E274E330A0088B99D /* tSecretaUITests */,
 				02EB98EC274E33090088B99D /* Products */,
+				022148E8275510C100D098A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +146,7 @@
 		02EB98ED274E33090088B99D /* tSecreta */ = {
 			isa = PBXGroup;
 			children = (
+				02464FC027551ABA009024F5 /* AZSClient.framework */,
 				02B0FE172754F540007337F6 /* Secret */,
 				02B0FE162754F4E2007337F6 /* FeatureAuth */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
@@ -143,6 +158,7 @@
 				02EB98F7274E330A0088B99D /* Assets.xcassets */,
 				02EB98FC274E330A0088B99D /* Info.plist */,
 				0227FD002750AE2700B19393 /* Readme.AzureAD.md */,
+				022148EA275511EA00D098A5 /* Bridging-Header.h */,
 			);
 			path = tSecreta;
 			sourceTree = "<group>";
@@ -488,7 +504,15 @@
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 42235ECE62;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/tSecretaUITests",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/tSecreta",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tSecreta/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -506,6 +530,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecreta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -519,7 +544,15 @@
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 42235ECE62;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/tSecretaUITests",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/tSecreta",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tSecreta/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -537,6 +570,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecreta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
