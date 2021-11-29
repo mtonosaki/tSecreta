@@ -42,6 +42,7 @@ class ViewController: UIViewController {
                 if success {
                     DispatchQueue.main.async {
                         self.logoffButton.isEnabled = true
+                        self.reAuthButton.isEnabled = true
                     }
                     self.startDeviceAuthentication() {
                         (success, errorMessage) in
@@ -49,23 +50,42 @@ class ViewController: UIViewController {
                         if success  {
                             self.addInfo("Device authenticated successfully!" )
                             
-                            // Move to List View
-                            DispatchQueue.main.async {
-                                self.logoffButton.isEnabled = true
-                                self.performSegue(withIdentifier: "ToList", sender: self)
+                            self.downloadCloudSecretData() {
+                                (success, errMessage) in
+                                
+                                if success {
+                                    DispatchQueue.main.async {
+                                        self.logoffButton.isEnabled = true
+                                        self.moveToListView()
+                                    }
+                                }
                                 return;
                             }
                         } else {
                             self.addWarning("Device authentication \(errorMessage ?? "error")")
-                        }
-                        DispatchQueue.main.async {
-                            self.reAuthButton.isEnabled = true
                         }
                     }
                 } else {
                     self.addWarning("Authentication Error")
                 }
             }
+        }
+    }
+    
+    private func downloadCloudSecretData(callback: @escaping (Bool, String?) -> Void) {
+        self.addInfo("Downloading...")
+        callback(true, nil)
+    }
+    
+    private func moveToListView() {
+        self.performSegue(withIdentifier: "ToList", sender: self)
+    }
+
+    // Set data to next view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToList" {
+            let listView = segue.destination as! ViewControllerList
+            listView.binaryData = currentAccount?.username
         }
     }
     

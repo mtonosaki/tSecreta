@@ -12,6 +12,7 @@
 		02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */; };
 		02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */; };
 		02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */; };
+		02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE182754F6CC007337F6 /* ViewControllerList.swift */; };
 		02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98EE274E33090088B99D /* AppDelegate.swift */; };
 		02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F0274E33090088B99D /* SceneDelegate.swift */; };
 		02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F2274E33090088B99D /* ViewControllerAuth.swift */; };
@@ -47,6 +48,7 @@
 		02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthCloud.swift; sourceTree = "<group>"; };
 		02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthDevice.swift; sourceTree = "<group>"; };
 		02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthLog.swift; sourceTree = "<group>"; };
+		02B0FE182754F6CC007337F6 /* ViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerList.swift; sourceTree = "<group>"; };
 		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EB98EE274E33090088B99D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EB98F0274E33090088B99D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				02B0FE162754F4E2007337F6 /* FeatureAuth */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
+				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
 				02EB98F4274E33090088B99D /* Main.storyboard */,
 				0227FD012750C60900B19393 /* tSecreta.entitlements */,
@@ -304,6 +307,7 @@
 				02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */,
 				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
 				02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */,
+				02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */,
 				02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
