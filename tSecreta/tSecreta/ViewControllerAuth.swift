@@ -12,7 +12,7 @@ import MSAL
 class ViewController: UIViewController {
     
     @IBOutlet weak var imageLogo: UIImageView!
-    @IBOutlet weak var testButton: UIButton!
+    @IBOutlet weak var reAuthButton: UIButton!
     
     let aadScopes = ["user.read"];  // Graph API Scope
     var accessToken = String()
@@ -40,6 +40,10 @@ class ViewController: UIViewController {
             (success, errorMessage) in
             if success  {
                 print( "Device authenticated successfully!" )
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "ToList", sender: self)
+                }
+                
             } else {
                 print( "Device authentication \(errorMessage ?? "error")")
                 return
