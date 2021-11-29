@@ -19,8 +19,10 @@ extension ViewController {
         let reason = "This app uses Touch ID / Facd ID to secure your data."
         var authError: NSError?
         
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+        // deviceOwnerAuthentication = Face(Touch) ID + PIN
+        // deviceOwnerAuthenticationWithBiometrics = Face(Touch) ID only
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authError) {
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) {
                 (success, error) in
                 if success {
                     callback(true, nil)
@@ -33,8 +35,5 @@ extension ViewController {
             let message = authError?.localizedDescription ?? "canEvaluatePolicy returned false"
             callback(false, message)
         }
-    }
-    
-    func startPinAuthentication(_ sender: Any, callback: @escaping (Bool, String?) -> Void) {
     }
 }
