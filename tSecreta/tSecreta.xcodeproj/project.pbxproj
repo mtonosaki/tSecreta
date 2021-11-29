@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0227FCFD2750A66300B19393 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 0227FCFC2750A66300B19393 /* MSAL */; };
 		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
+		02B0FE1127546141007337F6 /* ViewControllerCloudAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerCloudAuth.swift */; };
+		02B0FE1327546206007337F6 /* ViewControllerDeviceAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerDeviceAuth.swift */; };
 		02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98EE274E33090088B99D /* AppDelegate.swift */; };
 		02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F0274E33090088B99D /* SceneDelegate.swift */; };
 		02EB98F3274E33090088B99D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F2274E33090088B99D /* ViewController.swift */; };
@@ -41,6 +43,8 @@
 		0227FCFE2750A72300B19393 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 		0227FD002750AE2700B19393 /* Readme.AzureAD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.AzureAD.md; sourceTree = "<group>"; };
 		0227FD012750C60900B19393 /* tSecreta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tSecreta.entitlements; sourceTree = "<group>"; };
+		02B0FE1027546141007337F6 /* ViewControllerCloudAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCloudAuth.swift; sourceTree = "<group>"; };
+		02B0FE1227546206007337F6 /* ViewControllerDeviceAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDeviceAuth.swift; sourceTree = "<group>"; };
 		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EB98EE274E33090088B99D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EB98F0274E33090088B99D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
 				02EB98F2274E33090088B99D /* ViewController.swift */,
+				02B0FE1027546141007337F6 /* ViewControllerCloudAuth.swift */,
+				02B0FE1227546206007337F6 /* ViewControllerDeviceAuth.swift */,
 				02EB98F4274E33090088B99D /* Main.storyboard */,
 				02EB98F7274E330A0088B99D /* Assets.xcassets */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
@@ -275,6 +281,8 @@
 			files = (
 				02EB98F3274E33090088B99D /* ViewController.swift in Sources */,
 				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
+				02B0FE1327546206007337F6 /* ViewControllerDeviceAuth.swift in Sources */,
+				02B0FE1127546141007337F6 /* ViewControllerCloudAuth.swift in Sources */,
 				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
 				02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */,
 			);
