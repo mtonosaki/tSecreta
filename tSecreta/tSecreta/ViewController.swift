@@ -28,12 +28,26 @@ class ViewController: UIViewController {
         let img = UIImage(named: "AppIcon")
         imageLogo.image = img;
         
+        // Device Authenticaiton support
+        self.initDeviceAuthentication()
+        
         // AzureAD Authentication support
-        self.initInstance()
+        self.initCloudAuthentication()
+        // TODO: startCloudAuthentication(sender) after device authentication
     }
     
     @IBAction func testButtonTouchUpInside(_ sender: Any) {
-        callGraphAPI(sender)
+        startDeviceAuthentication(sender) {
+            (success, errorMessage) in
+            if success  {
+                print( "Device authenticated successfully!" )
+            } else {
+                print( "Device authentication \(errorMessage ?? "error")")
+                return
+            }
+        }
+//        startCloudAuthentication(sender)
+        
     }
 }
 

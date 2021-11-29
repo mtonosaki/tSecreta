@@ -9,7 +9,8 @@ import MSAL
 
 // AzureAD authentication functions
 extension ViewController {
-    func initInstance() {
+    
+    func initCloudAuthentication() {
         // Azure Active Directory preparation
         do {
             try self.initMSAL()
@@ -59,7 +60,7 @@ extension ViewController {
         return kGraphEndpoint.hasSuffix("/") ? (kGraphEndpoint + "v1.0/me/") : (kGraphEndpoint + "/v1.0/me/");
     }
     
-    func callGraphAPI(_ sender: Any) {
+    func startCloudAuthentication(_ sender: Any) {
         self.loadCurrentAccount {
             (account) in
             guard let currentAccount = account else {
