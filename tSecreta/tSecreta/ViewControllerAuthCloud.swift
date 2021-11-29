@@ -9,23 +9,23 @@ import MSAL
 
 // AzureAD authentication functions
 extension ViewController {
-    
+
     func initCloudAuthentication() -> Bool {
-        // Azure Active Directory preparation
+
         do {
             try self.initMSAL()
         } catch let error {
-            print("Unable to create Application context \(error)");
+            self.addInfo("Unable to create Application context \(error)");
             return false
         }
-        self.loadCurrentAccount()
         self.platformViewDidLoadSetup()
         return true
     }
+
     // Init for AzureAD authentication
     func initMSAL() throws {
         guard let authorityURL = URL(string: "https://login.microsoftonline.com/common") else {
-            print("Unable to create authority URL!")
+            self.addInfo("Unable to create authority URL!")
             return
         }
         let authority = try MSALAADAuthority(url: authorityURL)
@@ -43,16 +43,16 @@ extension ViewController {
 #endif
     }
     
-    func updateCurrentAccount(account: MSALAccount?) {
-        self.currentAccount = account
-    }
-    
     func platformViewDidLoadSetup() {
         NotificationCenter.default.addObserver(self, selector: #selector(appCameToForeGround(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     @objc func appCameToForeGround(notification: Notification) {
-        self.loadCurrentAccount()
+        self.loadCurrentAccount(){
+            (success, errMessage) in
+            
+            // DO NOTHING
+        }
     }
     
     func getGraphEndpoint() -> String {
@@ -62,21 +62,20 @@ extension ViewController {
     
     func startCloudAuthentication(callback: @escaping (Bool, String?) -> Void) {
         self.loadCurrentAccount {
-            (account) in
+            (success, errMessage) in
             
-            guard let currentAccount = account else {
+            if success {
+                self.acquireTokenSilently(callback: callback)
+            } else {
                 self.acquireTokenInteractively(callback: callback)
-                return
             }
-            self.acquireTokenSilently(currentAccount, callback: callback)
         }
     }
     
-    typealias AccountCompletion = (MSALAccount?) -> Void
-    
-    func loadCurrentAccount(completion: AccountCompletion? = nil) {
+    func loadCurrentAccount(callback: @escaping (Bool, String?) -> Void) {
         
         guard let applicationContext = self.applicationContext else {
+            callback(false, nil)
             return
         }
         let msalParameters = MSALParameters()
@@ -84,30 +83,25 @@ extension ViewController {
         
         applicationContext.getCurrentAccount(with: msalParameters, completionBlock: {
             (currentAccount, previousAccount, error) in
+
             if let error = error {
-                print("Couldn't query current account with error: \(error)")
+                self.addInfo("Couldn't query current account with error: \(error)")
+                callback(false, nil)
                 return
             }
             
             if let currentAccount = currentAccount {
-                print("Found a signed in account \(String(describing: currentAccount.username)). Updating data for that account...")
+                self.addInfo("Found a signed in account \(String(describing: currentAccount.username ?? "")). Updating data for that account...")
                 
-                self.updateCurrentAccount(account: currentAccount)
-                
-                if let completion = completion {
-                    completion(self.currentAccount)
-                }
-                
+                self.currentAccount = currentAccount
+                callback(true, nil)
                 return
             }
             
-            print("Account signed out. Updating UX")
+            self.addInfo("Account signed out. Updating UX")
             self.accessToken = ""
-            self.updateCurrentAccount(account: nil)
-            
-            if let completion = completion {
-                completion(nil)
-            }
+            self.currentAccount = nil
+            callback(false, nil)
         })
     }
     
@@ -141,14 +135,18 @@ extension ViewController {
                 }
                 // #4
                 self.accessToken = result.accessToken
-                self.updateCurrentAccount(account: result.account)
+                self.currentAccount = result.account
                 self.getContentWithToken(callback: callback)
             }
         }
     }
     
-    func acquireTokenSilently(_ account : MSALAccount!, callback: @escaping (Bool, String?) -> Void) {
+    func acquireTokenSilently(callback: @escaping (Bool, String?) -> Void) {
         guard let applicationContext = self.applicationContext else {
+            callback(false, nil)
+            return
+        }
+        guard let account = self.currentAccount else {
             callback(false, nil)
             return
         }
@@ -156,6 +154,7 @@ extension ViewController {
         
         applicationContext.acquireTokenSilent(with: parameters){
             (result, error) in
+            
             if let error = error {
                 let nsError = error as NSError
                 if (nsError.domain == MSALErrorDomain) {
@@ -174,21 +173,20 @@ extension ViewController {
             }
             
             self.accessToken = result.accessToken
-            print("Refreshed Access token is \(self.accessToken)")
             self.getContentWithToken(callback: callback)
         }
     }
     
     func getContentWithToken(callback: @escaping (Bool, String?) -> Void) {
+        
         let graphURI = getGraphEndpoint()
         let url = URL(string: graphURI)
         var request = URLRequest(url: url!)
         
-        // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
         request.setValue("Bearer \(self.accessToken)", forHTTPHeaderField: "Authorization")
-        
         URLSession.shared.dataTask(with: request) {
             data, response, error in
+            
             if let error = error {
                 callback(false, "Couldn't get graph result: \(error)")
                 return
@@ -221,7 +219,7 @@ extension ViewController {
                     return
                 }
                 self.accessToken = ""
-                self.updateCurrentAccount(account: nil)
+                self.currentAccount = nil
                 callback(true, nil)
             })
         }

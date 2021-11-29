@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var reAuthButton: UIButton!
     @IBOutlet weak var logoffButton: UIButton!
+    var logView: LogView!
     
+    // for AzureAD
     let aadScopes = ["user.read"];  // Graph API Scope
     var accessToken = String()
     var applicationContext : MSALPublicClientApplication?
@@ -22,7 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initLogView()        
         authenticate()
     }
     
@@ -38,13 +40,15 @@ class ViewController: UIViewController {
                 (success, errorMessage) in
                 
                 if success {
-
+                    DispatchQueue.main.async {
+                        self.logoffButton.isEnabled = true
+                    }
                     self.startDeviceAuthentication() {
                         (success, errorMessage) in
-
+                        
                         if success  {
-                            print( "Device authenticated successfully!" )
-
+                            self.addInfo("Device authenticated successfully!" )
+                            
                             // Move to List View
                             DispatchQueue.main.async {
                                 self.logoffButton.isEnabled = true
@@ -52,14 +56,14 @@ class ViewController: UIViewController {
                                 return;
                             }
                         } else {
-                            print( "Device authentication \(errorMessage ?? "error")")
+                            self.addInfo("Device authentication \(errorMessage ?? "error")")
                         }
                         DispatchQueue.main.async {
                             self.reAuthButton.isEnabled = true
                         }
                     }
                 } else {
-                    print("Authentication Error")
+                    self.addInfo("Authentication Error")
                 }
             }
         }
