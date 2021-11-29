@@ -93,7 +93,6 @@
 		02B0FE162754F4E2007337F6 /* FeatureAuth */ = {
 			isa = PBXGroup;
 			children = (
-				02B0FE172754F540007337F6 /* Secret */,
 				02EB98F2274E33090088B99D /* ViewControllerAuth.swift */,
 				02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */,
 				02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */,
@@ -133,6 +132,7 @@
 		02EB98ED274E33090088B99D /* tSecreta */ = {
 			isa = PBXGroup;
 			children = (
+				02B0FE172754F540007337F6 /* Secret */,
 				02B0FE162754F4E2007337F6 /* FeatureAuth */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
