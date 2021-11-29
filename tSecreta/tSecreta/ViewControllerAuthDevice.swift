@@ -10,11 +10,7 @@ import LocalAuthentication
 
 extension ViewController {
     
-    func initDeviceAuthentication() {
-        
-    }
-    
-    func startDeviceAuthentication(_ sender: Any, callback: @escaping (Bool, String?) -> Void) {
+    func startDeviceAuthentication(callback: @escaping (Bool, String?) -> Void) {
         let context = LAContext()
         let reason = "This app uses Touch ID / Facd ID to secure your data."
         var authError: NSError?

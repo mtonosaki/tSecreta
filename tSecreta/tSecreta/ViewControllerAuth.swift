@@ -11,8 +11,8 @@ import MSAL
 // Authentication Screen
 class ViewController: UIViewController {
     
-    @IBOutlet weak var imageLogo: UIImageView!
     @IBOutlet weak var reAuthButton: UIButton!
+    @IBOutlet weak var logoffButton: UIButton!
     
     let aadScopes = ["user.read"];  // Graph API Scope
     var accessToken = String()
@@ -23,34 +23,63 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Attached logo image from AppIcon
-        let img = UIImage(named: "Logo")
-        imageLogo.image = img;
-        
-        // Device Authenticaiton support
-        self.initDeviceAuthentication()
-        
-        // AzureAD Authentication support
-        self.initCloudAuthentication()
-        // TODO: startCloudAuthentication(sender) after device authentication
+        authenticate()
     }
     
-    @IBAction func testButtonTouchUpInside(_ sender: Any) {
-        startDeviceAuthentication(sender) {
-            (success, errorMessage) in
-            if success  {
-                print( "Device authenticated successfully!" )
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "ToList", sender: self)
-                }
+    // Need main thread
+    private func authenticate() {
+        
+        logoffButton.isEnabled = false
+        reAuthButton.isEnabled = false
+        
+        // AzureAD Authentication support
+        if self.initCloudAuthentication() {
+            self.startCloudAuthentication() {
+                (success, errorMessage) in
                 
-            } else {
-                print( "Device authentication \(errorMessage ?? "error")")
-                return
+                if success {
+
+                    self.startDeviceAuthentication() {
+                        (success, errorMessage) in
+
+                        if success  {
+                            print( "Device authenticated successfully!" )
+
+                            // Move to List View
+                            DispatchQueue.main.async {
+                                self.logoffButton.isEnabled = true
+                                self.performSegue(withIdentifier: "ToList", sender: self)
+                                return;
+                            }
+                        } else {
+                            print( "Device authentication \(errorMessage ?? "error")")
+                        }
+                        DispatchQueue.main.async {
+                            self.reAuthButton.isEnabled = true
+                        }
+                    }
+                } else {
+                    print("Authentication Error")
+                }
             }
         }
-//        startCloudAuthentication(sender)
-        
+    }
+    
+    @IBAction func reAuthenticationButtonTouchUpInside(_ sender: Any) {
+        authenticate()
+    }
+    
+    @IBAction func logoffButtonTouchUpInside(_ sender: Any) {
+        self.signOut(){
+            (success, errMessage) in
+            
+            if success {
+                DispatchQueue.main.async {
+                    self.logoffButton.isEnabled = false
+                    self.reAuthButton.isEnabled = true
+                }
+            }
+        }
     }
 }
 

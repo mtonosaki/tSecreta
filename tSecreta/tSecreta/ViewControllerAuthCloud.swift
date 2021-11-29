@@ -10,16 +10,17 @@ import MSAL
 // AzureAD authentication functions
 extension ViewController {
     
-    func initCloudAuthentication() {
+    func initCloudAuthentication() -> Bool {
         // Azure Active Directory preparation
         do {
             try self.initMSAL()
         } catch let error {
             print("Unable to create Application context \(error)");
+            return false
         }
         self.loadCurrentAccount()
         self.platformViewDidLoadSetup()
-
+        return true
     }
     // Init for AzureAD authentication
     func initMSAL() throws {
@@ -44,7 +45,6 @@ extension ViewController {
     
     func updateCurrentAccount(account: MSALAccount?) {
         self.currentAccount = account
-        //TODO: Update Logout button enabled here: account != nil
     }
     
     func platformViewDidLoadSetup() {
@@ -60,14 +60,15 @@ extension ViewController {
         return kGraphEndpoint.hasSuffix("/") ? (kGraphEndpoint + "v1.0/me/") : (kGraphEndpoint + "/v1.0/me/");
     }
     
-    func startCloudAuthentication(_ sender: Any) {
+    func startCloudAuthentication(callback: @escaping (Bool, String?) -> Void) {
         self.loadCurrentAccount {
             (account) in
+            
             guard let currentAccount = account else {
-                self.acquireTokenInteractively()
+                self.acquireTokenInteractively(callback: callback)
                 return
             }
-            self.acquireTokenSilently(currentAccount)
+            self.acquireTokenSilently(currentAccount, callback: callback)
         }
     }
     
@@ -110,41 +111,45 @@ extension ViewController {
         })
     }
     
-    func acquireTokenInteractively() {
+    func acquireTokenInteractively(callback: @escaping (Bool, String?) -> Void) {
         
-        guard let applicationContext = self.applicationContext else {
-            return
-        }
-        guard let webViewParameters = self.webViewParameters else {
-            return
-        }
-        
-        // #1
-        let parameters = MSALInteractiveTokenParameters(scopes: self.aadScopes, webviewParameters: webViewParameters)
-        parameters.promptType = .selectAccount
-        
-        // #2
-        applicationContext.acquireToken(with: parameters) {
-            (result, error) in
-            // #3
-            if let error = error {
-                print("Could not acquire token: \(error)")
+        DispatchQueue.main.async {
+            guard let applicationContext = self.applicationContext else {
+                callback(false, nil)
                 return
             }
-            guard let result = result else {
-                print("Could not acquire token: No result returned")
+            guard let webViewParameters = self.webViewParameters else {
+                callback(false, nil)
                 return
             }
-            // #4
-            self.accessToken = result.accessToken
-            print("Access token is \(self.accessToken)")
-            self.updateCurrentAccount(account: result.account)
-            self.getContentWithToken()
+        
+            // #1
+            let parameters = MSALInteractiveTokenParameters(scopes: self.aadScopes, webviewParameters: webViewParameters)
+            parameters.promptType = .selectAccount
+            
+            // #2
+            applicationContext.acquireToken(with: parameters) {
+                (result, error) in
+                // #3
+                if let error = error {
+                    callback(false, "Could not acquire token: \(error)")
+                    return
+                }
+                guard let result = result else {
+                    callback(false, "Could not acquire token: No result returned")
+                    return
+                }
+                // #4
+                self.accessToken = result.accessToken
+                self.updateCurrentAccount(account: result.account)
+                self.getContentWithToken(callback: callback)
+            }
         }
     }
     
-    func acquireTokenSilently(_ account : MSALAccount!) {
+    func acquireTokenSilently(_ account : MSALAccount!, callback: @escaping (Bool, String?) -> Void) {
         guard let applicationContext = self.applicationContext else {
+            callback(false, nil)
             return
         }
         let parameters = MSALSilentTokenParameters(scopes: self.aadScopes, account: account)
@@ -156,29 +161,25 @@ extension ViewController {
                 if (nsError.domain == MSALErrorDomain) {
                     
                     if (nsError.code == MSALError.interactionRequired.rawValue) {
-                        
-                        DispatchQueue.main.async {
-                            self.acquireTokenInteractively()
-                        }
+                        self.acquireTokenInteractively(callback: callback)
                         return
                     }
                 }
-                print("Could not acquire token silently: \(error)")
+                callback(false, "Could not acquire token silently: \(error)")
                 return
             }
             guard let result = result else {
-                print("Could not acquire token: No result returned")
+                callback(false, "Could not acquire token: No result returned")
                 return
             }
             
             self.accessToken = result.accessToken
             print("Refreshed Access token is \(self.accessToken)")
-            //self.updateSignOutButton(enabled: true)
-            self.getContentWithToken()
+            self.getContentWithToken(callback: callback)
         }
     }
     
-    func getContentWithToken() {
+    func getContentWithToken(callback: @escaping (Bool, String?) -> Void) {
         let graphURI = getGraphEndpoint()
         let url = URL(string: graphURI)
         var request = URLRequest(url: url!)
@@ -189,22 +190,24 @@ extension ViewController {
         URLSession.shared.dataTask(with: request) {
             data, response, error in
             if let error = error {
-                print("Couldn't get graph result: \(error)")
+                callback(false, "Couldn't get graph result: \(error)")
                 return
             }
             guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) else {
-                print("Couldn't deserialize result JSON")
+                callback(false, "Couldn't deserialize result JSON")
                 return
             }
-            print("Result from Graph: \(result))")
+            callback(true, "Result from Graph: \(result))")
         }.resume()
     }
     
-    @objc func signOut(_ sender: AnyObject) {
+    @objc func signOut(callback: @escaping (Bool, String?) -> Void) {
         guard let applicationContext = self.applicationContext else {
+            callback(false, "Couldn't signout account now [1]")
             return
         }
         guard let account = self.currentAccount else {
+            callback(false, "Couldn't signout account now [2]")
             return
         }
         
@@ -214,12 +217,12 @@ extension ViewController {
             applicationContext.signout(with: account, signoutParameters: signoutParameters, completionBlock: {
                 (success, error) in
                 if let error = error {
-                    print("Couldn't sign out account with error: \(error)")
+                    callback(false, "Couldn't sign out account with error: \(error)")
                     return
                 }
-                print("Sign out completed successfully")
                 self.accessToken = ""
                 self.updateCurrentAccount(account: nil)
+                callback(true, nil)
             })
         }
     }
