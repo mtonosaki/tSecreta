@@ -24,8 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Attached logo image from AppIcon
-        // TODO: precision version image
-        let img = UIImage(named: "AppIcon")
+        let img = UIImage(named: "Logo")
         imageLogo.image = img;
         
         // Device Authenticaiton support

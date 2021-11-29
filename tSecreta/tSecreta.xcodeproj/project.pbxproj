@@ -13,7 +13,7 @@
 		02B0FE1327546206007337F6 /* ViewControllerDeviceAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerDeviceAuth.swift */; };
 		02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98EE274E33090088B99D /* AppDelegate.swift */; };
 		02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F0274E33090088B99D /* SceneDelegate.swift */; };
-		02EB98F3274E33090088B99D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F2274E33090088B99D /* ViewController.swift */; };
+		02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F2274E33090088B99D /* ViewControllerAuth.swift */; };
 		02EB98F6274E33090088B99D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EB98F4274E33090088B99D /* Main.storyboard */; };
 		02EB98F8274E330A0088B99D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02EB98F7274E330A0088B99D /* Assets.xcassets */; };
 		02EB98FB274E330A0088B99D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */; };
@@ -48,7 +48,7 @@
 		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EB98EE274E33090088B99D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EB98F0274E33090088B99D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		02EB98F2274E33090088B99D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		02EB98F2274E33090088B99D /* ViewControllerAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuth.swift; sourceTree = "<group>"; };
 		02EB98F5274E33090088B99D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02EB98F7274E330A0088B99D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02EB98FA274E330A0088B99D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 				0227FD012750C60900B19393 /* tSecreta.entitlements */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
-				02EB98F2274E33090088B99D /* ViewController.swift */,
+				02EB98F2274E33090088B99D /* ViewControllerAuth.swift */,
 				02B0FE1027546141007337F6 /* ViewControllerCloudAuth.swift */,
 				02B0FE1227546206007337F6 /* ViewControllerDeviceAuth.swift */,
 				02EB98F4274E33090088B99D /* Main.storyboard */,
@@ -279,7 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02EB98F3274E33090088B99D /* ViewController.swift in Sources */,
+				02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */,
 				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
 				02B0FE1327546206007337F6 /* ViewControllerDeviceAuth.swift in Sources */,
 				02B0FE1127546141007337F6 /* ViewControllerCloudAuth.swift in Sources */,
