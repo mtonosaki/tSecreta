@@ -15,7 +15,7 @@ extension ViewController {
         do {
             try self.initMSAL()
         } catch let error {
-            self.addInfo("Unable to create Application context \(error)");
+            self.addWarning("Unable to create Application context \(error)");
             return false
         }
         self.platformViewDidLoadSetup()
@@ -25,7 +25,7 @@ extension ViewController {
     // Init for AzureAD authentication
     func initMSAL() throws {
         guard let authorityURL = URL(string: "https://login.microsoftonline.com/common") else {
-            self.addInfo("Unable to create authority URL!")
+            self.addError("Unable to create authority URL!")
             return
         }
         let authority = try MSALAADAuthority(url: authorityURL)
@@ -85,7 +85,7 @@ extension ViewController {
             (currentAccount, previousAccount, error) in
 
             if let error = error {
-                self.addInfo("Couldn't query current account with error: \(error)")
+                self.addWarning("Couldn't query current account with error: \(error)")
                 callback(false, nil)
                 return
             }
@@ -98,7 +98,7 @@ extension ViewController {
                 return
             }
             
-            self.addInfo("Account signed out. Updating UX")
+            self.addInfo("Account signed out.")
             self.accessToken = ""
             self.currentAccount = nil
             callback(false, nil)

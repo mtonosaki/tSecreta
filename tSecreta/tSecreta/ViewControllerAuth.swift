@@ -56,14 +56,14 @@ class ViewController: UIViewController {
                                 return;
                             }
                         } else {
-                            self.addInfo("Device authentication \(errorMessage ?? "error")")
+                            self.addWarning("Device authentication \(errorMessage ?? "error")")
                         }
                         DispatchQueue.main.async {
                             self.reAuthButton.isEnabled = true
                         }
                     }
                 } else {
-                    self.addInfo("Authentication Error")
+                    self.addWarning("Authentication Error")
                 }
             }
         }

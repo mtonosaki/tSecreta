@@ -88,6 +88,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02B0FE162754F4E2007337F6 /* FeatureAuth */ = {
+			isa = PBXGroup;
+			children = (
+				02B0FE172754F540007337F6 /* Secret */,
+				02EB98F2274E33090088B99D /* ViewControllerAuth.swift */,
+				02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */,
+				02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */,
+				02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */,
+			);
+			name = FeatureAuth;
+			sourceTree = "<group>";
+		};
+		02B0FE172754F540007337F6 /* Secret */ = {
+			isa = PBXGroup;
+			children = (
+				0227FCFE2750A72300B19393 /* MySecret.swift */,
+			);
+			name = Secret;
+			sourceTree = "<group>";
+		};
 		02EB98E2274E33090088B99D = {
 			isa = PBXGroup;
 			children = (
@@ -111,16 +131,12 @@
 		02EB98ED274E33090088B99D /* tSecreta */ = {
 			isa = PBXGroup;
 			children = (
-				0227FD012750C60900B19393 /* tSecreta.entitlements */,
+				02B0FE162754F4E2007337F6 /* FeatureAuth */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
-				02EB98F2274E33090088B99D /* ViewControllerAuth.swift */,
-				02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */,
-				02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */,
-				02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */,
-				0227FCFE2750A72300B19393 /* MySecret.swift */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
 				02EB98F4274E33090088B99D /* Main.storyboard */,
+				0227FD012750C60900B19393 /* tSecreta.entitlements */,
 				02EB98F7274E330A0088B99D /* Assets.xcassets */,
 				02EB98FC274E330A0088B99D /* Info.plist */,
 				0227FD002750AE2700B19393 /* Readme.AzureAD.md */,
