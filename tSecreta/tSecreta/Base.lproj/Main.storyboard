@@ -1,135 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cjn-FY-Yfh">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Auth-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="tSecreta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ezQ-HV-m3D">
-                                <rect key="frame" x="126.66666666666669" y="300" width="137" height="33"/>
-                                <color key="tintColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="titleEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Re-Authenticate">
-                                    <backgroundConfiguration key="background" image="repeat" catalog="system" imageContentMode="left">
-                                        <color key="backgroundColor" red="0.54848703219718542" green="0.15143672893581794" blue="0.46103836487517119" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="strokeColor" red="0.44098644339999998" green="0.094781981619999997" blue="0.26579765950000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </backgroundConfiguration>
-                                    <directionalEdgeInsets key="contentInsets" top="8" leading="24" bottom="8" trailing="8"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="reAuthenticationButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KVW-gc-kti"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKZ-mL-bRK">
-                                <rect key="frame" x="153" y="352" width="84" height="33"/>
-                                <color key="tintColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="titleEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Logoff">
-                                    <backgroundConfiguration key="background" image="pip.remove" catalog="system" imageContentMode="left">
-                                        <color key="backgroundColor" red="0.54848703219999995" green="0.15143672890000001" blue="0.4610383649" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="strokeColor" red="0.44098644339999998" green="0.094781981619999997" blue="0.26579765950000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </backgroundConfiguration>
-                                    <directionalEdgeInsets key="contentInsets" top="8" leading="34" bottom="8" trailing="8"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="logoffButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zZ3-iF-4KM"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="dwd-WB-lEf">
-                                <rect key="frame" x="144" y="110" width="128" height="128"/>
-                            </imageView>
-                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.89411764705882346" green="0.0" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="rKZ-mL-bRK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1dP-Hp-UQk"/>
-                            <constraint firstItem="ezQ-HV-m3D" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4qf-po-No4"/>
-                            <constraint firstItem="ezQ-HV-m3D" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="212" id="RNM-Gf-eJv"/>
-                            <constraint firstItem="dwd-WB-lEf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="RX2-6I-lvS"/>
-                            <constraint firstItem="dwd-WB-lEf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="USK-SG-SEP"/>
-                            <constraint firstItem="rKZ-mL-bRK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="264" id="brX-i2-PeY"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Auth" id="gDC-IF-Zl2"/>
-                    <connections>
-                        <outlet property="logoffButton" destination="rKZ-mL-bRK" id="Jw9-tJ-2tw"/>
-                        <outlet property="reAuthButton" destination="ezQ-HV-m3D" id="SiR-Eu-FvY"/>
-                        <segue destination="Nz0-6f-m7V" kind="show" identifier="ToList" destinationCreationSelector="segueAuthToList:" id="gbN-4T-AZb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.92753623188412" y="53.571428571428569"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="fBB-oa-iR6">
-            <objects>
-                <tableViewController id="Nz0-6f-m7V" customClass="ViewControllerList" customModule="tSecreta" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="2En-BE-X66">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" id="IjR-Og-p3P">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IjR-Og-p3P" id="zPC-lm-JVh">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Nz0-6f-m7V" id="oRo-HI-FAv"/>
-                            <outlet property="delegate" destination="Nz0-6f-m7V" id="Won-ZY-dv2"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="List" id="jBl-3D-33M"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="54D-3f-6UK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1712" y="54"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="9UV-nf-9eO">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cjn-FY-Yfh" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QjP-SP-eOP">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QGK-oL-5bI"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iHv-En-WS1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="34.782608695652179" y="53.571428571428569"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Logo" width="128" height="128"/>
-        <image name="pip.remove" catalog="system" width="128" height="96"/>
-        <image name="repeat" catalog="system" width="128" height="98"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
