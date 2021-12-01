@@ -86,15 +86,27 @@ class ViewController: UIViewController {
             let blobClient = cn.getBlobClient()
             let blobContainer = blobClient.containerReference(fromName: "tsecret")
             let blob = blobContainer.blockBlobReference(fromName: "MainData.\(id).dat")
-            blob.downloadToData(){
-                (error, data) in
+            blob.downloadToText(){
+                (error, text) in
                 if let error = error {
                     self.addError(error.localizedDescription)
                     callback(false, error.localizedDescription)
                     return
                 }
-                if let data = data {
-                    self.addInfo("Downloaded \(data.count) bytes")
+                if let base64sec = text {
+                    self.addInfo("Downloaded \(base64sec.count) characters")
+                    
+                    let secParam = MySecret().key
+                    let f1 = Character(String(base64sec.prefix(1)))
+                    let ivN = base64sec.distance(from:base64sec.startIndex, to:secParam.TEXTSET64.firstIndex(of: f1)!)
+                    let iv = base64sec.Mid(start:1, len:ivN + secParam.IVNPP).data(using:.ascii)
+                    let base64secData = base64sec.Mid(start:ivN + iv!.count + 1).data(using:.ascii)!
+                    let keyScrambled = fusionString(base64str: secParam.KEY, filter: id, textset64: secParam.TEXTSET64)
+                    
+                    
+//                    let r = Rijndael(key: keyScrambled.data(using: .ascii)!, mode: .cbc)!
+//                    let plainData = r.decrypt(data: sec, blockSize: 16, iv: iv)
+                    
                     callback(true, nil)
                 }
             }
