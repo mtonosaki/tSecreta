@@ -92,9 +92,24 @@ class ViewController: UIViewController {
             }
             if success {
                 self.addInfo("Downloaded \(safeText.count) base64 length")
+                let maybeJsonStr = EncryptUtils.decode2(base64sec: safeText, filter: id)
+                guard let jsonStr = maybeJsonStr else {
+                    self.addError("Downloaded json is broken.")
+                    return
+                }
+                let jsonData = jsonStr.data(using: .utf8)
                 
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(.iso8601PlusMilliSeconds)
+                    let notes = try decoder.decode(NoteList.self, from: jsonData!)
+                    print( notes.Notes.count )
+                }
+                catch let ex {
+                    self.addError(ex.localizedDescription)
+                }
                 
-                
+
             } else {
                 self.addError(safeText)
             }

@@ -69,4 +69,15 @@ public struct EncryptUtils {
             return nil
         }
     }
+    
+    public static func decode2(base64sec: String, filter: String) -> String?{
+        let secParam = MySecret().key
+        let f1 = Character(String(base64sec.prefix(1)))
+        let ivN = base64sec.distance(from:base64sec.startIndex, to:secParam.TEXTSET64.firstIndex(of: f1)!)
+        let iv = String(base64sec.Mid(start:1, len:ivN + secParam.IVNPP))
+        let base64secData = String(base64sec.Mid(start:ivN + iv.count + 1))
+        let keyScrambled = fusionString(base64str: secParam.KEY, filter: filter, textset64: secParam.TEXTSET64)
+        let cleanText = decrypt(key: keyScrambled, iv: iv, base64: base64secData)
+        return cleanText
+    }
 }
