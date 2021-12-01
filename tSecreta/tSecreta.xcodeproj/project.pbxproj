@@ -16,6 +16,7 @@
 		029D42BF275795A0009710D5 /* tSecretaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42BE275795A0009710D5 /* tSecretaTests.swift */; };
 		029D42C9275795A0009710D5 /* tSecretaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42C8275795A0009710D5 /* tSecretaUITests.swift */; };
 		029D42CB275795A0009710D5 /* tSecretaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */; };
+		029D42D827579634009710D5 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029D42D727579634009710D5 /* AZSClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		029D42C4275795A0009710D5 /* tSecretaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tSecretaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		029D42C8275795A0009710D5 /* tSecretaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITests.swift; sourceTree = "<group>"; };
 		029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		029D42D727579634009710D5 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				029D42D827579634009710D5 /* AZSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,7 @@
 		029D429B2757959F009710D5 = {
 			isa = PBXGroup;
 			children = (
+				029D42D727579634009710D5 /* AZSClient.framework */,
 				029D42A62757959F009710D5 /* tSecreta */,
 				029D42BD275795A0009710D5 /* tSecretaTests */,
 				029D42C7275795A0009710D5 /* tSecretaUITests */,
@@ -103,8 +107,8 @@
 				029D42A92757959F009710D5 /* SceneDelegate.swift */,
 				029D42AB2757959F009710D5 /* ViewController.swift */,
 				029D42AD2757959F009710D5 /* Main.storyboard */,
-				029D42B0275795A0009710D5 /* Assets.xcassets */,
 				029D42B2275795A0009710D5 /* LaunchScreen.storyboard */,
+				029D42B0275795A0009710D5 /* Assets.xcassets */,
 				029D42B5275795A0009710D5 /* Info.plist */,
 			);
 			path = tSecreta;
@@ -439,6 +443,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tSecreta/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -466,6 +474,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tSecreta/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
