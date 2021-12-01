@@ -9,6 +9,6 @@
 #define Bridging_Header_h
 
 // Include the following import statement to use blob APIs.
-#import <AZSClient/AZSClient.h>
+//#import <AZSClient/AZSClient.h>
 
 #endif /* Bridging_Header_h */

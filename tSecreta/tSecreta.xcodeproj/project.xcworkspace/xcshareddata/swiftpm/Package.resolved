@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "4b0565384d3c4c588af09e660535b2c7c9bf5b39",
+          "version": "1.4.2"
+        }
+      },
+      {
         "package": "MSAL",
         "repositoryURL": "https://github.com/AzureAD/microsoft-authentication-library-for-objc",
         "state": {
-          "branch": "master",
-          "revision": "4ccb3f7b6a03e83fa0f0835704b9da984db37c73",
-          "version": null
+          "branch": null,
+          "revision": "1ebe14dcdafedd7c315a85f4bd02d28c02e93557",
+          "version": "1.1.24"
         }
       }
     ]
