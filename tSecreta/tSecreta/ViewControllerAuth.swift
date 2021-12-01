@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var reAuthButton: UIButton!
     @IBOutlet weak var logoffButton: UIButton!
     var logView: LogView!
+    var noteList: NoteList? = nil
     
     // for AzureAD
     let aadScopes = ["user.read"];  // Graph API Scope
@@ -51,11 +52,10 @@ class ViewController: UIViewController {
                             self.addInfo("Device authenticated successfully!" )
                             
                             self.downloadCloudSecretData() {
-                                (success, errMessage) in
-                                
-                                
+                                (success, errMessage, newNoteList) in
                                 
                                 if success {
+                                    self.noteList = newNoteList
                                     DispatchQueue.main.async {
                                         self.logoffButton.isEnabled = true
                                         self.moveToListView()
@@ -74,10 +74,10 @@ class ViewController: UIViewController {
         }
     }
     
-    private func downloadCloudSecretData(callback: @escaping (Bool, String?) ->  Void) {
+    private func downloadCloudSecretData(callback: @escaping (Bool, String?, NoteList?) ->  Void) {
 
         guard let idraw = currentAccount?.identifier else {
-            callback(false, "To download, authenticate first.")
+            callback(false, "To download, authenticate first.", nil)
             return
         }
         let id = idraw.components(separatedBy: ".")[0]
@@ -103,17 +103,16 @@ class ViewController: UIViewController {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .formatted(.iso8601PlusMilliSeconds)
                     let notes = try decoder.decode(NoteList.self, from: jsonData!)
-                    print( notes.Notes.count )
+                    callback(true, nil, notes)
+                    return
                 }
                 catch let ex {
                     self.addError(ex.localizedDescription)
                 }
-                
-
             } else {
                 self.addError(safeText)
             }
-            callback(success, safeText)
+            callback(success, safeText, nil)
         }
     }
     
@@ -125,7 +124,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToList" {
             let listView = segue.destination as! ViewControllerList
-            listView.binaryData = currentAccount?.username
+            listView.noteList = self.noteList
         }
     }
     
