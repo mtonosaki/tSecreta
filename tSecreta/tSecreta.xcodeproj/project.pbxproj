@@ -17,6 +17,9 @@
 		029D42C9275795A0009710D5 /* tSecretaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42C8275795A0009710D5 /* tSecretaUITests.swift */; };
 		029D42CB275795A0009710D5 /* tSecretaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */; };
 		029D42D827579634009710D5 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029D42D727579634009710D5 /* AZSClient.framework */; };
+		029D42DB275796A0009710D5 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 029D42DA27579695009710D5 /* libxml2.2.tbd */; };
+		029D42DE27579745009710D5 /* CloudStorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42DD27579745009710D5 /* CloudStorageHandler.swift */; };
+		029D42E027579801009710D5 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42DF27579801009710D5 /* MySecret.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,10 @@
 		029D42C8275795A0009710D5 /* tSecretaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITests.swift; sourceTree = "<group>"; };
 		029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		029D42D727579634009710D5 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
+		029D42DA27579695009710D5 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		029D42DC275796D0009710D5 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		029D42DD27579745009710D5 /* CloudStorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageHandler.swift; sourceTree = "<group>"; };
+		029D42DF27579801009710D5 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				029D42D827579634009710D5 /* AZSClient.framework in Frameworks */,
+				029D42DB275796A0009710D5 /* libxml2.2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +95,7 @@
 				029D42BD275795A0009710D5 /* tSecretaTests */,
 				029D42C7275795A0009710D5 /* tSecretaUITests */,
 				029D42A52757959F009710D5 /* Products */,
+				029D42D927579695009710D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,10 +115,13 @@
 				029D42A72757959F009710D5 /* AppDelegate.swift */,
 				029D42A92757959F009710D5 /* SceneDelegate.swift */,
 				029D42AB2757959F009710D5 /* ViewController.swift */,
+				029D42DD27579745009710D5 /* CloudStorageHandler.swift */,
+				029D42DF27579801009710D5 /* MySecret.swift */,
 				029D42AD2757959F009710D5 /* Main.storyboard */,
 				029D42B2275795A0009710D5 /* LaunchScreen.storyboard */,
 				029D42B0275795A0009710D5 /* Assets.xcassets */,
 				029D42B5275795A0009710D5 /* Info.plist */,
+				029D42DC275796D0009710D5 /* Bridging-Header.h */,
 			);
 			path = tSecreta;
 			sourceTree = "<group>";
@@ -129,6 +141,14 @@
 				029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */,
 			);
 			path = tSecretaUITests;
+			sourceTree = "<group>";
+		};
+		029D42D927579695009710D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				029D42DA27579695009710D5 /* libxml2.2.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,7 +283,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				029D42AC2757959F009710D5 /* ViewController.swift in Sources */,
+				029D42E027579801009710D5 /* MySecret.swift in Sources */,
 				029D42A82757959F009710D5 /* AppDelegate.swift in Sources */,
+				029D42DE27579745009710D5 /* CloudStorageHandler.swift in Sources */,
 				029D42AA2757959F009710D5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecreta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -493,6 +516,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecreta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
