@@ -11,7 +11,7 @@
 		0212A78127573C2500565BA9 /* StrUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A78027573C2500565BA9 /* StrUtilsTest.swift */; };
 		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
 		02346D6F275714F60006ABE4 /* EncryptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02346D6E275714F60006ABE4 /* EncryptTests.swift */; };
-		02464FD227552CAF009024F5 /* Encrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464FD127552CAF009024F5 /* Encrypt.swift */; };
+		02464FD227552CAF009024F5 /* EncryptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464FD127552CAF009024F5 /* EncryptUtils.swift */; };
 		0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0291C86027578464004DD5D0 /* AZSClient.framework */; };
 		0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 022148E9275510C100D098A5 /* libxml2.2.tbd */; };
 		02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */; };
@@ -57,7 +57,7 @@
 		0227FD002750AE2700B19393 /* Readme.AzureAD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.AzureAD.md; sourceTree = "<group>"; };
 		0227FD012750C60900B19393 /* tSecreta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tSecreta.entitlements; sourceTree = "<group>"; };
 		02346D6E275714F60006ABE4 /* EncryptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptTests.swift; sourceTree = "<group>"; };
-		02464FD127552CAF009024F5 /* Encrypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encrypt.swift; sourceTree = "<group>"; };
+		02464FD127552CAF009024F5 /* EncryptUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptUtils.swift; sourceTree = "<group>"; };
 		0291C85F2757841F004DD5D0 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		0291C86027578464004DD5D0 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
 		02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthCloud.swift; sourceTree = "<group>"; };
@@ -131,7 +131,6 @@
 		02B0FE172754F540007337F6 /* Secret */ = {
 			isa = PBXGroup;
 			children = (
-				02464FD127552CAF009024F5 /* Encrypt.swift */,
 				0227FCFE2750A72300B19393 /* MySecret.swift */,
 			);
 			name = Secret;
@@ -167,6 +166,7 @@
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
 				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
+				02464FD127552CAF009024F5 /* EncryptUtils.swift */,
 				0212A77E27573B4B00565BA9 /* StrUtils.swift */,
 				02D861002757A64B00D643CF /* CloudFileHandler.swift */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
@@ -342,7 +342,7 @@
 				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
 				02D861012757A64B00D643CF /* CloudFileHandler.swift in Sources */,
 				02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */,
-				02464FD227552CAF009024F5 /* Encrypt.swift in Sources */,
+				02464FD227552CAF009024F5 /* EncryptUtils.swift in Sources */,
 				02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */,
 				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
 				02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */,

@@ -91,7 +91,7 @@ class ViewController: UIViewController {
                 return
             }
             if success {
-                self.addInfo("Downloaded \(safeText.count) characters")
+                self.addInfo("Downloaded \(safeText.count) base64 length")
                 
                 
                 
