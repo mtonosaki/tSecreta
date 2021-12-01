@@ -83,31 +83,22 @@ class ViewController: UIViewController {
         let id = idraw.components(separatedBy: ".")[0]
         self.addInfo("Downloading...")
 
-        do {
-            let cn = try AZSCloudStorageAccount(fromConnectionString: MySecret().azureBlob.AzureStorageConnectionString)
-            let blobClient = cn.getBlobClient()
-            let blobContainer = blobClient.containerReference(fromName: "tsecret")
-            let blob = blobContainer.blockBlobReference(fromName: "MainData.\(id).dat")
-            blob.downloadToText(){
-                (error, text) in
-                if let error = error {
-                    self.addError(error.localizedDescription)
-                    callback(false, error.localizedDescription)
-                    return
-                }
-                if let base64sec = text {
-                    self.addInfo("Downloaded \(base64sec.count) characters")
-                    
+        DownloadText(userObjectId: id){
+            (success, text) in
 
-
-
-
-                    callback(true, nil)
-                }
+            guard let safeText = text else {
+                self.addError("Cloud data downloading error")
+                return
             }
-        }
-        catch let ex {
-            addFatal("Azue Error \(ex.localizedDescription)")
+            if success {
+                self.addInfo("Downloaded \(safeText.count) characters")
+                
+                
+                
+            } else {
+                self.addError(safeText)
+            }
+            callback(success, safeText)
         }
     }
     

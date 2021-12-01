@@ -18,6 +18,8 @@
 		02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */; };
 		02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */; };
 		02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE182754F6CC007337F6 /* ViewControllerList.swift */; };
+		02D860FF2757A5D700D643CF /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02D860FE2757A5D700D643CF /* CryptoSwift */; };
+		02D861012757A64B00D643CF /* CloudFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D861002757A64B00D643CF /* CloudFileHandler.swift */; };
 		02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98EE274E33090088B99D /* AppDelegate.swift */; };
 		02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F0274E33090088B99D /* SceneDelegate.swift */; };
 		02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F2274E33090088B99D /* ViewControllerAuth.swift */; };
@@ -62,6 +64,7 @@
 		02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthDevice.swift; sourceTree = "<group>"; };
 		02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthLog.swift; sourceTree = "<group>"; };
 		02B0FE182754F6CC007337F6 /* ViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerList.swift; sourceTree = "<group>"; };
+		02D861002757A64B00D643CF /* CloudFileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFileHandler.swift; sourceTree = "<group>"; };
 		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EB98EE274E33090088B99D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EB98F0274E33090088B99D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */,
+				02D860FF2757A5D700D643CF /* CryptoSwift in Frameworks */,
 				02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */,
 				0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */,
 			);
@@ -164,6 +168,7 @@
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
 				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
 				0212A77E27573B4B00565BA9 /* StrUtils.swift */,
+				02D861002757A64B00D643CF /* CloudFileHandler.swift */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
 				02EB98F4274E33090088B99D /* Main.storyboard */,
 				0227FD012750C60900B19393 /* tSecreta.entitlements */,
@@ -212,6 +217,7 @@
 			name = tSecreta;
 			packageProductDependencies = (
 				02FD0D7E27579C58002E71D5 /* MSAL */,
+				02D860FE2757A5D700D643CF /* CryptoSwift */,
 			);
 			productName = tSecreta;
 			productReference = 02EB98EB274E33090088B99D /* tSecreta.app */;
@@ -287,6 +293,7 @@
 			mainGroup = 02EB98E2274E33090088B99D;
 			packageReferences = (
 				02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
+				02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
 			productRefGroup = 02EB98EC274E33090088B99D /* Products */;
 			projectDirPath = "";
@@ -333,6 +340,7 @@
 			files = (
 				02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */,
 				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
+				02D861012757A64B00D643CF /* CloudFileHandler.swift in Sources */,
 				02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */,
 				02464FD227552CAF009024F5 /* Encrypt.swift in Sources */,
 				02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */,
@@ -521,10 +529,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 42235ECE62;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -564,10 +573,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 42235ECE62;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -740,6 +750,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.4.2;
+			};
+		};
 		02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AzureAD/microsoft-authentication-library-for-objc";
@@ -751,6 +769,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		02D860FE2757A5D700D643CF /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
 		02FD0D7E27579C58002E71D5 /* MSAL */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
