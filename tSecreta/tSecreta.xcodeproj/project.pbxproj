@@ -7,77 +7,95 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		029D42A82757959F009710D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42A72757959F009710D5 /* AppDelegate.swift */; };
-		029D42AA2757959F009710D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42A92757959F009710D5 /* SceneDelegate.swift */; };
-		029D42AC2757959F009710D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42AB2757959F009710D5 /* ViewController.swift */; };
-		029D42AF2757959F009710D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029D42AD2757959F009710D5 /* Main.storyboard */; };
-		029D42B1275795A0009710D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029D42B0275795A0009710D5 /* Assets.xcassets */; };
-		029D42B4275795A0009710D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029D42B2275795A0009710D5 /* LaunchScreen.storyboard */; };
-		029D42BF275795A0009710D5 /* tSecretaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42BE275795A0009710D5 /* tSecretaTests.swift */; };
-		029D42C9275795A0009710D5 /* tSecretaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42C8275795A0009710D5 /* tSecretaUITests.swift */; };
-		029D42CB275795A0009710D5 /* tSecretaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */; };
-		029D42D827579634009710D5 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029D42D727579634009710D5 /* AZSClient.framework */; };
-		029D42DB275796A0009710D5 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 029D42DA27579695009710D5 /* libxml2.2.tbd */; };
-		029D42DE27579745009710D5 /* CloudStorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42DD27579745009710D5 /* CloudStorageHandler.swift */; };
-		029D42E027579801009710D5 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D42DF27579801009710D5 /* MySecret.swift */; };
+		0212A77F27573B4B00565BA9 /* StrUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A77E27573B4B00565BA9 /* StrUtils.swift */; };
+		0212A78127573C2500565BA9 /* StrUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A78027573C2500565BA9 /* StrUtilsTest.swift */; };
+		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
+		02346D6F275714F60006ABE4 /* EncryptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02346D6E275714F60006ABE4 /* EncryptTests.swift */; };
+		02464FD227552CAF009024F5 /* Encrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464FD127552CAF009024F5 /* Encrypt.swift */; };
+		0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0291C86027578464004DD5D0 /* AZSClient.framework */; };
+		0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 022148E9275510C100D098A5 /* libxml2.2.tbd */; };
+		02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */; };
+		02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */; };
+		02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */; };
+		02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE182754F6CC007337F6 /* ViewControllerList.swift */; };
+		02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98EE274E33090088B99D /* AppDelegate.swift */; };
+		02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F0274E33090088B99D /* SceneDelegate.swift */; };
+		02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB98F2274E33090088B99D /* ViewControllerAuth.swift */; };
+		02EB98F6274E33090088B99D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EB98F4274E33090088B99D /* Main.storyboard */; };
+		02EB98F8274E330A0088B99D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02EB98F7274E330A0088B99D /* Assets.xcassets */; };
+		02EB98FB274E330A0088B99D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */; };
+		02EB9906274E330A0088B99D /* tSecretaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB9905274E330A0088B99D /* tSecretaTests.swift */; };
+		02EB9910274E330A0088B99D /* tSecretaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB990F274E330A0088B99D /* tSecretaUITests.swift */; };
+		02EB9912274E330A0088B99D /* tSecretaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */; };
+		02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 02FD0D7E27579C58002E71D5 /* MSAL */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		029D42BB275795A0009710D5 /* PBXContainerItemProxy */ = {
+		02EB9902274E330A0088B99D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 029D429C2757959F009710D5 /* Project object */;
+			containerPortal = 02EB98E3274E33090088B99D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 029D42A32757959F009710D5;
+			remoteGlobalIDString = 02EB98EA274E33090088B99D;
 			remoteInfo = tSecreta;
 		};
-		029D42C5275795A0009710D5 /* PBXContainerItemProxy */ = {
+		02EB990C274E330A0088B99D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 029D429C2757959F009710D5 /* Project object */;
+			containerPortal = 02EB98E3274E33090088B99D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 029D42A32757959F009710D5;
+			remoteGlobalIDString = 02EB98EA274E33090088B99D;
 			remoteInfo = tSecreta;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		029D42A42757959F009710D5 /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		029D42A72757959F009710D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		029D42A92757959F009710D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		029D42AB2757959F009710D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		029D42AE2757959F009710D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		029D42B0275795A0009710D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		029D42B3275795A0009710D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		029D42B5275795A0009710D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		029D42BA275795A0009710D5 /* tSecretaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tSecretaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		029D42BE275795A0009710D5 /* tSecretaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaTests.swift; sourceTree = "<group>"; };
-		029D42C4275795A0009710D5 /* tSecretaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tSecretaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		029D42C8275795A0009710D5 /* tSecretaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITests.swift; sourceTree = "<group>"; };
-		029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		029D42D727579634009710D5 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
-		029D42DA27579695009710D5 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
-		029D42DC275796D0009710D5 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		029D42DD27579745009710D5 /* CloudStorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageHandler.swift; sourceTree = "<group>"; };
-		029D42DF27579801009710D5 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
+		0212A77E27573B4B00565BA9 /* StrUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrUtils.swift; sourceTree = "<group>"; };
+		0212A78027573C2500565BA9 /* StrUtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrUtilsTest.swift; sourceTree = "<group>"; };
+		022148E9275510C100D098A5 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		0227FCFE2750A72300B19393 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
+		0227FD002750AE2700B19393 /* Readme.AzureAD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.AzureAD.md; sourceTree = "<group>"; };
+		0227FD012750C60900B19393 /* tSecreta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tSecreta.entitlements; sourceTree = "<group>"; };
+		02346D6E275714F60006ABE4 /* EncryptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptTests.swift; sourceTree = "<group>"; };
+		02464FD127552CAF009024F5 /* Encrypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encrypt.swift; sourceTree = "<group>"; };
+		0291C85F2757841F004DD5D0 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		0291C86027578464004DD5D0 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
+		02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthCloud.swift; sourceTree = "<group>"; };
+		02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthDevice.swift; sourceTree = "<group>"; };
+		02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthLog.swift; sourceTree = "<group>"; };
+		02B0FE182754F6CC007337F6 /* ViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerList.swift; sourceTree = "<group>"; };
+		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02EB98EE274E33090088B99D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		02EB98F0274E33090088B99D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		02EB98F2274E33090088B99D /* ViewControllerAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuth.swift; sourceTree = "<group>"; };
+		02EB98F5274E33090088B99D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		02EB98F7274E330A0088B99D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		02EB98FA274E330A0088B99D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		02EB98FC274E330A0088B99D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02EB9901274E330A0088B99D /* tSecretaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tSecretaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02EB9905274E330A0088B99D /* tSecretaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaTests.swift; sourceTree = "<group>"; };
+		02EB990B274E330A0088B99D /* tSecretaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tSecretaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02EB990F274E330A0088B99D /* tSecretaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITests.swift; sourceTree = "<group>"; };
+		02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		029D42A12757959F009710D5 /* Frameworks */ = {
+		02EB98E8274E33090088B99D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				029D42D827579634009710D5 /* AZSClient.framework in Frameworks */,
-				029D42DB275796A0009710D5 /* libxml2.2.tbd in Frameworks */,
+				0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */,
+				02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */,
+				0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		029D42B7275795A0009710D5 /* Frameworks */ = {
+		02EB98FE274E330A0088B99D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		029D42C1275795A0009710D5 /* Frameworks */ = {
+		02EB9908274E330A0088B99D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,150 +105,178 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		029D429B2757959F009710D5 = {
+		022148E8275510C100D098A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				029D42D727579634009710D5 /* AZSClient.framework */,
-				029D42A62757959F009710D5 /* tSecreta */,
-				029D42BD275795A0009710D5 /* tSecretaTests */,
-				029D42C7275795A0009710D5 /* tSecretaUITests */,
-				029D42A52757959F009710D5 /* Products */,
-				029D42D927579695009710D5 /* Frameworks */,
+				022148E9275510C100D098A5 /* libxml2.2.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		02B0FE162754F4E2007337F6 /* ViewAuth */ = {
+			isa = PBXGroup;
+			children = (
+				02EB98F2274E33090088B99D /* ViewControllerAuth.swift */,
+				02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */,
+				02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */,
+				02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */,
+			);
+			name = ViewAuth;
+			sourceTree = "<group>";
+		};
+		02B0FE172754F540007337F6 /* Secret */ = {
+			isa = PBXGroup;
+			children = (
+				02464FD127552CAF009024F5 /* Encrypt.swift */,
+				0227FCFE2750A72300B19393 /* MySecret.swift */,
+			);
+			name = Secret;
+			sourceTree = "<group>";
+		};
+		02EB98E2274E33090088B99D = {
+			isa = PBXGroup;
+			children = (
+				0291C86027578464004DD5D0 /* AZSClient.framework */,
+				02EB98ED274E33090088B99D /* tSecreta */,
+				02EB9904274E330A0088B99D /* tSecretaTests */,
+				02EB990E274E330A0088B99D /* tSecretaUITests */,
+				02EB98EC274E33090088B99D /* Products */,
+				022148E8275510C100D098A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		029D42A52757959F009710D5 /* Products */ = {
+		02EB98EC274E33090088B99D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				029D42A42757959F009710D5 /* tSecreta.app */,
-				029D42BA275795A0009710D5 /* tSecretaTests.xctest */,
-				029D42C4275795A0009710D5 /* tSecretaUITests.xctest */,
+				02EB98EB274E33090088B99D /* tSecreta.app */,
+				02EB9901274E330A0088B99D /* tSecretaTests.xctest */,
+				02EB990B274E330A0088B99D /* tSecretaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		029D42A62757959F009710D5 /* tSecreta */ = {
+		02EB98ED274E33090088B99D /* tSecreta */ = {
 			isa = PBXGroup;
 			children = (
-				029D42A72757959F009710D5 /* AppDelegate.swift */,
-				029D42A92757959F009710D5 /* SceneDelegate.swift */,
-				029D42AB2757959F009710D5 /* ViewController.swift */,
-				029D42DD27579745009710D5 /* CloudStorageHandler.swift */,
-				029D42DF27579801009710D5 /* MySecret.swift */,
-				029D42AD2757959F009710D5 /* Main.storyboard */,
-				029D42B2275795A0009710D5 /* LaunchScreen.storyboard */,
-				029D42B0275795A0009710D5 /* Assets.xcassets */,
-				029D42B5275795A0009710D5 /* Info.plist */,
-				029D42DC275796D0009710D5 /* Bridging-Header.h */,
+				02B0FE172754F540007337F6 /* Secret */,
+				02B0FE162754F4E2007337F6 /* ViewAuth */,
+				02EB98EE274E33090088B99D /* AppDelegate.swift */,
+				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
+				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
+				0212A77E27573B4B00565BA9 /* StrUtils.swift */,
+				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
+				02EB98F4274E33090088B99D /* Main.storyboard */,
+				0227FD012750C60900B19393 /* tSecreta.entitlements */,
+				02EB98F7274E330A0088B99D /* Assets.xcassets */,
+				02EB98FC274E330A0088B99D /* Info.plist */,
+				0227FD002750AE2700B19393 /* Readme.AzureAD.md */,
+				0291C85F2757841F004DD5D0 /* Bridging-Header.h */,
 			);
 			path = tSecreta;
 			sourceTree = "<group>";
 		};
-		029D42BD275795A0009710D5 /* tSecretaTests */ = {
+		02EB9904274E330A0088B99D /* tSecretaTests */ = {
 			isa = PBXGroup;
 			children = (
-				029D42BE275795A0009710D5 /* tSecretaTests.swift */,
+				02EB9905274E330A0088B99D /* tSecretaTests.swift */,
+				02346D6E275714F60006ABE4 /* EncryptTests.swift */,
+				0212A78027573C2500565BA9 /* StrUtilsTest.swift */,
 			);
 			path = tSecretaTests;
 			sourceTree = "<group>";
 		};
-		029D42C7275795A0009710D5 /* tSecretaUITests */ = {
+		02EB990E274E330A0088B99D /* tSecretaUITests */ = {
 			isa = PBXGroup;
 			children = (
-				029D42C8275795A0009710D5 /* tSecretaUITests.swift */,
-				029D42CA275795A0009710D5 /* tSecretaUITestsLaunchTests.swift */,
+				02EB990F274E330A0088B99D /* tSecretaUITests.swift */,
+				02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */,
 			);
 			path = tSecretaUITests;
-			sourceTree = "<group>";
-		};
-		029D42D927579695009710D5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				029D42DA27579695009710D5 /* libxml2.2.tbd */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		029D42A32757959F009710D5 /* tSecreta */ = {
+		02EB98EA274E33090088B99D /* tSecreta */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 029D42CE275795A0009710D5 /* Build configuration list for PBXNativeTarget "tSecreta" */;
+			buildConfigurationList = 02EB9915274E330A0088B99D /* Build configuration list for PBXNativeTarget "tSecreta" */;
 			buildPhases = (
-				029D42A02757959F009710D5 /* Sources */,
-				029D42A12757959F009710D5 /* Frameworks */,
-				029D42A22757959F009710D5 /* Resources */,
+				02EB98E7274E33090088B99D /* Sources */,
+				02EB98E8274E33090088B99D /* Frameworks */,
+				02EB98E9274E33090088B99D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = tSecreta;
+			packageProductDependencies = (
+				02FD0D7E27579C58002E71D5 /* MSAL */,
+			);
 			productName = tSecreta;
-			productReference = 029D42A42757959F009710D5 /* tSecreta.app */;
+			productReference = 02EB98EB274E33090088B99D /* tSecreta.app */;
 			productType = "com.apple.product-type.application";
 		};
-		029D42B9275795A0009710D5 /* tSecretaTests */ = {
+		02EB9900274E330A0088B99D /* tSecretaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 029D42D1275795A0009710D5 /* Build configuration list for PBXNativeTarget "tSecretaTests" */;
+			buildConfigurationList = 02EB9918274E330A0088B99D /* Build configuration list for PBXNativeTarget "tSecretaTests" */;
 			buildPhases = (
-				029D42B6275795A0009710D5 /* Sources */,
-				029D42B7275795A0009710D5 /* Frameworks */,
-				029D42B8275795A0009710D5 /* Resources */,
+				02EB98FD274E330A0088B99D /* Sources */,
+				02EB98FE274E330A0088B99D /* Frameworks */,
+				02EB98FF274E330A0088B99D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				029D42BC275795A0009710D5 /* PBXTargetDependency */,
+				02EB9903274E330A0088B99D /* PBXTargetDependency */,
 			);
 			name = tSecretaTests;
 			productName = tSecretaTests;
-			productReference = 029D42BA275795A0009710D5 /* tSecretaTests.xctest */;
+			productReference = 02EB9901274E330A0088B99D /* tSecretaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		029D42C3275795A0009710D5 /* tSecretaUITests */ = {
+		02EB990A274E330A0088B99D /* tSecretaUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 029D42D4275795A0009710D5 /* Build configuration list for PBXNativeTarget "tSecretaUITests" */;
+			buildConfigurationList = 02EB991B274E330A0088B99D /* Build configuration list for PBXNativeTarget "tSecretaUITests" */;
 			buildPhases = (
-				029D42C0275795A0009710D5 /* Sources */,
-				029D42C1275795A0009710D5 /* Frameworks */,
-				029D42C2275795A0009710D5 /* Resources */,
+				02EB9907274E330A0088B99D /* Sources */,
+				02EB9908274E330A0088B99D /* Frameworks */,
+				02EB9909274E330A0088B99D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				029D42C6275795A0009710D5 /* PBXTargetDependency */,
+				02EB990D274E330A0088B99D /* PBXTargetDependency */,
 			);
 			name = tSecretaUITests;
 			productName = tSecretaUITests;
-			productReference = 029D42C4275795A0009710D5 /* tSecretaUITests.xctest */;
+			productReference = 02EB990B274E330A0088B99D /* tSecretaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		029D429C2757959F009710D5 /* Project object */ = {
+		02EB98E3274E33090088B99D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
-					029D42A32757959F009710D5 = {
+					02EB98EA274E33090088B99D = {
 						CreatedOnToolsVersion = 13.1;
 					};
-					029D42B9275795A0009710D5 = {
+					02EB9900274E330A0088B99D = {
 						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 029D42A32757959F009710D5;
+						TestTargetID = 02EB98EA274E33090088B99D;
 					};
-					029D42C3275795A0009710D5 = {
+					02EB990A274E330A0088B99D = {
 						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 029D42A32757959F009710D5;
+						TestTargetID = 02EB98EA274E33090088B99D;
 					};
 				};
 			};
-			buildConfigurationList = 029D429F2757959F009710D5 /* Build configuration list for PBXProject "tSecreta" */;
+			buildConfigurationList = 02EB98E6274E33090088B99D /* Build configuration list for PBXProject "tSecreta" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,37 +284,40 @@
 				en,
 				Base,
 			);
-			mainGroup = 029D429B2757959F009710D5;
-			productRefGroup = 029D42A52757959F009710D5 /* Products */;
+			mainGroup = 02EB98E2274E33090088B99D;
+			packageReferences = (
+				02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
+			);
+			productRefGroup = 02EB98EC274E33090088B99D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				029D42A32757959F009710D5 /* tSecreta */,
-				029D42B9275795A0009710D5 /* tSecretaTests */,
-				029D42C3275795A0009710D5 /* tSecretaUITests */,
+				02EB98EA274E33090088B99D /* tSecreta */,
+				02EB9900274E330A0088B99D /* tSecretaTests */,
+				02EB990A274E330A0088B99D /* tSecretaUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		029D42A22757959F009710D5 /* Resources */ = {
+		02EB98E9274E33090088B99D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				029D42B4275795A0009710D5 /* LaunchScreen.storyboard in Resources */,
-				029D42B1275795A0009710D5 /* Assets.xcassets in Resources */,
-				029D42AF2757959F009710D5 /* Main.storyboard in Resources */,
+				02EB98FB274E330A0088B99D /* LaunchScreen.storyboard in Resources */,
+				02EB98F8274E330A0088B99D /* Assets.xcassets in Resources */,
+				02EB98F6274E33090088B99D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		029D42B8275795A0009710D5 /* Resources */ = {
+		02EB98FF274E330A0088B99D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		029D42C2275795A0009710D5 /* Resources */ = {
+		02EB9909274E330A0088B99D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -278,63 +327,70 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		029D42A02757959F009710D5 /* Sources */ = {
+		02EB98E7274E33090088B99D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				029D42AC2757959F009710D5 /* ViewController.swift in Sources */,
-				029D42E027579801009710D5 /* MySecret.swift in Sources */,
-				029D42A82757959F009710D5 /* AppDelegate.swift in Sources */,
-				029D42DE27579745009710D5 /* CloudStorageHandler.swift in Sources */,
-				029D42AA2757959F009710D5 /* SceneDelegate.swift in Sources */,
+				02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */,
+				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
+				02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */,
+				02464FD227552CAF009024F5 /* Encrypt.swift in Sources */,
+				02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */,
+				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
+				02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */,
+				02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */,
+				0212A77F27573B4B00565BA9 /* StrUtils.swift in Sources */,
+				02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		029D42B6275795A0009710D5 /* Sources */ = {
+		02EB98FD274E330A0088B99D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				029D42BF275795A0009710D5 /* tSecretaTests.swift in Sources */,
+				02EB9906274E330A0088B99D /* tSecretaTests.swift in Sources */,
+				02346D6F275714F60006ABE4 /* EncryptTests.swift in Sources */,
+				0212A78127573C2500565BA9 /* StrUtilsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		029D42C0275795A0009710D5 /* Sources */ = {
+		02EB9907274E330A0088B99D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				029D42CB275795A0009710D5 /* tSecretaUITestsLaunchTests.swift in Sources */,
-				029D42C9275795A0009710D5 /* tSecretaUITests.swift in Sources */,
+				02EB9912274E330A0088B99D /* tSecretaUITestsLaunchTests.swift in Sources */,
+				02EB9910274E330A0088B99D /* tSecretaUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		029D42BC275795A0009710D5 /* PBXTargetDependency */ = {
+		02EB9903274E330A0088B99D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 029D42A32757959F009710D5 /* tSecreta */;
-			targetProxy = 029D42BB275795A0009710D5 /* PBXContainerItemProxy */;
+			target = 02EB98EA274E33090088B99D /* tSecreta */;
+			targetProxy = 02EB9902274E330A0088B99D /* PBXContainerItemProxy */;
 		};
-		029D42C6275795A0009710D5 /* PBXTargetDependency */ = {
+		02EB990D274E330A0088B99D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 029D42A32757959F009710D5 /* tSecreta */;
-			targetProxy = 029D42C5275795A0009710D5 /* PBXContainerItemProxy */;
+			target = 02EB98EA274E33090088B99D /* tSecreta */;
+			targetProxy = 02EB990C274E330A0088B99D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		029D42AD2757959F009710D5 /* Main.storyboard */ = {
+		02EB98F4274E33090088B99D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				029D42AE2757959F009710D5 /* Base */,
+				02EB98F5274E33090088B99D /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		029D42B2275795A0009710D5 /* LaunchScreen.storyboard */ = {
+		02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				029D42B3275795A0009710D5 /* Base */,
+				02EB98FA274E330A0088B99D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -342,7 +398,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		029D42CC275795A0009710D5 /* Debug */ = {
+		02EB9913274E330A0088B99D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -379,6 +435,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -403,7 +460,7 @@
 			};
 			name = Debug;
 		};
-		029D42CD275795A0009710D5 /* Release */ = {
+		02EB9914274E330A0088B99D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -440,6 +497,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -458,31 +516,41 @@
 			};
 			name = Release;
 		};
-		029D42CF275795A0009710D5 /* Debug */ = {
+		02EB9916274E330A0088B99D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 42235ECE62;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/tSecretaUITests",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/tSecreta",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tSecreta/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecreta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -490,24 +558,32 @@
 			};
 			name = Debug;
 		};
-		029D42D0275795A0009710D5 /* Release */ = {
+		02EB9917274E330A0088B99D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 42235ECE62;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/tSecretaUITests",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/tSecreta",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = tSecreta/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,6 +591,7 @@
 				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecreta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -522,13 +599,40 @@
 			};
 			name = Release;
 		};
-		029D42D2275795A0009710D5 /* Debug */ = {
+		02EB9919274E330A0088B99D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42235ECE62;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecretaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tSecreta.app/tSecreta";
+			};
+			name = Debug;
+		};
+		02EB991A274E330A0088B99D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42235ECE62;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -544,38 +648,15 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tSecreta.app/tSecreta";
 			};
-			name = Debug;
-		};
-		029D42D3275795A0009710D5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tomarika.tSecretaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tSecreta.app/tSecreta";
-			};
 			name = Release;
 		};
-		029D42D5275795A0009710D5 /* Debug */ = {
+		02EB991C274E330A0088B99D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42235ECE62;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -592,12 +673,13 @@
 			};
 			name = Debug;
 		};
-		029D42D6275795A0009710D5 /* Release */ = {
+		02EB991D274E330A0088B99D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42235ECE62;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -617,43 +699,62 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		029D429F2757959F009710D5 /* Build configuration list for PBXProject "tSecreta" */ = {
+		02EB98E6274E33090088B99D /* Build configuration list for PBXProject "tSecreta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				029D42CC275795A0009710D5 /* Debug */,
-				029D42CD275795A0009710D5 /* Release */,
+				02EB9913274E330A0088B99D /* Debug */,
+				02EB9914274E330A0088B99D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		029D42CE275795A0009710D5 /* Build configuration list for PBXNativeTarget "tSecreta" */ = {
+		02EB9915274E330A0088B99D /* Build configuration list for PBXNativeTarget "tSecreta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				029D42CF275795A0009710D5 /* Debug */,
-				029D42D0275795A0009710D5 /* Release */,
+				02EB9916274E330A0088B99D /* Debug */,
+				02EB9917274E330A0088B99D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		029D42D1275795A0009710D5 /* Build configuration list for PBXNativeTarget "tSecretaTests" */ = {
+		02EB9918274E330A0088B99D /* Build configuration list for PBXNativeTarget "tSecretaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				029D42D2275795A0009710D5 /* Debug */,
-				029D42D3275795A0009710D5 /* Release */,
+				02EB9919274E330A0088B99D /* Debug */,
+				02EB991A274E330A0088B99D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		029D42D4275795A0009710D5 /* Build configuration list for PBXNativeTarget "tSecretaUITests" */ = {
+		02EB991B274E330A0088B99D /* Build configuration list for PBXNativeTarget "tSecretaUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				029D42D5275795A0009710D5 /* Debug */,
-				029D42D6275795A0009710D5 /* Release */,
+				02EB991C274E330A0088B99D /* Debug */,
+				02EB991D274E330A0088B99D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AzureAD/microsoft-authentication-library-for-objc";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.1.24;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		02FD0D7E27579C58002E71D5 /* MSAL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
+			productName = MSAL;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 029D429C2757959F009710D5 /* Project object */;
+	rootObject = 02EB98E3274E33090088B99D /* Project object */;
 }
