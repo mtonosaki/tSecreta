@@ -20,26 +20,18 @@ extension ViewController {
     
     public func addInfo(_ message: String){
         logView.addLog(message, level: .info)
-        logView.setNeedsDisplay()
-        logView.setNeedsLayout()
     }
 
     public func addWarning(_ message: String){
         logView.addLog(message, level: .warning)
-        logView.setNeedsDisplay()
-        logView.setNeedsLayout()
     }
 
     public func addError(_ message: String){
         logView.addLog(message, level: .error)
-        logView.setNeedsDisplay()
-        logView.setNeedsLayout()
     }
 
     public func addFatal(_ message: String){
         logView.addLog(message, level: .fatal)
-        logView.layoutIfNeeded()
-        logView.setNeedsLayout()
     }
 
 }
@@ -69,6 +61,10 @@ class LogView : UIView {
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "HH:mm:ss"
         print("[\(level)] \(dateFormat.string(from: dt)) \(message)")
+        DispatchQueue.main.async {
+            self.setNeedsDisplay()
+            self.setNeedsLayout()
+        }
     }
     
     private let fontSitePt = 11.0
