@@ -9,6 +9,29 @@ import Foundation
 // import AZSClient
 // no need to import AZSClient here because of imported with Bridging-Header.h as an object-c bridge
 
+public func UploadText(text: String, userObjectId: String, callback: @escaping (Bool, String?) ->  Void) {
+    let cn = try? AZSCloudStorageAccount(fromConnectionString: MySecret().azureBlob.AzureStorageConnectionString)
+    guard let cn = cn else {
+        callback(false, "Azure connection string error")
+        return
+    }
+    let blobClient = cn.getBlobClient()
+    let blobContainer = blobClient.containerReference(fromName: "tsecret")
+    let blob = blobContainer.blockBlobReference(fromName: "MainData.\(userObjectId).dat")
+
+//    callback(true, nil)
+//    return;
+
+    blob.upload(fromText: text) {
+        (error) in
+
+        if let error = error {
+            callback(false, error.localizedDescription)
+        } else {
+            callback(true, nil)
+        }
+    }
+}
 
 public func DownloadText(userObjectId: String, callback: @escaping (Bool, String?) ->  Void) {
     

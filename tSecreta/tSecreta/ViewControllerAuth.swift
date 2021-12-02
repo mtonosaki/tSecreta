@@ -102,7 +102,7 @@ class ViewController: UIViewController {
             if success {
                 self.addInfo("Downloaded \(safeText.count) base64 length")
                 self.addInfo("Decoding encrypted data...")
-                let maybeJsonStr = EncryptUtils.decode2(base64sec: safeText, filter: id)
+                let maybeJsonStr = EncryptUtils.rijndaelDecode(base64sec: safeText, filter: id)
                 guard let jsonStr = maybeJsonStr else {
                     self.addError("Downloaded json is broken.")
                     DispatchQueue.main.async {
@@ -144,6 +144,10 @@ class ViewController: UIViewController {
         if segue.identifier == "ToList" {
             let listView = segue.destination as! ViewControllerList
             listView.noteList = self.noteList
+            if let idraw = currentAccount?.identifier {
+                let id = idraw.components(separatedBy: ".")[0]
+                listView.userObjectId = id
+            }
         }
     }
     
