@@ -70,7 +70,7 @@ public struct EncryptUtils {
         }
     }
     
-    public static func decode2(base64sec: String, filter: String) -> String?{
+    public static func rijndaelDecode(base64sec: String, filter: String) -> String?{
         let secParam = MySecret().key
         let f1 = Character(String(base64sec.prefix(1)))
         let ivN = base64sec.distance(from:base64sec.startIndex, to:secParam.TEXTSET64.firstIndex(of: f1)!)
@@ -79,5 +79,18 @@ public struct EncryptUtils {
         let keyScrambled = fusionString(base64str: secParam.KEY, filter: filter, textset64: secParam.TEXTSET64)
         let cleanText = decrypt(key: keyScrambled, iv: iv, base64: base64secData)
         return cleanText
+    }
+    
+    public static func rijndaelEncode(planeText: String, filter: String) -> String? {
+        let secParam = MySecret().key
+        let ivN = 0
+        var iv = ""
+        for _ in ivN..<(ivN + secParam.IVNPP) {
+            iv.append(contentsOf: secParam.TEXTSET64.Mid(start: Int.random(in: 0..<secParam.TEXTSET64.count), len: 1))
+        }
+        let keyScrambled = fusionString(base64str: secParam.KEY, filter: filter, textset64: secParam.TEXTSET64)
+        let secBase64 = encrypt(key: keyScrambled, iv: iv, target: planeText)!    // TODO: nil error handling
+
+        return "\(secParam.TEXTSET64.Mid(start: ivN, len: 1))\(iv)\(secBase64)"
     }
 }

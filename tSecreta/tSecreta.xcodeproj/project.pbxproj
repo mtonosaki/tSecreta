@@ -67,14 +67,14 @@
 		02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthCloud.swift; sourceTree = "<group>"; };
 		02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthDevice.swift; sourceTree = "<group>"; };
 		02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthLog.swift; sourceTree = "<group>"; };
-		02B0FE182754F6CC007337F6 /* ViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerList.swift; sourceTree = "<group>"; };
+		02B0FE182754F6CC007337F6 /* ViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerList.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		02B997E72758684C00922473 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		02C453872757B44D009E7AB9 /* ModelNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNote.swift; sourceTree = "<group>"; };
 		02D861002757A64B00D643CF /* CloudFileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFileHandler.swift; sourceTree = "<group>"; };
 		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EB98EE274E33090088B99D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EB98F0274E33090088B99D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		02EB98F2274E33090088B99D /* ViewControllerAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuth.swift; sourceTree = "<group>"; };
+		02EB98F2274E33090088B99D /* ViewControllerAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuth.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		02EB98F5274E33090088B99D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02EB98F7274E330A0088B99D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02EB98FA274E330A0088B99D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -153,6 +153,7 @@
 				022148E8275510C100D098A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		02EB98EC274E33090088B99D /* Products */ = {
 			isa = PBXGroup;
@@ -541,7 +542,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -585,7 +586,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

@@ -53,4 +53,5 @@ class EncryptTests: XCTestCase {
         let decryptedString = EncryptUtils.decrypt(key: key, iv: iv, base64: encryptedString!)
         XCTAssertTrue(decryptedString! == text)
     }
+
 }

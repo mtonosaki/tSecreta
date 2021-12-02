@@ -10,7 +10,9 @@ import UIKit
 final class ViewControllerList : UITableViewController {
     
     public var noteList: NoteList? = nil
+    public var userObjectId: String = ""
     private var noteTarget: Array<Note>? = nil
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,7 @@ final class ViewControllerList : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
+        
         let actionId = UIContextualAction(
             style: .normal,
             title:  "ID",
@@ -72,7 +74,7 @@ final class ViewControllerList : UITableViewController {
         )
         //actionId.image = UIImage(named: "swipeId")
         actionId.backgroundColor = .systemGreen
-
+        
         let actionPw = UIContextualAction(
             style: .normal,
             title:  "PW",
@@ -93,20 +95,20 @@ final class ViewControllerList : UITableViewController {
         )
         //actionPw.image = UIImage(named: "swipePw")
         actionPw.backgroundColor = .systemOrange
-
+        
         let actionDelete = UIContextualAction(
             style: .normal,
             title: "Delete",
             handler: {
                 (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
-//                let note = self.noteTarget?[indexPath.row]
-//                guard let note = note else {
-//                    success(false)
-//                    return
-//                }
-//                note.SetDeletedFlag(true)
-//                tableView.deleteRows(at: [indexPath], with: .automatic )
-//                self.resetList()
+                //                let note = self.noteTarget?[indexPath.row]
+                //                guard let note = note else {
+                //                    success(false)
+                //                    return
+                //                }
+                //                note.SetDeletedFlag(true)
+                //                tableView.deleteRows(at: [indexPath], with: .automatic )
+                //                self.resetList()
                 success(true)
             }
         )
@@ -133,5 +135,34 @@ final class ViewControllerList : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ToDetail", sender: self)
+    }
+    
+    @IBAction func didTapCloudSync(_ sender: Any) {
+        
+        do {
+            
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(.iso8601PlusMilliSecondsJst)
+            let jsonPlaneData = try encoder.encode(noteList!)
+            let jsonPlane = String(data: jsonPlaneData, encoding: .utf8)!
+                        
+            let sec = EncryptUtils.rijndaelEncode(planeText: jsonPlane, filter: userObjectId)
+            guard let sec = sec else {
+                showToast(message: "JSON encoding error", color: UIColor.systemRed, view: self.parent?.view ?? self.view)
+                return;
+            }
+            UploadText(text: sec, userObjectId: userObjectId) {
+                (success, error) in
+                
+                if let error = error {
+                    showToast(message: error, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
+                } else {
+                    showToast(message: "Cloud Sync OK!", color: UIColor.blue, view: self.parent?.view ?? self.view)
+                }
+            }
+        }
+        catch let ex {
+            showToast(message: ex.localizedDescription, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
+        }
     }
 }

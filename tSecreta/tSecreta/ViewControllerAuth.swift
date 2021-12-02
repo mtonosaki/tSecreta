@@ -11,6 +11,7 @@ import MSAL
 // Authentication Screen
 class ViewController: UIViewController {
     
+    @IBOutlet weak var kurukuru: UIActivityIndicatorView!
     @IBOutlet weak var reAuthButton: UIButton!
     @IBOutlet weak var logoffButton: UIButton!
     var logView: LogView!
@@ -81,6 +82,10 @@ class ViewController: UIViewController {
             callback(false, "To download, authenticate first.", nil)
             return
         }
+        DispatchQueue.main.async {
+            self.kurukuru.isHidden = false
+            self.kurukuru.startAnimating()
+        }
         let id = idraw.components(separatedBy: ".")[0]
         self.addInfo("Downloading...")
 
@@ -89,14 +94,20 @@ class ViewController: UIViewController {
 
             guard let safeText = text else {
                 self.addError("Cloud data downloading error")
+                DispatchQueue.main.async {
+                    self.kurukuru.stopAnimating()
+                }
                 return
             }
             if success {
                 self.addInfo("Downloaded \(safeText.count) base64 length")
                 self.addInfo("Decoding encrypted data...")
-                let maybeJsonStr = EncryptUtils.decode2(base64sec: safeText, filter: id)
+                let maybeJsonStr = EncryptUtils.rijndaelDecode(base64sec: safeText, filter: id)
                 guard let jsonStr = maybeJsonStr else {
                     self.addError("Downloaded json is broken.")
+                    DispatchQueue.main.async {
+                        self.kurukuru.stopAnimating()
+                    }
                     return
                 }
                 let jsonData = jsonStr.data(using: .utf8)
@@ -106,6 +117,9 @@ class ViewController: UIViewController {
                     decoder.dateDecodingStrategy = .formatted(.iso8601PlusMilliSeconds)
                     let notes = try decoder.decode(NoteList.self, from: jsonData!)
                     callback(true, nil, notes)
+                    DispatchQueue.main.async {
+                        self.kurukuru.stopAnimating()
+                    }
                     return
                 }
                 catch let ex {
@@ -113,6 +127,9 @@ class ViewController: UIViewController {
                 }
             } else {
                 self.addError(safeText)
+            }
+            DispatchQueue.main.async {
+                self.kurukuru.stopAnimating()
             }
             callback(success, safeText, nil)
         }
@@ -127,6 +144,10 @@ class ViewController: UIViewController {
         if segue.identifier == "ToList" {
             let listView = segue.destination as! ViewControllerList
             listView.noteList = self.noteList
+            if let idraw = currentAccount?.identifier {
+                let id = idraw.components(separatedBy: ".")[0]
+                listView.userObjectId = id
+            }
         }
     }
     

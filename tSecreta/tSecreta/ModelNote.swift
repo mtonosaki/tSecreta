@@ -32,6 +32,11 @@ public class Note  : Codable {
         return histList?.last?.Value
     }
     
+    public func SetToLatest(key: String, text: String) {
+        let histList = UniversalData[key]
+        histList?.last?.Value = text
+    }
+    
     public func CheckDeleted() -> Bool {
         let sw = GetLatest(key: "IsDeleted")
         if let sw = sw {
