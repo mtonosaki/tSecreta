@@ -242,6 +242,15 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" toolTip="Show/Hide Password" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sba-eb-DuY">
+                                        <rect key="frame" x="335" y="210" width="47" height="31"/>
+                                        <color key="tintColor" systemColor="placeholderTextColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="eyes" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTappedShowPassword:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="pY8-Id-CFT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
@@ -250,6 +259,7 @@
                                     <constraint firstItem="BLb-MR-swR" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="128" id="B1K-6Q-K44"/>
                                     <constraint firstAttribute="height" constant="1629" id="COK-vF-FRk"/>
                                     <constraint firstAttribute="trailing" secondItem="HhH-W6-OTh" secondAttribute="trailing" constant="8" id="F2F-n3-qM3"/>
+                                    <constraint firstItem="sba-eb-DuY" firstAttribute="bottom" secondItem="0vL-iB-J5m" secondAttribute="bottom" id="Fxk-wr-qY6"/>
                                     <constraint firstAttribute="trailing" secondItem="BLb-MR-swR" secondAttribute="trailing" constant="8" id="G7t-LA-9mh"/>
                                     <constraint firstItem="4bX-wh-jb4" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="290" id="IhL-21-1qe"/>
                                     <constraint firstItem="0vL-iB-J5m" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="31" id="Iw9-Ww-3Ne"/>
@@ -266,6 +276,7 @@
                                     <constraint firstAttribute="bottom" secondItem="pAf-Pg-8oa" secondAttribute="bottom" constant="-37" id="lj3-Em-4YH"/>
                                     <constraint firstItem="pAf-Pg-8oa" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="31" id="qp4-Vf-tUj"/>
                                     <constraint firstAttribute="trailing" secondItem="0vL-iB-J5m" secondAttribute="trailing" constant="8" id="shV-Sx-TlJ"/>
+                                    <constraint firstItem="sba-eb-DuY" firstAttribute="trailing" secondItem="0vL-iB-J5m" secondAttribute="trailing" id="yci-7E-g9S"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Dfw-11-2vG" appends="YES" id="ysQ-ym-Qcj"/>
@@ -302,7 +313,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2533.0645161290322" y="52.162400706090025"/>
+            <point key="canvasLocation" x="2532.3076923076924" y="51.895734597156398"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9UV-nf-9eO">
@@ -328,6 +339,7 @@
         <image name="character.textbox" catalog="system" width="128" height="91"/>
         <image name="character.textbox.ja" catalog="system" width="128" height="91"/>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
+        <image name="eyes" catalog="system" width="128" height="99"/>
         <image name="lock.circle" catalog="system" width="128" height="121"/>
         <image name="mail" catalog="system" width="128" height="93"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
@@ -335,6 +347,9 @@
         <image name="repeat" catalog="system" width="128" height="98"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="quaternaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

@@ -56,5 +56,7 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
         // TODO: Persist edited text
     }
     
-    
+    @IBAction func didTappedShowPassword(_ sender: Any) {
+        textPassword.isSecureTextEntry = !textPassword.isSecureTextEntry
+    }
 }
