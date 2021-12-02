@@ -251,10 +251,39 @@
                                             <action selector="didTappedShowPassword:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="pY8-Id-CFT"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" toolTip="Copy" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bq6-7t-TE3">
+                                        <rect key="frame" x="337" y="176" width="45" height="31"/>
+                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.right.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapCopyPassword:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="qFX-NQ-I4f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" toolTip="Copy" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWv-h7-i8B">
+                                        <rect key="frame" x="337" y="94" width="45" height="31"/>
+                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.right.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapCopyAccount:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="MFN-Eu-2tF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" toolTip="Copy" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etc-i7-B43">
+                                        <rect key="frame" x="337" y="257" width="45" height="31"/>
+                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.right.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapCopyEmail:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="Tk6-cm-yhD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Etc-i7-B43" secondAttribute="trailing" constant="8" id="0fF-0Z-bIh"/>
+                                    <constraint firstAttribute="trailing" secondItem="bq6-7t-TE3" secondAttribute="trailing" constant="8" id="2PF-0Z-vf8"/>
                                     <constraint firstAttribute="trailing" secondItem="pAf-Pg-8oa" secondAttribute="trailing" constant="8" id="8b8-dR-uOV"/>
                                     <constraint firstItem="BLb-MR-swR" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="128" id="B1K-6Q-K44"/>
                                     <constraint firstAttribute="height" constant="1629" id="COK-vF-FRk"/>
@@ -271,11 +300,15 @@
                                     <constraint firstItem="BLb-MR-swR" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="31" id="VDd-18-U7X"/>
                                     <constraint firstItem="HhH-W6-OTh" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="103" id="WOw-fN-UsW"/>
                                     <constraint firstAttribute="trailing" secondItem="4bX-wh-jb4" secondAttribute="trailing" constant="8" id="au0-fB-4Gi"/>
+                                    <constraint firstAttribute="trailing" secondItem="LWv-h7-i8B" secondAttribute="trailing" constant="8" id="fyu-Hu-jaU"/>
                                     <constraint firstItem="0vL-iB-J5m" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="207" id="iJa-Je-kU0"/>
                                     <constraint firstItem="VIc-6f-Bv8" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="8" id="kQ2-YC-lum"/>
+                                    <constraint firstItem="bq6-7t-TE3" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="176" id="kZ5-NI-WzF"/>
                                     <constraint firstAttribute="bottom" secondItem="pAf-Pg-8oa" secondAttribute="bottom" constant="-37" id="lj3-Em-4YH"/>
                                     <constraint firstItem="pAf-Pg-8oa" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="31" id="qp4-Vf-tUj"/>
                                     <constraint firstAttribute="trailing" secondItem="0vL-iB-J5m" secondAttribute="trailing" constant="8" id="shV-Sx-TlJ"/>
+                                    <constraint firstItem="Etc-i7-B43" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="257" id="vHQ-eC-9ma"/>
+                                    <constraint firstItem="LWv-h7-i8B" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="94" id="xRI-b8-Foe"/>
                                     <constraint firstItem="sba-eb-DuY" firstAttribute="trailing" secondItem="0vL-iB-J5m" secondAttribute="trailing" id="yci-7E-g9S"/>
                                 </constraints>
                                 <connections>
@@ -336,6 +369,7 @@
     </scenes>
     <resources>
         <image name="Logo" width="128" height="128"/>
+        <image name="arrowshape.turn.up.right.circle" catalog="system" width="128" height="121"/>
         <image name="character.textbox" catalog="system" width="128" height="91"/>
         <image name="character.textbox.ja" catalog="system" width="128" height="91"/>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>

@@ -59,4 +59,29 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
     @IBAction func didTappedShowPassword(_ sender: Any) {
         textPassword.isSecureTextEntry = !textPassword.isSecureTextEntry
     }
+    
+    @IBAction func didTapCopyAccount(_ sender: Any) {
+        if let text = textAccountId.text {
+            UIPasteboard.general.string = text
+            showToast(message: "Copy Account ID", color: UIColor.systemGreen, view: self.parent?.view ?? self.view)
+
+        }
+    }
+    
+    @IBAction func didTapCopyPassword(_ sender: Any) {
+        if let text = textPassword.text {
+            UIPasteboard.general.string = text
+            showToast(message: "! Copy Password !", color: UIColor.systemOrange, view: self.parent?.view ?? self.view)
+
+        }
+    }
+    
+    @IBAction func didTapCopyEmail(_ sender: Any) {
+        if let text = textEmail.text {
+            UIPasteboard.general.string = text
+            showToast(message: "Copy e-mail", color: UIColor.systemBlue, view: self.parent?.view ?? self.view)
+
+        }
+    }
+    
 }
