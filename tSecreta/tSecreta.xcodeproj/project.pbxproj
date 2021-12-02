@@ -12,6 +12,7 @@
 		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
 		02346D6F275714F60006ABE4 /* EncryptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02346D6E275714F60006ABE4 /* EncryptTests.swift */; };
 		02464FD227552CAF009024F5 /* EncryptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464FD127552CAF009024F5 /* EncryptUtils.swift */; };
+		025D2AD9275886F000D7B165 /* ViewControllerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */; };
 		0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0291C86027578464004DD5D0 /* AZSClient.framework */; };
 		0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 022148E9275510C100D098A5 /* libxml2.2.tbd */; };
 		02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */; };
@@ -60,6 +61,7 @@
 		0227FD012750C60900B19393 /* tSecreta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tSecreta.entitlements; sourceTree = "<group>"; };
 		02346D6E275714F60006ABE4 /* EncryptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptTests.swift; sourceTree = "<group>"; };
 		02464FD127552CAF009024F5 /* EncryptUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptUtils.swift; sourceTree = "<group>"; };
+		025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDetail.swift; sourceTree = "<group>"; };
 		0291C85F2757841F004DD5D0 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		0291C86027578464004DD5D0 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
 		02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthCloud.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				02B0FE172754F540007337F6 /* Secret */,
 				02B0FE162754F4E2007337F6 /* ViewAuth */,
 				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
+				025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
 				02464FD127552CAF009024F5 /* EncryptUtils.swift */,
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */,
+				025D2AD9275886F000D7B165 /* ViewControllerDetail.swift in Sources */,
 				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
 				02D861012757A64B00D643CF /* CloudFileHandler.swift in Sources */,
 				02B997E82758684C00922473 /* ViewUtils.swift in Sources */,

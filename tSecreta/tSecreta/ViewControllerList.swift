@@ -116,4 +116,22 @@ final class ViewControllerList : UITableViewController {
         return UISwipeActionsConfiguration(actions: [actionDelete, actionPw, actionId])
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                guard let destination = segue.destination as? ViewControllerDetail else {
+                    fatalError("\(segue.destination)")
+                }
+                guard let note = self.noteTarget?[indexPath.row] else {
+                    return
+                }
+                destination.note = note
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ToDetail", sender: self)
+    }
 }
