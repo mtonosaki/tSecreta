@@ -50,9 +50,12 @@
                                     <action selector="logoffButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zZ3-iF-4KM"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="dwd-WB-lEf">
-                                <rect key="frame" x="144" y="110" width="128" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="dwd-WB-lEf">
+                                <rect key="frame" x="131" y="110" width="128" height="128"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zjt-H5-mxS">
+                                <rect key="frame" x="174" y="241" width="42" height="42"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.89411764705882346" green="0.0" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,10 +66,13 @@
                             <constraint firstItem="dwd-WB-lEf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="RX2-6I-lvS"/>
                             <constraint firstItem="dwd-WB-lEf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="USK-SG-SEP"/>
                             <constraint firstItem="rKZ-mL-bRK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="264" id="brX-i2-PeY"/>
+                            <constraint firstItem="zjt-H5-mxS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="dYA-kk-HMY"/>
+                            <constraint firstItem="zjt-H5-mxS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="153" id="p5O-AF-OU4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Auth" id="gDC-IF-Zl2"/>
                     <connections>
+                        <outlet property="kurukuru" destination="zjt-H5-mxS" id="xYM-GM-0yE"/>
                         <outlet property="logoffButton" destination="rKZ-mL-bRK" id="Jw9-tJ-2tw"/>
                         <outlet property="reAuthButton" destination="ezQ-HV-m3D" id="SiR-Eu-FvY"/>
                         <segue destination="Nz0-6f-m7V" kind="show" identifier="ToList" destinationCreationSelector="segueAuthToList:" id="gbN-4T-AZb"/>
@@ -74,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.92753623188412" y="53.571428571428569"/>
+            <point key="canvasLocation" x="944.61538461538453" y="53.317535545023695"/>
         </scene>
         <!--List-->
         <scene sceneID="fBB-oa-iR6">
@@ -84,9 +90,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <activityIndicatorView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="gmf-KR-QUh">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" textLabel="Ra5-Yd-Gfr" detailTextLabel="vW8-13-3oS" style="IBUITableViewCellStyleSubtitle" id="IjR-Og-p3P">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="88.666666030883789" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IjR-Og-p3P" id="zPC-lm-JVh">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
@@ -116,12 +126,22 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="List" id="jBl-3D-33M">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" id="tp4-KD-hr3">
-                            <connections>
-                                <segue destination="0mw-Nu-NbU" kind="show" identifier="ToDetail" id="zUP-TN-hBX"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem enabled="NO" id="tp4-KD-hr3">
+                                <connections>
+                                    <segue destination="0mw-Nu-NbU" kind="show" identifier="ToDetail" id="zUP-TN-hBX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Sync" image="externaldrive.badge.icloud" catalog="system" id="2gV-h2-anK">
+                                <connections>
+                                    <action selector="didTapCloudSync:" destination="Nz0-6f-m7V" id="chh-3Y-tZn"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="kurukuru" destination="gmf-KR-QUh" id="WXW-zi-l9U"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54D-3f-6UK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -242,7 +262,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" toolTip="Show/Hide Password" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sba-eb-DuY">
+                                    <button toolTip="Show/Hide Password" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sba-eb-DuY">
                                         <rect key="frame" x="335" y="210" width="47" height="31"/>
                                         <color key="tintColor" systemColor="placeholderTextColor"/>
                                         <state key="normal" title="Button"/>
@@ -251,7 +271,7 @@
                                             <action selector="didTappedShowPassword:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="pY8-Id-CFT"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" toolTip="Copy" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bq6-7t-TE3">
+                                    <button toolTip="Copy" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bq6-7t-TE3">
                                         <rect key="frame" x="337" y="176" width="45" height="31"/>
                                         <color key="tintColor" systemColor="secondaryLabelColor"/>
                                         <state key="normal" title="Button"/>
@@ -260,7 +280,7 @@
                                             <action selector="didTapCopyPassword:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="qFX-NQ-I4f"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" toolTip="Copy" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWv-h7-i8B">
+                                    <button toolTip="Copy" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWv-h7-i8B">
                                         <rect key="frame" x="337" y="94" width="45" height="31"/>
                                         <color key="tintColor" systemColor="secondaryLabelColor"/>
                                         <state key="normal" title="Button"/>
@@ -269,7 +289,7 @@
                                             <action selector="didTapCopyAccount:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="MFN-Eu-2tF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" toolTip="Copy" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etc-i7-B43">
+                                    <button toolTip="Copy" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etc-i7-B43">
                                         <rect key="frame" x="337" y="257" width="45" height="31"/>
                                         <color key="tintColor" systemColor="secondaryLabelColor"/>
                                         <state key="normal" title="Button"/>
@@ -328,7 +348,11 @@
                         <viewLayoutGuide key="frameLayoutGuide" id="7O4-5w-nux"/>
                     </scrollView>
                     <navigationItem key="navigationItem" title="Detail" id="lBj-vY-R8U">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JpM-Rx-dY3"/>
+                        <barButtonItem key="rightBarButtonItem" image="clear" catalog="system" id="XwO-TQ-WCe">
+                            <connections>
+                                <action selector="didTapClearClipboard:" destination="0mw-Nu-NbU" id="PFe-HS-hle"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="textAccountId" destination="BLb-MR-swR" id="Mzf-TZ-mql"/>
@@ -372,7 +396,9 @@
         <image name="arrowshape.turn.up.right.circle" catalog="system" width="128" height="121"/>
         <image name="character.textbox" catalog="system" width="128" height="91"/>
         <image name="character.textbox.ja" catalog="system" width="128" height="91"/>
+        <image name="clear" catalog="system" width="128" height="114"/>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
+        <image name="externaldrive.badge.icloud" catalog="system" width="128" height="83"/>
         <image name="eyes" catalog="system" width="128" height="99"/>
         <image name="lock.circle" catalog="system" width="128" height="121"/>
         <image name="mail" catalog="system" width="128" height="93"/>

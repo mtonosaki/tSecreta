@@ -38,14 +38,14 @@ func showToast(message: String, color: UIColor, view: UIView){
     toastLabel.textAlignment = .left
     toastLabel.sizeToFit()
     let xPosition = view.frame.width / 2 - toastLabel.frame.width / 2
-    let yPosition: CGFloat = 80
+    let yPosition: CGFloat = 70
     toastView.frame = CGRect(x: ceil(xPosition), y: yPosition, width: toastLabel.frame.width + 20, height: 35)
     toastView.autoresizingMask = [.flexibleLeftMargin, .flexibleBottomMargin]
     toastView.addSubview(toastLabel)
     view.addSubview(toastView)
     UIView.animate(
         withDuration: 0.5,
-        delay: 0.3,
+        delay: 0.75,
         options: .curveEaseOut,
         animations: {
             toastView.alpha = 0.0

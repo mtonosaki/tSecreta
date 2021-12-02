@@ -80,8 +80,11 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
         if let text = textEmail.text {
             UIPasteboard.general.string = text
             showToast(message: "Copy e-mail", color: UIColor.systemBlue, view: self.parent?.view ?? self.view)
-
         }
     }
     
+    @IBAction func didTapClearClipboard(_ sender: Any) {
+        UIPasteboard.general.string = nil
+        showToast(message: "Clear clipboard", color: UIColor.darkGray, view: self.parent?.view ?? self.view)
+    }
 }

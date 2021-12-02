@@ -12,6 +12,9 @@ final class ViewControllerList : UITableViewController {
     public var noteList: NoteList? = nil
     private var noteTarget: Array<Note>? = nil
     
+    @IBOutlet weak var kurukuru: UIActivityIndicatorView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = true
@@ -133,5 +136,12 @@ final class ViewControllerList : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ToDetail", sender: self)
+    }
+    
+    @IBAction func didTapCloudSync(_ sender: Any) {
+        DispatchQueue.main.async {
+            self.kurukuru.isHidden = false
+            self.kurukuru.startAnimating()
+        }
     }
 }
