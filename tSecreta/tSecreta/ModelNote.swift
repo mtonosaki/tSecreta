@@ -16,6 +16,16 @@ public class Note  : Codable {
     public var ID: String = ""
     public var UniversalData = Dictionary<String, Array<NoteHistRecord>>()
     
+    //--------------------------
+    // ["Caption"]
+    // ["CaptionRubi"]
+    // ["AccountID"]
+    // ["Password"]
+    // ["Email"]
+    // ["IsDeleted"] = "True" / "False"
+    // ["Memo"]
+    // ["CreatedDateTime"] = "yyyy/mm/dd HH:MM:SS"
+    //--------------------------
     
     public func GetLatest(key: String) -> String? {
         let histList = UniversalData[key]

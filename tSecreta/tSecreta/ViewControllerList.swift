@@ -37,6 +37,9 @@ final class ViewControllerList : UITableViewController {
         let note = noteTarget?[indexPath.row]
         if let note = note {
             cell.textLabel?.text = note.GetLatest(key: "Caption")
+            cell.detailTextLabel?.text = note.GetLatest(key: "AccountID")
+            cell.imageView?.image = UIImage(named: "cellNoImg")
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         }
         return cell
     }

@@ -126,7 +126,6 @@
 				02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */,
 				02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */,
 				02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */,
-				02C453872757B44D009E7AB9 /* ModelNote.swift */,
 			);
 			name = ViewAuth;
 			sourceTree = "<group>";
@@ -166,12 +165,13 @@
 			children = (
 				02B0FE172754F540007337F6 /* Secret */,
 				02B0FE162754F4E2007337F6 /* ViewAuth */,
+				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
-				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
 				02464FD127552CAF009024F5 /* EncryptUtils.swift */,
 				0212A77E27573B4B00565BA9 /* StrUtils.swift */,
 				02D861002757A64B00D643CF /* CloudFileHandler.swift */,
+				02C453872757B44D009E7AB9 /* ModelNote.swift */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
 				02EB98F4274E33090088B99D /* Main.storyboard */,
 				0227FD012750C60900B19393 /* tSecreta.entitlements */,
