@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // for AzureAD
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return MSALPublicClientApplication.handleMSALResponse(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String)
-    }
-    
+    }    
 }
 
