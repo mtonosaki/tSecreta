@@ -283,7 +283,9 @@
                         <viewLayoutGuide key="contentLayoutGuide" id="laQ-Ch-zEe"/>
                         <viewLayoutGuide key="frameLayoutGuide" id="7O4-5w-nux"/>
                     </scrollView>
-                    <navigationItem key="navigationItem" title="Detail" id="lBj-vY-R8U"/>
+                    <navigationItem key="navigationItem" title="Detail" id="lBj-vY-R8U">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JpM-Rx-dY3"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="textAccountId" destination="BLb-MR-swR" id="Mzf-TZ-mql"/>
                         <outlet property="textCaption" destination="HhH-W6-OTh" id="JuV-B2-Who"/>
@@ -294,7 +296,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BsO-Zc-ogB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Dfw-11-2vG"/>
+                <tapGestureRecognizer id="Dfw-11-2vG">
+                    <connections>
+                        <action selector="didTapViewSpace:" destination="0mw-Nu-NbU" id="zPc-st-8fq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2533.0645161290322" y="52.162400706090025"/>
         </scene>

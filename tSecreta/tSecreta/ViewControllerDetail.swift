@@ -8,6 +8,8 @@
 import UIKit
 
 final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
+    public var note: Note? = nil
+
     @IBOutlet weak var textRubi: UITextField!
     @IBOutlet weak var textCaption: UITextField!
     @IBOutlet weak var textAccountId: UITextField!
@@ -15,8 +17,15 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textEmail: UITextField!
     @IBOutlet weak var textMemo: UITextView!
     
-    
-    public var note: Note? = nil
+    // Tap on white space to hide keyboard
+    @IBAction func didTapViewSpace(_ sender: UITapGestureRecognizer) {
+        textRubi.resignFirstResponder()
+        textCaption.resignFirstResponder()
+        textAccountId.resignFirstResponder()
+        textPassword.resignFirstResponder()
+        textEmail.resignFirstResponder()
+        textMemo.resignFirstResponder()
+    }
     
     override func viewDidLoad() {
         // for auto "Next" at Return key
@@ -46,4 +55,6 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         // TODO: Persist edited text
     }
+    
+    
 }
