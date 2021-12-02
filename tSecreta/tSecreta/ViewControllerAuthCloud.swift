@@ -91,7 +91,7 @@ extension ViewController {
             }
             
             if let currentAccount = currentAccount {
-                self.addInfo("Found a signed in account \(String(describing: currentAccount.username ?? "")). Updating data for that account...")
+                self.addInfo("Hi, \(String(describing: currentAccount.username ?? ""))")
                 
                 self.currentAccount = currentAccount
                 callback(true, nil)

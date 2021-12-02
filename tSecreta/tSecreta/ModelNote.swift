@@ -39,6 +39,18 @@ public class Note  : Codable {
         }
         return false
     }
+    
+    public func SetDeletedFlag(_ sw: Bool ) {
+        var histList = UniversalData["IsDeleted"]
+        let lastitem = histList?.last?.Value ?? "False"
+        let lastsw = Bool(lastitem)
+        if lastsw != sw {
+            let rec = NoteHistRecord()
+            rec.DT = Date()
+            rec.Value = String(sw)
+            histList?.append(rec)
+        }
+    }
 }
 
 public class NoteList  : Codable {

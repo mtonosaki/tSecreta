@@ -42,4 +42,8 @@ extension DateFormatter {
     }()
 }
 
+func findBrandLogo(name: String) -> String {
+    return "cellNoImg"
+}
+
 
