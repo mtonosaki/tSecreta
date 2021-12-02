@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
+final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UITextViewDelegate {
     public var note: Note? = nil
 
     @IBOutlet weak var textRubi: UITextField!
@@ -34,6 +34,7 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
         textAccountId.delegate = self
         textPassword.delegate = self
         textEmail.delegate = self
+        textMemo.delegate = self
         
         textRubi.text = note?.GetLatest(key: "CaptionRubi")
         textCaption.text = note?.GetLatest(key: "Caption")
@@ -43,6 +44,46 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
         textMemo.text = note?.GetLatest(key: "Memo")
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == textEmail {
+            if let text = textEmail.text {
+                note?.SetToLatest(key: "Email", text: text)
+                return
+            }
+        }
+        if textField == textPassword {
+            if let text = textPassword.text {
+                note?.SetToLatest(key: "Password", text: text)
+                return
+            }
+        }
+        if textField == textAccountId {
+            if let text = textAccountId.text {
+                note?.SetToLatest(key: "AccountID", text: text)
+                return
+            }
+        }
+        if textField == textCaption {
+            if let text = textCaption.text {
+                note?.SetToLatest(key: "Caption", text: text)
+                return
+            }
+        }
+        if textField == textRubi {
+            if let text = textRubi.text {
+                note?.SetToLatest(key: "CaptionRubi", text: text)
+                return
+            }
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textMemo == textView {
+            if let text = textMemo.text {
+                note?.SetToLatest(key: "Memo", text: text)
+            }
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let nextTag = textField.tag + 1
@@ -50,10 +91,6 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate {
             nextTextField.becomeFirstResponder()
         }
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        // TODO: Persist edited text
     }
     
     @IBAction func didTappedShowPassword(_ sender: Any) {
