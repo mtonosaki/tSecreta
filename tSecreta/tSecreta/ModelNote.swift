@@ -40,7 +40,7 @@ public class Note  : Codable {
     public func CheckDeleted() -> Bool {
         let sw = GetLatest(key: "IsDeleted")
         if let sw = sw {
-            return Bool(sw) ?? false
+            return Bool.parseFuzzy(sw, false)
         }
         return false
     }

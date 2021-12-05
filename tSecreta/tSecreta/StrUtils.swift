@@ -54,4 +54,15 @@ func findBrandLogo(name: String) -> String {
     return "cellNoImg"
 }
 
-
+extension Bool {
+    public static func parseFuzzy(_ str: String, _ defaultValue: Bool = false) -> Bool {
+        let s = str.lowercased()
+        switch s {
+        case "true": return true
+        case "yes": return true
+        case "ok": return true
+        default:
+            return defaultValue
+        }
+    }
+}
