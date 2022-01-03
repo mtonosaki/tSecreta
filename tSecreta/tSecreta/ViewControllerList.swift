@@ -19,6 +19,9 @@ final class ViewControllerList : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = true
+        tableView.sectionIndexColor = UIColor.magenta
+        tableView.sectionIndexTrackingBackgroundColor = UIColor.blue
+        tableView.sectionIndexMinimumDisplayRowCount = 4
         resetList()
     }
     
@@ -33,6 +36,15 @@ final class ViewControllerList : UITableViewController {
             sectionNotes = Dictionary(grouping: noteTarget!, by: { String($0.GetLatest(key: "CaptionRubi")?.first ?? ".") })
             sectionOrder = sectionNotes.keys.sorted(by: { $0 < $1 })
         }
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return sectionOrder
+    }
+    
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        tableView.scrollToRow(at: [0, index], at: .top, animated: true)
+        return index
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
