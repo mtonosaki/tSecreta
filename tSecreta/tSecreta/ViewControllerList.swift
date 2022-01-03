@@ -20,9 +20,14 @@ final class ViewControllerList : UITableViewController {
         super.viewDidLoad()
         tableView.allowsSelection = true
         tableView.sectionIndexColor = UIColor.magenta
-        tableView.sectionIndexTrackingBackgroundColor = UIColor.blue
+        tableView.sectionIndexTrackingBackgroundColor = UIColor(red: 1, green: 1, blue: 0.75, alpha: 1)
         tableView.sectionIndexMinimumDisplayRowCount = 4
         resetList()
+    }
+    
+    func getSectionName(_ note: Note) -> String {
+        let c = note.GetLatest(key: "CaptionRubi")?.trimmingCharacters(in: .whitespacesAndNewlines).first
+        return Japanese.def.Getあかさたな(String(c ?? "."))
     }
     
     func resetList() {
@@ -33,7 +38,7 @@ final class ViewControllerList : UITableViewController {
                 let rubib = ($1.GetLatest(key: "CaptionRubi") ?? $1.GetLatest(key: "Caption") ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
                 return rubia < rubib
             })
-            sectionNotes = Dictionary(grouping: noteTarget!, by: { String($0.GetLatest(key: "CaptionRubi")?.first ?? ".") })
+            sectionNotes = Dictionary(grouping: noteTarget!, by: { getSectionName($0) })
             sectionOrder = sectionNotes.keys.sorted(by: { $0 < $1 })
         }
     }
@@ -43,7 +48,6 @@ final class ViewControllerList : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        tableView.scrollToRow(at: [0, index], at: .top, animated: true)
         return index
     }
     
