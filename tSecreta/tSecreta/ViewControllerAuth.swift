@@ -39,38 +39,40 @@ class ViewController: UIViewController {
         // AzureAD Authentication support
         if self.initCloudAuthentication() {
             self.startCloudAuthentication() {
-                (success, errorMessage) in
+                (successCA, errorMessageCA) in
                 
-                if success {
+                if successCA {
                     DispatchQueue.main.async {
                         self.logoffButton.isEnabled = true
                         self.reAuthButton.isEnabled = true
                     }
                     self.startDeviceAuthentication() {
-                        (success, errorMessage) in
+                        (successDA, errorMessageDA) in
                         
-                        if success  {
+                        if successDA  {
                             self.addInfo("Device authenticated successfully!" )
                             
                             self.downloadCloudSecretData() {
-                                (success, errMessage, newNoteList) in
+                                (successDL, errMessageDL, newNoteList) in
                                 
-                                if success {
+                                if successDL {
                                     self.addInfo("OK.")
                                     self.noteList = newNoteList
                                     DispatchQueue.main.async {
                                         self.logoffButton.isEnabled = true
                                         self.moveToListView()
                                     }
+                                } else {
+                                    self.addError("Cloud download error")
                                 }
                                 return;
                             }
                         } else {
-                            self.addWarning("Device authentication \(errorMessage ?? "error")")
+                            self.addWarning("Device authentication Error")
                         }
                     }
                 } else {
-                    self.addWarning("Authentication Error")
+                    self.addWarning("Authentication \(errorMessageCA)")
                 }
             }
         }

@@ -24,9 +24,8 @@ final class ViewControllerList : UITableViewController {
             let notes = noteList?.Notes
             if let notes = notes {
                 noteTarget  = notes.filter{ $0.CheckDeleted() == false }.sorted(by: {
-                    (a, b) -> Bool in
-                    let rubia = a.GetLatest(key: "CaptionRubi") ?? a.GetLatest(key: "Caption") ?? ""
-                    let rubib = b.GetLatest(key: "CaptionRubi") ?? b.GetLatest(key: "Caption") ?? ""
+                    let rubia = ($0.GetLatest(key: "CaptionRubi") ?? $0.GetLatest(key: "Caption") ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+                    let rubib = ($1.GetLatest(key: "CaptionRubi") ?? $1.GetLatest(key: "Caption") ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
                     return rubia < rubib
                 })
             }
