@@ -15,6 +15,7 @@
 		025D2AD9275886F000D7B165 /* ViewControllerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */; };
 		0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0291C86027578464004DD5D0 /* AZSClient.framework */; };
 		0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 022148E9275510C100D098A5 /* libxml2.2.tbd */; };
+		02AD85452782C40E00A63FE1 /* Tono in Frameworks */ = {isa = PBXBuildFile; productRef = 02AD85442782C40E00A63FE1 /* Tono */; };
 		02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */; };
 		02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */; };
 		02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */; };
@@ -95,6 +96,7 @@
 				02D860FF2757A5D700D643CF /* CryptoSwift in Frameworks */,
 				02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */,
 				0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */,
+				02AD85452782C40E00A63FE1 /* Tono in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +230,7 @@
 			packageProductDependencies = (
 				02FD0D7E27579C58002E71D5 /* MSAL */,
 				02D860FE2757A5D700D643CF /* CryptoSwift */,
+				02AD85442782C40E00A63FE1 /* Tono */,
 			);
 			productName = tSecreta;
 			productReference = 02EB98EB274E33090088B99D /* tSecreta.app */;
@@ -304,6 +307,7 @@
 			packageReferences = (
 				02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
 				02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */,
 			);
 			productRefGroup = 02EB98EC274E33090088B99D /* Products */;
 			projectDirPath = "";
@@ -763,6 +767,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mtonosaki/TonoSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
@@ -782,6 +794,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		02AD85442782C40E00A63FE1 /* Tono */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */;
+			productName = Tono;
+		};
 		02D860FE2757A5D700D643CF /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */;

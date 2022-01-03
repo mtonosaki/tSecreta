@@ -18,6 +18,15 @@
           "revision": "14a1750834d13567de1a4afb0fa148a22bd7ddbf",
           "version": "1.1.25"
         }
+      },
+      {
+        "package": "Tono",
+        "repositoryURL": "https://github.com/mtonosaki/TonoSwift.git",
+        "state": {
+          "branch": "main",
+          "revision": "e0d9e26e31e81e76f64b2c6cabc8663b724df36c",
+          "version": null
+        }
       }
     ]
   },
