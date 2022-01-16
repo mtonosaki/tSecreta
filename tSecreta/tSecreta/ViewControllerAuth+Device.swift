@@ -8,7 +8,7 @@
 import UIKit
 import LocalAuthentication
 
-extension ViewController {
+extension ViewControllerAuth {
     
     func startDeviceAuthentication(callback: @escaping (Bool, String?) -> Void) {
         let context = LAContext()

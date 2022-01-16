@@ -8,7 +8,8 @@
 import UIKit
 
 final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UITextViewDelegate {
-    public var note: Note? = nil
+
+    var note: Note? = nil
 
     @IBOutlet weak var textRubi: UITextField!
     @IBOutlet weak var textCaption: UITextField!
@@ -45,6 +46,7 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         if textField == textEmail {
             if let text = textEmail.text {
                 note?.setValue(field: .email, text: text)
@@ -123,5 +125,19 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
     @IBAction func didTapClearClipboard(_ sender: Any) {
         UIPasteboard.general.string = nil
         showToast(message: "Clear clipboard", color: UIColor.darkGray, view: self.parent?.view ?? self.view)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier != "ToHistory" {
+            return
+        }
+        let aaa = segue.destination
+        guard let vc = segue.destination as? ViewControllerHistoryTabControl
+                , let note = note
+        else {
+            return
+        }
+        vc.universalData = note.UniversalData
     }
 }

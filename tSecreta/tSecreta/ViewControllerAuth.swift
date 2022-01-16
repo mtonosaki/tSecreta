@@ -9,9 +9,8 @@ import UIKit
 import MSAL
 
 // Authentication Screen
-class ViewController: UIViewController {
+class ViewControllerAuth: UIViewController {
     
-    @IBOutlet weak var kurukuru: UIActivityIndicatorView!
     @IBOutlet weak var reAuthButton: UIButton!
     @IBOutlet weak var logoffButton: UIButton!
     var logView: LogView!
@@ -84,10 +83,6 @@ class ViewController: UIViewController {
             callback(false, "To download, authenticate first.", nil)
             return
         }
-        DispatchQueue.main.async {
-            self.kurukuru.isHidden = false
-            self.kurukuru.startAnimating()
-        }
         let id = idraw.components(separatedBy: ".")[0]
         self.addInfo("Downloading...")
 
@@ -96,9 +91,6 @@ class ViewController: UIViewController {
 
             guard let safeText = text else {
                 self.addError("Cloud data downloading error")
-                DispatchQueue.main.async {
-                    self.kurukuru.stopAnimating()
-                }
                 return
             }
             if success {
@@ -107,13 +99,10 @@ class ViewController: UIViewController {
                 let maybeJsonStr = EncryptUtils.rijndaelDecode(base64sec: safeText, filter: id)
                 guard let jsonStr = maybeJsonStr else {
                     self.addError("Downloaded json is broken.")
-                    DispatchQueue.main.async {
-                        self.kurukuru.stopAnimating()
-                    }
                     return
                 }
                 guard let jsonData = jsonStr.data(using: .utf8) else {
-                    showToast(message: "Json Decoding error", color: UIColor.red, view: self.view)
+                    self.showToast(message: "Json Decoding error", color: UIColor.red, view: self.view)
                     return
                 }
                 
@@ -123,9 +112,6 @@ class ViewController: UIViewController {
                     let notes = try decoder.decode(NoteList.self, from: jsonData)
                     
                     callback(true, nil, notes)
-                    DispatchQueue.main.async {
-                        self.kurukuru.stopAnimating()
-                    }
                     return
                 }
                 catch let ex {
@@ -133,9 +119,6 @@ class ViewController: UIViewController {
                 }
             } else {
                 self.addError(safeText)
-            }
-            DispatchQueue.main.async {
-                self.kurukuru.stopAnimating()
             }
             callback(success, safeText, nil)
         }

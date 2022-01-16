@@ -3,10 +3,12 @@
 //  tSecreta
 //
 //  Created by Manabu Tonosaki on 2021/12/01.
+//  MIT License (c)2021 Manabu Tonosaki all rights reserved.
 
 import Foundation
 
 public enum FieldNames: String {
+    case na = "(n/a)"
     case caption = "Caption"
     case captionRubi = "CaptionRubi"
     case accountID = "AccountID"

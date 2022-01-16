@@ -92,7 +92,7 @@ final class ViewControllerList : UITableViewController {
                 let note = self.getNote(at: indexPath)
                 if let id = note.getValue(field: .accountID) {
                     UIPasteboard.general.string = id
-                    showToast(message: "Copy account ID", color: UIColor.systemGreen, view: self.parent?.view ?? self.view)
+                    self.showToast(message: "Copy account ID", color: UIColor.systemGreen, view: self.parent?.view ?? self.view)
                     success(true)
                 } else {
                     success(false)
@@ -110,7 +110,7 @@ final class ViewControllerList : UITableViewController {
                 let note = self.getNote(at: indexPath)
                 if let pw = note.getValue(field: .password) {
                     UIPasteboard.general.string = pw
-                    showToast(message: "! Copy Password !", color: UIColor.systemOrange, view: self.parent?.view ?? self.view)
+                    self.showToast(message: "! Copy Password !", color: UIColor.systemOrange, view: self.parent?.view ?? self.view)
                     success(true)
                 } else {
                     success(false)
@@ -167,14 +167,14 @@ final class ViewControllerList : UITableViewController {
                 (success, error) in
                 
                 if let error = error {
-                    showToast(message: error, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
+                    self.showToast(message: error, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
                 } else {
-                    showToast(message: "Cloud Sync OK!", color: UIColor.blue, view: self.parent?.view ?? self.view)
+                    self.showToast(message: "Cloud Sync OK!", color: UIColor.blue, view: self.parent?.view ?? self.view)
                 }
             }
         }
         catch let ex {
-            showToast(message: ex.localizedDescription, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
+            self.showToast(message: ex.localizedDescription, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
         }
     }
 }

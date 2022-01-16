@@ -8,7 +8,7 @@
 import MSAL
 
 // AzureAD authentication functions
-extension ViewController {
+extension ViewControllerAuth {
 
     func initCloudAuthentication() -> Bool {
 
