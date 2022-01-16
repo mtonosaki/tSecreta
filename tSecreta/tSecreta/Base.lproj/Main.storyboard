@@ -122,7 +122,12 @@
                                     <segue destination="0mw-Nu-NbU" kind="show" identifier="ToDetail" id="zUP-TN-hBX"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Save" id="2gV-h2-anK">
+                            <barButtonItem systemItem="add" id="TXM-8Q-kta">
+                                <connections>
+                                    <action selector="didTapAddButton:" destination="Nz0-6f-m7V" id="V9e-W2-uv3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="save" id="2gV-h2-anK">
                                 <connections>
                                     <action selector="didTapCloudSync:" destination="Nz0-6f-m7V" id="chh-3Y-tZn"/>
                                 </connections>

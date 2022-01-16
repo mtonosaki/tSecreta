@@ -15,6 +15,7 @@ final class ViewControllerList : UITableViewController {
     private var noteTarget: Array<Note>? = nil
     private var sectionNotes = Dictionary<String, Array<Note>>()
     private var sectionOrder = Array<String>()
+    private var noteRequestedDetail: Note? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,11 @@ final class ViewControllerList : UITableViewController {
         tableView.sectionIndexColor = UIColor.magenta
         tableView.sectionIndexTrackingBackgroundColor = UIColor(red: 1, green: 1, blue: 0.75, alpha: 1)
         tableView.sectionIndexMinimumDisplayRowCount = 4
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         resetList()
+        tableView.reloadData()
     }
     
     func getSectionName(_ note: Note) -> String {
@@ -136,12 +141,19 @@ final class ViewControllerList : UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "ToDetail" {
+            guard let destination = segue.destination as? ViewControllerDetail else {
+                fatalError("\(segue.destination)")
+            }
+            if noteRequestedDetail != nil {
+                destination.note = noteRequestedDetail
+                noteRequestedDetail = nil
+                return
+            }
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                guard let destination = segue.destination as? ViewControllerDetail else {
-                    fatalError("\(segue.destination)")
-                }
                 destination.note = getNote(at: indexPath)
+                return
             }
         }
     }
@@ -177,4 +189,11 @@ final class ViewControllerList : UITableViewController {
             self.showToast(message: ex.localizedDescription, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
         }
     }
-}
+    
+    @IBAction func didTapAddButton(_ sender: Any) {
+        let newNote = Note()
+        noteList?.Notes.append(newNote)
+        noteRequestedDetail = newNote
+        performSegue(withIdentifier: "ToDetail", sender: self)
+    }
+ }

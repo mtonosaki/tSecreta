@@ -28,6 +28,10 @@ public class Note  : Codable {
     public var ID: String
     public var UniversalData = Dictionary<String, Array<NoteHistRecord>>()
     
+    init() {
+        ID = UUID().uuidString
+    }
+    
     public func getValue(field: FieldNames) -> String? {
         let histList = UniversalData[field.rawValue]
         return histList?.last?.Value
