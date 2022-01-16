@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tSecreta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bz-Y6-vfW">
-                                <rect key="frame" x="112" y="424" width="190" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tomarika" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bz-Y6-vfW">
+                                <rect key="frame" x="20" y="419" width="374" height="58"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <color key="textColor" red="0.51779710570561521" green="0.36415147230828065" blue="0.50622377039646604" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -25,8 +25,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.4409864434261912" green="0.094781981615947697" blue="0.26579765951064671" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="2Bz-Y6-vfW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="m03-HL-bVB"/>
-                            <constraint firstItem="2Bz-Y6-vfW" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="uRO-Jc-7ZZ"/>
+                            <constraint firstItem="2Bz-Y6-vfW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5sR-Vf-cQ9"/>
+                            <constraint firstItem="2Bz-Y6-vfW" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.903382" id="V51-jf-Xvo"/>
+                            <constraint firstItem="2Bz-Y6-vfW" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-5" id="w4R-hW-NSJ"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -28,4 +28,14 @@ class StrUtilsTest: XCTestCase {
         XCTAssertEqual(str.Mid(start:-4, len:3), "")
         XCTAssertEqual(str.Mid(start:5), "FGHIJKLMN")
     }
+    
+    func testBoolStr() throws {
+        XCTAssertTrue(Bool.parseFuzzy("true", false))
+        XCTAssertTrue(Bool.parseFuzzy("ok", false))
+        XCTAssertTrue(Bool.parseFuzzy("yes", false))
+
+        XCTAssertFalse(Bool.parseFuzzy("hoge"))
+        XCTAssertFalse(Bool.parseFuzzy("hoge", false))
+        XCTAssertTrue(Bool.parseFuzzy("hoge", true))
+    }
 }

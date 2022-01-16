@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension ViewController {
+extension ViewControllerAuth {
     
     internal func initLogView() {
         logView = LogView()

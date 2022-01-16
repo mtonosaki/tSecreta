@@ -5,10 +5,12 @@
 //  Created by Manabu Tonosaki on 2021/11/30.
 //  MIT License (c)2021 Manabu Tonosaki all rights reserved.
 
+import Tono
 import Foundation
 import CryptoSwift
 
 public struct EncryptUtils {
+
     public static func fusionString(base64str: String, filter: String, textset64: String) -> String
     {
         let nums = [157, 233, 227, 179, 41, 257, 31, 89, 59, 83, 109, 3, 107, 5, 241, 269, 281, 139, 211, 23, 127, 131, 223, 97, 199, 163, 277, 29, 73, 11, 193, 151, 79, 19, 7, 229, 167, 47, 197, 149, 103, 37, 239, 13, 113, 2, 53, 61, 137, 263]
@@ -61,7 +63,7 @@ public struct EncryptUtils {
             data.getBytes(&aBuffer, length: data.length)
             
             let decrypted = try aes.decrypt(aBuffer)
-            let string = String(data: Data(bytes: decrypted), encoding: .utf8)
+            let string = String(data: Data(decrypted), encoding: .utf8)
             return string
             
         }
@@ -70,27 +72,30 @@ public struct EncryptUtils {
         }
     }
     
-    public static func rijndaelDecode(base64sec: String, filter: String) -> String?{
+    public static func rijndaelDecode(base64sec: String, filter: String) -> String? {
+
         let secParam = MySecret().key
         let f1 = Character(String(base64sec.prefix(1)))
-        let ivN = base64sec.distance(from:base64sec.startIndex, to:secParam.TEXTSET64.firstIndex(of: f1)!)
-        let iv = String(base64sec.Mid(start:1, len:ivN + secParam.IVNPP))
-        let base64secData = String(base64sec.Mid(start:ivN + iv.count + 1))
+        let ivN = base64sec.distance(from:base64sec.startIndex, to:secParam.TEXTSET64.firstIndex(of: f1)! )
+        let iv = String(StrUtil.mid(base64sec, start: 1, length: ivN + secParam.IVNPP))
+        let base64secData = String(StrUtil.mid(base64sec, start: ivN + iv.count + 1))
         let keyScrambled = fusionString(base64str: secParam.KEY, filter: filter, textset64: secParam.TEXTSET64)
         let cleanText = decrypt(key: keyScrambled, iv: iv, base64: base64secData)
         return cleanText
     }
     
     public static func rijndaelEncode(planeText: String, filter: String) -> String? {
+        
         let secParam = MySecret().key
         let ivN = 0
         var iv = ""
+        
         for _ in ivN..<(ivN + secParam.IVNPP) {
-            iv.append(contentsOf: secParam.TEXTSET64.Mid(start: Int.random(in: 0..<secParam.TEXTSET64.count), len: 1))
+            iv.append(contentsOf: StrUtil.mid(secParam.TEXTSET64, start: Int.random(in: 0..<secParam.TEXTSET64.count), length: 1))
         }
         let keyScrambled = fusionString(base64str: secParam.KEY, filter: filter, textset64: secParam.TEXTSET64)
         let secBase64 = encrypt(key: keyScrambled, iv: iv, target: planeText)!    // TODO: nil error handling
 
-        return "\(secParam.TEXTSET64.Mid(start: ivN, len: 1))\(iv)\(secBase64)"
+        return "\(StrUtil.mid(secParam.TEXTSET64, start: ivN, length: 1))\(iv)\(secBase64)"
     }
 }

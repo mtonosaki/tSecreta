@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0212A77F27573B4B00565BA9 /* StrUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A77E27573B4B00565BA9 /* StrUtils.swift */; };
+		0212A77F27573B4B00565BA9 /* DateFormatter+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A77E27573B4B00565BA9 /* DateFormatter+iso8601.swift */; };
 		0212A78127573C2500565BA9 /* StrUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A78027573C2500565BA9 /* StrUtilsTest.swift */; };
 		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
 		02346D6F275714F60006ABE4 /* EncryptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02346D6E275714F60006ABE4 /* EncryptTests.swift */; };
+		0245DC7D27943A65008BAFA6 /* ViewControllerHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245DC7C27943A65008BAFA6 /* ViewControllerHistory.swift */; };
 		02464FD227552CAF009024F5 /* EncryptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464FD127552CAF009024F5 /* EncryptUtils.swift */; };
 		025D2AD9275886F000D7B165 /* ViewControllerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */; };
 		0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0291C86027578464004DD5D0 /* AZSClient.framework */; };
 		0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 022148E9275510C100D098A5 /* libxml2.2.tbd */; };
-		02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */; };
-		02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */; };
-		02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */; };
+		02AD85452782C40E00A63FE1 /* Tono in Frameworks */ = {isa = PBXBuildFile; productRef = 02AD85442782C40E00A63FE1 /* Tono */; };
+		02B0FE1127546141007337F6 /* ViewControllerAuth+Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1027546141007337F6 /* ViewControllerAuth+Cloud.swift */; };
+		02B0FE1327546206007337F6 /* ViewControllerAuth+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE1227546206007337F6 /* ViewControllerAuth+Device.swift */; };
+		02B0FE152754C26F007337F6 /* ViewControllerAuth+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE142754C26F007337F6 /* ViewControllerAuth+Log.swift */; };
 		02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B0FE182754F6CC007337F6 /* ViewControllerList.swift */; };
-		02B997E82758684C00922473 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B997E72758684C00922473 /* ViewUtils.swift */; };
+		02B997E82758684C00922473 /* UIViewController+showToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B997E72758684C00922473 /* UIViewController+showToast.swift */; };
+		02C3FC8F27944863002A6C5D /* ViewControllerHistoryTabControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FC8E27944863002A6C5D /* ViewControllerHistoryTabControl.swift */; };
 		02C453882757B44D009E7AB9 /* ModelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C453872757B44D009E7AB9 /* ModelNote.swift */; };
 		02D860FF2757A5D700D643CF /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02D860FE2757A5D700D643CF /* CryptoSwift */; };
 		02D861012757A64B00D643CF /* CloudFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D861002757A64B00D643CF /* CloudFileHandler.swift */; };
@@ -53,22 +56,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0212A77E27573B4B00565BA9 /* StrUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrUtils.swift; sourceTree = "<group>"; };
+		0212A77E27573B4B00565BA9 /* DateFormatter+iso8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+iso8601.swift"; sourceTree = "<group>"; };
 		0212A78027573C2500565BA9 /* StrUtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrUtilsTest.swift; sourceTree = "<group>"; };
 		022148E9275510C100D098A5 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		0227FCFE2750A72300B19393 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 		0227FD002750AE2700B19393 /* Readme.AzureAD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.AzureAD.md; sourceTree = "<group>"; };
 		0227FD012750C60900B19393 /* tSecreta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tSecreta.entitlements; sourceTree = "<group>"; };
 		02346D6E275714F60006ABE4 /* EncryptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptTests.swift; sourceTree = "<group>"; };
+		0245DC7C27943A65008BAFA6 /* ViewControllerHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHistory.swift; sourceTree = "<group>"; };
 		02464FD127552CAF009024F5 /* EncryptUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptUtils.swift; sourceTree = "<group>"; };
 		025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDetail.swift; sourceTree = "<group>"; };
 		0291C85F2757841F004DD5D0 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		0291C86027578464004DD5D0 /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
-		02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthCloud.swift; sourceTree = "<group>"; };
-		02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthDevice.swift; sourceTree = "<group>"; };
-		02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuthLog.swift; sourceTree = "<group>"; };
+		02B0FE1027546141007337F6 /* ViewControllerAuth+Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerAuth+Cloud.swift"; sourceTree = "<group>"; };
+		02B0FE1227546206007337F6 /* ViewControllerAuth+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerAuth+Device.swift"; sourceTree = "<group>"; };
+		02B0FE142754C26F007337F6 /* ViewControllerAuth+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerAuth+Log.swift"; sourceTree = "<group>"; };
 		02B0FE182754F6CC007337F6 /* ViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerList.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		02B997E72758684C00922473 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		02B997E72758684C00922473 /* UIViewController+showToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showToast.swift"; sourceTree = "<group>"; };
+		02C3FC8E27944863002A6C5D /* ViewControllerHistoryTabControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHistoryTabControl.swift; sourceTree = "<group>"; };
 		02C453872757B44D009E7AB9 /* ModelNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNote.swift; sourceTree = "<group>"; };
 		02D861002757A64B00D643CF /* CloudFileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFileHandler.swift; sourceTree = "<group>"; };
 		02EB98EB274E33090088B99D /* tSecreta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tSecreta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +100,7 @@
 				02D860FF2757A5D700D643CF /* CryptoSwift in Frameworks */,
 				02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */,
 				0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */,
+				02AD85452782C40E00A63FE1 /* Tono in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,9 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				02EB98F2274E33090088B99D /* ViewControllerAuth.swift */,
-				02B0FE1027546141007337F6 /* ViewControllerAuthCloud.swift */,
-				02B0FE1227546206007337F6 /* ViewControllerAuthDevice.swift */,
-				02B0FE142754C26F007337F6 /* ViewControllerAuthLog.swift */,
+				02B0FE1027546141007337F6 /* ViewControllerAuth+Cloud.swift */,
+				02B0FE1227546206007337F6 /* ViewControllerAuth+Device.swift */,
+				02B0FE142754C26F007337F6 /* ViewControllerAuth+Log.swift */,
 			);
 			name = ViewAuth;
 			sourceTree = "<group>";
@@ -170,15 +176,17 @@
 			children = (
 				02B0FE172754F540007337F6 /* Secret */,
 				02B0FE162754F4E2007337F6 /* ViewAuth */,
+				02C453872757B44D009E7AB9 /* ModelNote.swift */,
 				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
 				025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */,
+				02C3FC8E27944863002A6C5D /* ViewControllerHistoryTabControl.swift */,
+				0245DC7C27943A65008BAFA6 /* ViewControllerHistory.swift */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
 				02464FD127552CAF009024F5 /* EncryptUtils.swift */,
-				0212A77E27573B4B00565BA9 /* StrUtils.swift */,
-				02B997E72758684C00922473 /* ViewUtils.swift */,
+				0212A77E27573B4B00565BA9 /* DateFormatter+iso8601.swift */,
+				02B997E72758684C00922473 /* UIViewController+showToast.swift */,
 				02D861002757A64B00D643CF /* CloudFileHandler.swift */,
-				02C453872757B44D009E7AB9 /* ModelNote.swift */,
 				02EB98F9274E330A0088B99D /* LaunchScreen.storyboard */,
 				02EB98F4274E33090088B99D /* Main.storyboard */,
 				0227FD012750C60900B19393 /* tSecreta.entitlements */,
@@ -228,6 +236,7 @@
 			packageProductDependencies = (
 				02FD0D7E27579C58002E71D5 /* MSAL */,
 				02D860FE2757A5D700D643CF /* CryptoSwift */,
+				02AD85442782C40E00A63FE1 /* Tono */,
 			);
 			productName = tSecreta;
 			productReference = 02EB98EB274E33090088B99D /* tSecreta.app */;
@@ -304,6 +313,7 @@
 			packageReferences = (
 				02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
 				02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */,
 			);
 			productRefGroup = 02EB98EC274E33090088B99D /* Products */;
 			projectDirPath = "";
@@ -351,16 +361,18 @@
 				02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */,
 				025D2AD9275886F000D7B165 /* ViewControllerDetail.swift in Sources */,
 				0227FCFF2750A72300B19393 /* MySecret.swift in Sources */,
+				0245DC7D27943A65008BAFA6 /* ViewControllerHistory.swift in Sources */,
 				02D861012757A64B00D643CF /* CloudFileHandler.swift in Sources */,
-				02B997E82758684C00922473 /* ViewUtils.swift in Sources */,
-				02B0FE1327546206007337F6 /* ViewControllerAuthDevice.swift in Sources */,
+				02B997E82758684C00922473 /* UIViewController+showToast.swift in Sources */,
+				02B0FE1327546206007337F6 /* ViewControllerAuth+Device.swift in Sources */,
 				02464FD227552CAF009024F5 /* EncryptUtils.swift in Sources */,
-				02B0FE1127546141007337F6 /* ViewControllerAuthCloud.swift in Sources */,
+				02B0FE1127546141007337F6 /* ViewControllerAuth+Cloud.swift in Sources */,
+				02C3FC8F27944863002A6C5D /* ViewControllerHistoryTabControl.swift in Sources */,
 				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
 				02C453882757B44D009E7AB9 /* ModelNote.swift in Sources */,
-				02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */,
+				02B0FE152754C26F007337F6 /* ViewControllerAuth+Log.swift in Sources */,
 				02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */,
-				0212A77F27573B4B00565BA9 /* StrUtils.swift in Sources */,
+				0212A77F27573B4B00565BA9 /* DateFormatter+iso8601.swift in Sources */,
 				02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,7 +589,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -620,7 +632,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -763,6 +775,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mtonosaki/TonoSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
@@ -782,6 +802,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		02AD85442782C40E00A63FE1 /* Tono */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */;
+			productName = Tono;
+		};
 		02D860FE2757A5D700D643CF /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */;
