@@ -148,6 +148,7 @@ final class ViewControllerList : UITableViewController {
             }
             if noteRequestedDetail != nil {
                 destination.note = noteRequestedDetail
+                noteRequestedDetail = nil
                 return
             }
             if let indexPath = self.tableView.indexPathForSelectedRow {
