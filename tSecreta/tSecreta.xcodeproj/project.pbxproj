@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0212A77F27573B4B00565BA9 /* StrUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A77E27573B4B00565BA9 /* StrUtils.swift */; };
+		0212A77F27573B4B00565BA9 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A77E27573B4B00565BA9 /* Extentions.swift */; };
 		0212A78127573C2500565BA9 /* StrUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A78027573C2500565BA9 /* StrUtilsTest.swift */; };
 		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
 		02346D6F275714F60006ABE4 /* EncryptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02346D6E275714F60006ABE4 /* EncryptTests.swift */; };
@@ -54,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0212A77E27573B4B00565BA9 /* StrUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrUtils.swift; sourceTree = "<group>"; };
+		0212A77E27573B4B00565BA9 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		0212A78027573C2500565BA9 /* StrUtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrUtilsTest.swift; sourceTree = "<group>"; };
 		022148E9275510C100D098A5 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		0227FCFE2750A72300B19393 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
 				02EB98F0274E33090088B99D /* SceneDelegate.swift */,
 				02464FD127552CAF009024F5 /* EncryptUtils.swift */,
-				0212A77E27573B4B00565BA9 /* StrUtils.swift */,
+				0212A77E27573B4B00565BA9 /* Extentions.swift */,
 				02B997E72758684C00922473 /* ViewUtils.swift */,
 				02D861002757A64B00D643CF /* CloudFileHandler.swift */,
 				02C453872757B44D009E7AB9 /* ModelNote.swift */,
@@ -364,7 +364,7 @@
 				02C453882757B44D009E7AB9 /* ModelNote.swift in Sources */,
 				02B0FE152754C26F007337F6 /* ViewControllerAuthLog.swift in Sources */,
 				02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */,
-				0212A77F27573B4B00565BA9 /* StrUtils.swift in Sources */,
+				0212A77F27573B4B00565BA9 /* Extentions.swift in Sources */,
 				02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,7 +581,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -624,7 +624,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -26,16 +26,16 @@ final class ViewControllerList : UITableViewController {
     }
     
     func getSectionName(_ note: Note) -> String {
-        let c = note.GetLatest(key: "CaptionRubi")?.trimmingCharacters(in: .whitespacesAndNewlines).first
+        let c = note.getValue(field: .captionRubi)?.trimmingCharacters(in: .whitespacesAndNewlines).first
         return Japanese.def.Getあかさたな(String(c ?? "."))
     }
     
     func resetList() {
         let notes = noteList?.Notes
         if let notes = notes {
-            noteTarget  = notes.filter{ $0.CheckDeleted() == false }.sorted(by: {
-                let rubia = ($0.GetLatest(key: "CaptionRubi") ?? $0.GetLatest(key: "Caption") ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-                let rubib = ($1.GetLatest(key: "CaptionRubi") ?? $1.GetLatest(key: "Caption") ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            noteTarget  = notes.filter{ $0.getDeletedFlag() == false }.sorted(by: {
+                let rubia = ($0.getValue(field: .captionRubi) ?? $0.getValue(field: .caption) ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+                let rubib = ($1.getValue(field: .captionRubi) ?? $1.getValue(field: .caption) ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
                 return rubia < rubib
             })
             sectionNotes = Dictionary(grouping: noteTarget!, by: { getSectionName($0) })
@@ -74,9 +74,9 @@ final class ViewControllerList : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
         let note = getNote(at: indexPath)
-        let caption = note.GetLatest(key: "Caption") ?? ""
+        let caption = note.getValue(field: .caption) ?? ""
         cell.textLabel?.text = caption
-        cell.detailTextLabel?.text = note.GetLatest(key: "AccountID")
+        cell.detailTextLabel?.text = note.getValue(field: .accountID)
         cell.imageView?.image = UIImage(named: findBrandLogo(name: caption))
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell
@@ -90,7 +90,7 @@ final class ViewControllerList : UITableViewController {
             handler: {
                 (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
                 let note = self.getNote(at: indexPath)
-                if let id = note.GetLatest(key: "AccountID") {
+                if let id = note.getValue(field: .accountID) {
                     UIPasteboard.general.string = id
                     showToast(message: "Copy account ID", color: UIColor.systemGreen, view: self.parent?.view ?? self.view)
                     success(true)
@@ -108,7 +108,7 @@ final class ViewControllerList : UITableViewController {
             handler: {
                 (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
                 let note = self.getNote(at: indexPath)
-                if let pw = note.GetLatest(key: "Password") {
+                if let pw = note.getValue(field: .password) {
                     UIPasteboard.general.string = pw
                     showToast(message: "! Copy Password !", color: UIColor.systemOrange, view: self.parent?.view ?? self.view)
                     success(true)

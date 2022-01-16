@@ -72,7 +72,7 @@ class ViewController: UIViewController {
                         }
                     }
                 } else {
-                    self.addWarning("Authentication \(errorMessageCA)")
+                    self.addWarning("Authentication \(errorMessageCA ?? "no message")")
                 }
             }
         }
@@ -112,12 +112,16 @@ class ViewController: UIViewController {
                     }
                     return
                 }
-                let jsonData = jsonStr.data(using: .utf8)
+                guard let jsonData = jsonStr.data(using: .utf8) else {
+                    showToast(message: "Json Decoding error", color: UIColor.red, view: self.view)
+                    return
+                }
                 
                 do {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .formatted(.iso8601PlusMilliSeconds)
-                    let notes = try decoder.decode(NoteList.self, from: jsonData!)
+                    let notes = try decoder.decode(NoteList.self, from: jsonData)
+                    
                     callback(true, nil, notes)
                     DispatchQueue.main.async {
                         self.kurukuru.stopAnimating()

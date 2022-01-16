@@ -3,7 +3,7 @@
 //  tSecreta
 //
 //  Created by Manabu Tonosaki on 2021/12/02.
-//
+//  MIT License (c)2021 Manabu Tonosaki all rights reserved.
 
 import UIKit
 
@@ -36,42 +36,42 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
         textEmail.delegate = self
         textMemo.delegate = self
         
-        textRubi.text = note?.GetLatest(key: "CaptionRubi")
-        textCaption.text = note?.GetLatest(key: "Caption")
-        textAccountId.text = note?.GetLatest(key: "AccountID")
-        textPassword.text = note?.GetLatest(key: "Password")
-        textEmail.text = note?.GetLatest(key: "Email")
-        textMemo.text = note?.GetLatest(key: "Memo")
+        textRubi.text = note?.getValue(field: .captionRubi)
+        textCaption.text = note?.getValue(field: .caption)
+        textAccountId.text = note?.getValue(field: .accountID)
+        textPassword.text = note?.getValue(field: .password)
+        textEmail.text = note?.getValue(field: .email)
+        textMemo.text = note?.getValue(field: .memo)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == textEmail {
             if let text = textEmail.text {
-                note?.SetToLatest(key: "Email", text: text)
+                note?.setValue(field: .email, text: text)
                 return
             }
         }
         if textField == textPassword {
             if let text = textPassword.text {
-                note?.SetToLatest(key: "Password", text: text)
+                note?.setValue(field: .password, text: text)
                 return
             }
         }
         if textField == textAccountId {
             if let text = textAccountId.text {
-                note?.SetToLatest(key: "AccountID", text: text)
+                note?.setValue(field: .accountID, text: text)
                 return
             }
         }
         if textField == textCaption {
             if let text = textCaption.text {
-                note?.SetToLatest(key: "Caption", text: text)
+                note?.setValue(field: .caption, text: text)
                 return
             }
         }
         if textField == textRubi {
             if let text = textRubi.text {
-                note?.SetToLatest(key: "CaptionRubi", text: text)
+                note?.setValue(field: .captionRubi, text: text)
                 return
             }
         }
@@ -79,7 +79,7 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
     func textViewDidEndEditing(_ textView: UITextView) {
         if textMemo == textView {
             if let text = textMemo.text {
-                note?.SetToLatest(key: "Memo", text: text)
+                note?.setValue(field: .memo, text: text)
             }
         }
     }
