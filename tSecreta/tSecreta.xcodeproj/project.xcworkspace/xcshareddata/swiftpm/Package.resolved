@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "4b0565384d3c4c588af09e660535b2c7c9bf5b39",
-          "version": "1.4.2"
+          "revision": "12f2389aca4a07e0dd54c86ec23d0721ed88b8db",
+          "version": "1.4.3"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/AzureAD/microsoft-authentication-library-for-objc",
         "state": {
           "branch": null,
-          "revision": "14a1750834d13567de1a4afb0fa148a22bd7ddbf",
-          "version": "1.1.25"
+          "revision": "de9e253b3bf5f41d4c5ef177cb5dcc5f45d8071f",
+          "version": "1.1.26"
         }
       },
       {

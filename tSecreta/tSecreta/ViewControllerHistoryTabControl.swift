@@ -3,7 +3,7 @@
 //  tSecreta
 //
 //  Created by Manabu Tonosaki on 2022/01/16.
-//
+//  MIT License (c)2021 Manabu Tonosaki all rights reserved.
 
 import UIKit
 
