@@ -35,6 +35,7 @@
 		02EB9906274E330A0088B99D /* tSecretaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB9905274E330A0088B99D /* tSecretaTests.swift */; };
 		02EB9910274E330A0088B99D /* tSecretaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB990F274E330A0088B99D /* tSecretaUITests.swift */; };
 		02EB9912274E330A0088B99D /* tSecretaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */; };
+		02F3550427AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3550327AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift */; };
 		02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 02FD0D7E27579C58002E71D5 /* MSAL */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		02EB990B274E330A0088B99D /* tSecretaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tSecretaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EB990F274E330A0088B99D /* tSecretaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITests.swift; sourceTree = "<group>"; };
 		02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		02F3550327AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPasswordGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				02C453872757B44D009E7AB9 /* ModelNote.swift */,
 				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
 				025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */,
+				02F3550327AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift */,
 				02C3FC8E27944863002A6C5D /* ViewControllerHistoryTabControl.swift */,
 				0245DC7C27943A65008BAFA6 /* ViewControllerHistory.swift */,
 				02EB98EE274E33090088B99D /* AppDelegate.swift */,
@@ -370,6 +373,7 @@
 				02C3FC8F27944863002A6C5D /* ViewControllerHistoryTabControl.swift in Sources */,
 				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
 				02C453882757B44D009E7AB9 /* ModelNote.swift in Sources */,
+				02F3550427AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift in Sources */,
 				02B0FE152754C26F007337F6 /* ViewControllerAuth+Log.swift in Sources */,
 				02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */,
 				0212A77F27573B4B00565BA9 /* DateFormatter+iso8601.swift in Sources */,
