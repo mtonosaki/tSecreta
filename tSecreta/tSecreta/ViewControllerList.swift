@@ -110,11 +110,16 @@ final class ViewControllerList : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as? ListCell else {
+            fatalError()
+        }
         let note = getNote(at: indexPath)
         let caption = note.getValue(field: .caption) ?? ""
-        cell.textLabel?.text = caption
-        cell.detailTextLabel?.text = note.getValue(field: .accountID)
+        cell.labelTitle.text = caption
+        cell.labelSubtitle.text = note.getValue(field: .accountID)
+        cell.imageFilterHome.layer.opacity = note.getFlag(.isFilterHome) ? 1.0 : 0.25
+        cell.imageFilterWork.layer.opacity = note.getFlag(.isFilterWork) ? 1.0 : 0.25
+        cell.imageFilterDeleted.layer.opacity = note.getFlag(.isDeleted) ? 1.0 : 0.25
         cell.imageView?.image = UIImage(named: findBrandLogo(name: caption))
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell
