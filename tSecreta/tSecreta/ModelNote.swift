@@ -14,7 +14,9 @@ public enum FieldNames: String {
     case accountID = "AccountID"
     case password = "Password"
     case email = "Email"
-    case isDeleted = "IsDeleted" // "True" / "False"
+    case isDeleted = "IsDeleted"         // "True" / "False"
+    case isFilterHome = "isFilterHome"   // "True" / "False"
+    case isFilterWork = "isFilterWork"   // "True" / "False"
     case memo = "Memo"
     case createdDateTime = "CreatedDateTime" // "yyyy/mm/dd HH:MM:SS"
 }
@@ -47,6 +49,7 @@ public class Note  : Codable {
             let newItem = NoteHistRecord(DT: Date(), Value: text)
             histList.append(newItem)
             UniversalData[field.rawValue] = histList
+            normalize(field)
             return
         }
         var last = histList.last!
@@ -63,29 +66,66 @@ public class Note  : Codable {
             last.Value = text
             histList[histList.count - 1] = last
             UniversalData[field.rawValue] = histList
+            normalize(field)
             return
         }
 
         let newRecord = NoteHistRecord(DT: Date(), Value: text)
         histList.append(newRecord)
         UniversalData[field.rawValue] = histList
+        normalize(field)
     }
     
-    public func getDeletedFlag() -> Bool {
-        let sw = getValue(field: .isDeleted)
+    public func getFlag(_ fieldName: FieldNames) -> Bool {
+        let sw = getValue(field: fieldName)
         if let sw = sw {
             return Bool.parseFuzzy(sw, false)
         }
         return false
     }
     
-    public func setDeletedFlag(_ sw: Bool ) {
-        var histList = UniversalData[FieldNames.isDeleted.rawValue]
-        let lastitem = histList?.last?.Value ?? "False"
-        let lastsw = Bool(lastitem)
-        if lastsw != sw {
-            let rec = NoteHistRecord(DT: Date(), Value: String(sw))
-            histList?.append(rec)
+    public func setFlag(_ fieldName: FieldNames, _ sw: Bool ) {
+        let histList = UniversalData[fieldName.rawValue]
+        let lastSwitchString = histList?.last?.Value ?? "False"
+        let lastSwitch = Bool(lastSwitchString)
+        if lastSwitch != sw {
+            let rec = NoteHistRecord(DT: Date(), Value: sw ? "True" : "False")
+            if var histList = histList {
+                if let lastItem = histList.last {
+                    let diffSeconds = abs(lastItem.DT.timeIntervalSinceNow)
+                    if( diffSeconds > 600 ){
+                        histList.append(rec)
+                        UniversalData[fieldName.rawValue] = histList
+                        normalize(fieldName)
+                    } else {
+                        histList[histList.count - 1] = rec
+                        UniversalData[fieldName.rawValue] = histList
+                        normalize(fieldName)
+                    }
+                } else {
+                    histList.append(rec)
+                    UniversalData[fieldName.rawValue] = histList
+                    normalize(fieldName)
+                }
+            } else {
+                UniversalData[fieldName.rawValue] = [rec]
+                normalize(fieldName)
+            }
+        }
+    }
+    
+    public func normalize(_ fieldName: FieldNames) {
+        guard var histList = UniversalData[fieldName.rawValue] else {
+            return
+        }
+        if histList.count < 2 {
+            return
+        }
+        let item1 = histList[histList.count - 2]
+        let item2 = histList[histList.count - 1]
+        if item1.Value == item2.Value {
+            histList.removeLast()
+            UniversalData[fieldName.rawValue] = histList
         }
     }
 }

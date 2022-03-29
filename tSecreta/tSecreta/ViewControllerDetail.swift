@@ -17,6 +17,9 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var textPassword: UITextField!
     @IBOutlet weak var textEmail: UITextField!
     @IBOutlet weak var textMemo: UITextView!
+    @IBOutlet weak var filterHome: UISwitch!
+    @IBOutlet weak var filterWork: UISwitch!
+    @IBOutlet weak var filterDeleted: UISwitch!
     
     // Tap on white space to hide keyboard
     @IBAction func didTapViewSpace(_ sender: UITapGestureRecognizer) {
@@ -26,6 +29,9 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
         textPassword.resignFirstResponder()
         textEmail.resignFirstResponder()
         textMemo.resignFirstResponder()
+        filterHome.resignFirstResponder()
+        filterWork.resignFirstResponder()
+        filterDeleted.resignFirstResponder()
     }
     
     override func viewDidLoad() {
@@ -43,8 +49,21 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
         textPassword.text = note?.getValue(field: .password)
         textEmail.text = note?.getValue(field: .email)
         textMemo.text = note?.getValue(field: .memo)
+        filterDeleted.isOn = note?.getFlag(.isDeleted) ?? false
+        filterHome.isOn = note?.getFlag(.isFilterHome) ?? false
+        filterWork.isOn = note?.getFlag(.isFilterWork) ?? false
     }
     
+    @IBAction func didHomeFilterValueChanged(_ sender: Any) {
+        note?.setFlag(.isFilterHome, filterHome.isOn)
+    }
+    @IBAction func didWorkFilterValueChanged(_ sender: Any) {
+        note?.setFlag(.isFilterWork, filterWork.isOn)
+    }
+    @IBAction func didDeletedFilterValueChanged(_ sender: Any) {
+        note?.setFlag(.isDeleted, filterDeleted.isOn)
+    }
+        
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if textField == textEmail {
@@ -132,9 +151,8 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
         if segue.identifier != "ToHistory" {
             return
         }
-        let aaa = segue.destination
         guard let vc = segue.destination as? ViewControllerHistoryTabControl
-                , let note = note
+            , let note = note
         else {
             return
         }

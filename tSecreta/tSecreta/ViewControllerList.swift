@@ -10,6 +10,8 @@ import Tono
 
 final class ViewControllerList : UITableViewController {
     
+    @IBOutlet weak var filterSegment: UISegmentedControl!
+
     public var noteList: NoteList? = nil
     public var userObjectId: String = ""
     private var noteTarget: Array<Note>? = nil
@@ -25,6 +27,12 @@ final class ViewControllerList : UITableViewController {
         tableView.sectionIndexMinimumDisplayRowCount = 4
     }
     
+    @IBAction func didFilterChanged(_ sender: Any) {
+        resetList()
+        tableView.reloadData()
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         resetList()
         tableView.reloadData()
@@ -35,17 +43,42 @@ final class ViewControllerList : UITableViewController {
         return Japanese.def.Getあかさたな(String(c ?? "."))
     }
     
+    enum Filters: Int {
+        case Home = 0
+        case Work = 1
+        case Deleted = 2
+        case All = 3
+    }
+    
     func resetList() {
         let notes = noteList?.Notes
-        if let notes = notes {
-            noteTarget  = notes.filter{ $0.getDeletedFlag() == false }.sorted(by: {
-                let rubia = ($0.getValue(field: .captionRubi) ?? $0.getValue(field: .caption) ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-                let rubib = ($1.getValue(field: .captionRubi) ?? $1.getValue(field: .caption) ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-                return rubia < rubib
-            })
-            sectionNotes = Dictionary(grouping: noteTarget!, by: { getSectionName($0) })
-            sectionOrder = sectionNotes.keys.sorted(by: { $0 < $1 })
+        guard let notes = notes else {
+            return
         }
+        let filterMode = Filters(rawValue: filterSegment.selectedSegmentIndex) ?? .Home
+        switch filterMode {
+            case .Home:
+                noteTarget  = notes
+                    .filter{ $0.getFlag(.isDeleted) == false }
+                    .filter{ $0.getFlag(.isFilterHome) == true }
+            case .Work:
+                noteTarget  = notes
+                    .filter{ $0.getFlag(.isDeleted) == false }
+                    .filter{ $0.getFlag(.isFilterWork) == true }
+            case .Deleted:
+                noteTarget  = notes
+                    .filter{ $0.getFlag(.isDeleted) == true }
+            default:
+                noteTarget  = notes
+        }
+        noteTarget = noteTarget!.sorted(by: {
+            let rubia = ($0.getValue(field: .captionRubi) ?? $0.getValue(field: .caption) ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            let rubib = ($1.getValue(field: .captionRubi) ?? $1.getValue(field: .caption) ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            return rubia < rubib
+        })
+
+        sectionNotes = Dictionary(grouping: noteTarget!, by: { getSectionName($0) })
+        sectionOrder = sectionNotes.keys.sorted(by: { $0 < $1 })
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -77,11 +110,16 @@ final class ViewControllerList : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as? ListCell else {
+            fatalError()
+        }
         let note = getNote(at: indexPath)
         let caption = note.getValue(field: .caption) ?? ""
-        cell.textLabel?.text = caption
-        cell.detailTextLabel?.text = note.getValue(field: .accountID)
+        cell.labelTitle.text = caption
+        cell.labelSubtitle.text = note.getValue(field: .accountID)
+        cell.imageFilterHome.layer.opacity = note.getFlag(.isFilterHome) ? 1.0 : 0.25
+        cell.imageFilterWork.layer.opacity = note.getFlag(.isFilterWork) ? 1.0 : 0.25
+        cell.imageFilterDeleted.layer.opacity = note.getFlag(.isDeleted) ? 1.0 : 0.25
         cell.imageView?.image = UIImage(named: findBrandLogo(name: caption))
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell

@@ -10,6 +10,7 @@
 		0212A77F27573B4B00565BA9 /* DateFormatter+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A77E27573B4B00565BA9 /* DateFormatter+iso8601.swift */; };
 		0212A78127573C2500565BA9 /* StrUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212A78027573C2500565BA9 /* StrUtilsTest.swift */; };
 		0227FCFF2750A72300B19393 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227FCFE2750A72300B19393 /* MySecret.swift */; };
+		022F6EFD27F33FA60038BA27 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F6EFC27F33FA60038BA27 /* ListCell.swift */; };
 		02346D6F275714F60006ABE4 /* EncryptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02346D6E275714F60006ABE4 /* EncryptTests.swift */; };
 		0245DC7D27943A65008BAFA6 /* ViewControllerHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245DC7C27943A65008BAFA6 /* ViewControllerHistory.swift */; };
 		02464FD227552CAF009024F5 /* EncryptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464FD127552CAF009024F5 /* EncryptUtils.swift */; };
@@ -63,6 +64,7 @@
 		0227FCFE2750A72300B19393 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 		0227FD002750AE2700B19393 /* Readme.AzureAD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.AzureAD.md; sourceTree = "<group>"; };
 		0227FD012750C60900B19393 /* tSecreta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tSecreta.entitlements; sourceTree = "<group>"; };
+		022F6EFC27F33FA60038BA27 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		02346D6E275714F60006ABE4 /* EncryptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptTests.swift; sourceTree = "<group>"; };
 		0245DC7C27943A65008BAFA6 /* ViewControllerHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHistory.swift; sourceTree = "<group>"; };
 		02464FD127552CAF009024F5 /* EncryptUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptUtils.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				02B0FE162754F4E2007337F6 /* ViewAuth */,
 				02C453872757B44D009E7AB9 /* ModelNote.swift */,
 				02B0FE182754F6CC007337F6 /* ViewControllerList.swift */,
+				022F6EFC27F33FA60038BA27 /* ListCell.swift */,
 				025D2AD8275886F000D7B165 /* ViewControllerDetail.swift */,
 				02F3550327AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift */,
 				02C3FC8E27944863002A6C5D /* ViewControllerHistoryTabControl.swift */,
@@ -376,6 +379,7 @@
 				02F3550427AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift in Sources */,
 				02B0FE152754C26F007337F6 /* ViewControllerAuth+Log.swift in Sources */,
 				02B0FE192754F6CC007337F6 /* ViewControllerList.swift in Sources */,
+				022F6EFD27F33FA60038BA27 /* ListCell.swift in Sources */,
 				0212A77F27573B4B00565BA9 /* DateFormatter+iso8601.swift in Sources */,
 				02EB98F1274E33090088B99D /* SceneDelegate.swift in Sources */,
 			);
