@@ -6,10 +6,12 @@
 //  MIT License (c)2021 Manabu Tonosaki all rights reserved.
 
 import UIKit
+import PhotosUI
 
 final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     var note: Note? = nil
+    let logoDic = UserDefaults(suiteName: "com.tomarika.tSecreta.logourl")
 
     @IBOutlet weak var textRubi: UITextField!
     @IBOutlet weak var textCaption: UITextField!
@@ -20,6 +22,7 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var filterHome: UISwitch!
     @IBOutlet weak var filterWork: UISwitch!
     @IBOutlet weak var filterDeleted: UISwitch!
+    @IBOutlet weak var imageLogo: UIImageView!
     
     // Tap on white space to hide keyboard
     @IBAction func didTapViewSpace(_ sender: UITapGestureRecognizer) {
@@ -52,6 +55,15 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
         filterDeleted.isOn = note?.getFlag(.isDeleted) ?? false
         filterHome.isOn = note?.getFlag(.isFilterHome) ?? false
         filterWork.isOn = note?.getFlag(.isFilterWork) ?? false
+
+        if let note = note, let logoFileName = logoDic?.string(forKey: note.ID ) {
+            if let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(logoFileName) {
+                if let data = try? Data(contentsOf: url) {
+                    let image = UIImage(data: data)
+                    imageLogo.image = image
+                }
+            }
+        }
     }
     
     @IBAction func didHomeFilterValueChanged(_ sender: Any) {
@@ -157,5 +169,67 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
             return
         }
         vc.universalData = note.UniversalData
+    }
+    
+    @IBAction func didTapLogoButton(_ sender: Any) {
+        setIconUI();
+    }
+}
+
+extension ViewControllerDetail: PHPickerViewControllerDelegate  {
+    
+    func setIconUI() {
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
+        configuration.filter = PHPickerFilter.images
+        configuration.preferredAssetRepresentationMode = .automatic
+        configuration.selection = .ordered
+        configuration.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+
+        guard let result = results.first else {
+            return
+        }
+        guard let assetIdentifier = result.assetIdentifier else {
+            return
+        }
+        let itemProvider = result.itemProvider
+        guard itemProvider.canLoadObject(ofClass: UIImage.self) else {
+            return;
+        }
+        itemProvider.loadObject(ofClass: UIImage.self) {
+            [weak self] image, error in
+            if let image = image as? UIImage {
+                DispatchQueue.main.async {
+                    self?.imageLogo.image = image
+                    self?.saveLogoPicture(image: image, assetIdentifier: assetIdentifier)
+                }
+            }
+        }
+    }
+    
+    func saveLogoPicture(image: UIImage, assetIdentifier: String) {
+        let filename = "\(assetIdentifier.replacingOccurrences(of: "/", with: "-")).png"
+        guard let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(filename) else {
+            return
+        }
+        
+        if let data = image.pngData(), let logoDic = logoDic, let note = note {
+            do {
+                try data.write(to: url)
+                logoDic.set(filename, forKey: note.ID)
+            }
+            catch let error {
+                print(error);
+                showToast(message: "Error: Could not save logo image.", color: UIColor.red, view: self.view)
+            }
+        } else {
+            showToast(message: "Error: Skipped to save logo image", color: UIColor.red, view: self.view)
+        }
     }
 }

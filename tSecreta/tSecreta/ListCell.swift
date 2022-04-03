@@ -13,5 +13,6 @@ final class ListCell : UITableViewCell {
     @IBOutlet weak var imageFilterHome: UIImageView!
     @IBOutlet weak var imageFilterWork: UIImageView!
     @IBOutlet weak var imageFilterDeleted: UIImageView!
+    @IBOutlet weak var imageLogo: UIImageView!
     
 }

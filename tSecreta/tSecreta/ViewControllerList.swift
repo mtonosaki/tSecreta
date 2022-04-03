@@ -18,7 +18,8 @@ final class ViewControllerList : UITableViewController {
     private var sectionNotes = Dictionary<String, Array<Note>>()
     private var sectionOrder = Array<String>()
     private var noteRequestedDetail: Note? = nil
-    
+    private let logoDic = UserDefaults(suiteName: "com.tomarika.tSecreta.logourl")
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = true
@@ -120,8 +121,21 @@ final class ViewControllerList : UITableViewController {
         cell.imageFilterHome.layer.opacity = note.getFlag(.isFilterHome) ? 1.0 : 0.25
         cell.imageFilterWork.layer.opacity = note.getFlag(.isFilterWork) ? 1.0 : 0.25
         cell.imageFilterDeleted.layer.opacity = note.getFlag(.isDeleted) ? 1.0 : 0.25
-        cell.imageView?.image = UIImage(named: findBrandLogo(name: caption))
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        
+        var isLogoLoaded = false
+        if let logoFileName = logoDic?.string(forKey: note.ID ) {
+            if let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(logoFileName) {
+                if let data = try? Data(contentsOf: url) {
+                    let image = UIImage(data: data)
+                    cell.imageLogo.image = image
+                    isLogoLoaded  = true
+                }
+            }
+        }
+        if isLogoLoaded == false {
+            cell.imageLogo.image = UIImage(named: "cellNoImg")
+        }
         return cell
     }
     
