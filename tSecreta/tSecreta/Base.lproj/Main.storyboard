@@ -172,7 +172,7 @@
                                     <action selector="didTapAddButton:" destination="Nz0-6f-m7V" id="V9e-W2-uv3"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="icloud.and.arrow.up" catalog="system" changesSelectionAsPrimaryAction="YES" id="2gV-h2-anK">
+                            <barButtonItem image="icloud" catalog="system" changesSelectionAsPrimaryAction="YES" id="2gV-h2-anK">
                                 <connections>
                                     <action selector="didTapCloudSync:" destination="Nz0-6f-m7V" id="chh-3Y-tZn"/>
                                 </connections>
@@ -419,14 +419,6 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cellNoImg" translatesAutoresizingMaskIntoConstraints="NO" id="kFI-f8-Y3C">
                                         <rect key="frame" x="316" y="22" width="48" height="48"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOM-Xb-1Yv">
-                                        <rect key="frame" x="312" y="22" width="70" height="48"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain"/>
-                                        <connections>
-                                            <action selector="didTapLogoButton:" destination="0mw-Nu-NbU" eventType="touchUpInside" id="D98-YI-mJ2"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
@@ -449,17 +441,13 @@
                                     <constraint firstItem="pAf-Pg-8oa" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="432" id="LId-PG-AG0"/>
                                     <constraint firstItem="kFI-f8-Y3C" firstAttribute="width" secondItem="J8g-Nd-5BQ" secondAttribute="width" multiplier="0.153846" constant="-12" id="LIo-fW-L1g"/>
                                     <constraint firstItem="YaM-9k-TM5" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="174" id="QKY-Di-jY3"/>
-                                    <constraint firstItem="qOM-Xb-1Yv" firstAttribute="height" secondItem="J8g-Nd-5BQ" secondAttribute="height" multiplier="0.0380602" constant="-14" id="RZe-bw-Q5V"/>
-                                    <constraint firstAttribute="trailing" secondItem="qOM-Xb-1Yv" secondAttribute="trailing" constant="8" id="TFt-kN-jat"/>
                                     <constraint firstItem="4bX-wh-jb4" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="31" id="Tf2-pc-Plv"/>
                                     <constraint firstAttribute="trailing" secondItem="VIc-6f-Bv8" secondAttribute="trailing" constant="82" id="UIF-zi-BxT"/>
                                     <constraint firstItem="BLb-MR-swR" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="31" id="VDd-18-U7X"/>
                                     <constraint firstItem="YaM-9k-TM5" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="119" id="W1e-oW-BmJ"/>
                                     <constraint firstItem="HhH-W6-OTh" firstAttribute="leading" secondItem="J8g-Nd-5BQ" secondAttribute="leading" constant="103" id="WOw-fN-UsW"/>
                                     <constraint firstAttribute="trailing" secondItem="4bX-wh-jb4" secondAttribute="trailing" constant="8" id="au0-fB-4Gi"/>
-                                    <constraint firstItem="qOM-Xb-1Yv" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="22" id="e1d-0d-Pgb"/>
                                     <constraint firstAttribute="trailing" secondItem="LWv-h7-i8B" secondAttribute="trailing" constant="8" id="fyu-Hu-jaU"/>
-                                    <constraint firstItem="qOM-Xb-1Yv" firstAttribute="width" secondItem="J8g-Nd-5BQ" secondAttribute="width" multiplier="0.179487" id="iFT-tn-Kv5"/>
                                     <constraint firstItem="0vL-iB-J5m" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="207" id="iJa-Je-kU0"/>
                                     <constraint firstItem="VIc-6f-Bv8" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="8" id="kQ2-YC-lum"/>
                                     <constraint firstItem="bq6-7t-TE3" firstAttribute="top" secondItem="J8g-Nd-5BQ" secondAttribute="top" constant="176" id="kZ5-NI-WzF"/>
@@ -919,7 +907,7 @@
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="eyes" catalog="system" width="128" height="99"/>
         <image name="house" catalog="system" width="128" height="106"/>
-        <image name="icloud.and.arrow.up" catalog="system" width="128" height="106"/>
+        <image name="icloud" catalog="system" width="128" height="88"/>
         <image name="lock.circle" catalog="system" width="128" height="121"/>
         <image name="lock.circle.fill" catalog="system" width="128" height="121"/>
         <image name="mail" catalog="system" width="128" height="93"/>

@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UITextViewDelegate {
+final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UITextViewDelegate, UIContextMenuInteractionDelegate {
 
     var note: Note? = nil
     let logoDic = UserDefaults(suiteName: "com.tomarika.tSecreta.logourl")
@@ -64,6 +64,30 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
                 }
             }
         }
+        
+        // Context menu on ImageLogo
+        imageLogo.isUserInteractionEnabled = true
+        let interaction = UIContextMenuInteraction(delegate: self)
+        imageLogo.addInteraction(interaction)
+    }
+    
+    func makeContextMenu() -> UIMenu {
+        let actionSet = UIAction(title: "Set", image: UIImage(systemName: "photo")) {
+            action in
+            self.setIconUI()
+        }
+        let actionRemove = UIAction(title: "Remove", image: UIImage(systemName: "bag")) {
+            action in
+            self.removeIcon()
+        }
+        return UIMenu(title: "Menu", children: [actionSet, actionRemove])
+    }
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: {
+            suggestedActions in
+            return self.makeContextMenu()
+        })
     }
     
     @IBAction func didHomeFilterValueChanged(_ sender: Any) {
@@ -170,14 +194,17 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
         }
         vc.universalData = note.UniversalData
     }
-    
-    @IBAction func didTapLogoButton(_ sender: Any) {
-        setIconUI();
-    }
 }
 
 extension ViewControllerDetail: PHPickerViewControllerDelegate  {
-    
+
+    func removeIcon() {
+        if let logoDic = logoDic, let note = note {
+            logoDic.removeObject(forKey: note.ID)
+            imageLogo.image = UIImage(named: "cellNoImg")
+        }
+    }
+
     func setIconUI() {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         configuration.filter = PHPickerFilter.images
@@ -188,7 +215,7 @@ extension ViewControllerDetail: PHPickerViewControllerDelegate  {
         picker.delegate = self
         present(picker, animated: true)
     }
-
+    
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
 
@@ -219,7 +246,9 @@ extension ViewControllerDetail: PHPickerViewControllerDelegate  {
             return
         }
         
-        if let data = image.pngData(), let logoDic = logoDic, let note = note {
+        if let data = image.pngData(),
+           let logoDic = logoDic,
+           let note = note {
             do {
                 try data.write(to: url)
                 logoDic.set(filename, forKey: note.ID)
