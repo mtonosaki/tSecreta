@@ -148,8 +148,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="jBl-3D-33M">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="equal" catalog="system" changesSelectionAsPrimaryAction="YES" id="2gV-h2-anK">
+                            <connections>
+                                <segue destination="Mms-N6-mTo" kind="presentation" identifier="openMenu" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Su0-KE-dhP"/>
+                            </connections>
+                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="2un-C6-mZn">
-                            <rect key="frame" x="91.333333333333314" y="5.6666666666666679" width="171" height="33"/>
+                            <rect key="frame" x="109.66666666666669" y="5.6666666666666679" width="171" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="" image="house" catalog="system"/>
@@ -161,23 +166,12 @@
                                 <action selector="didFilterChanged:" destination="Nz0-6f-m7V" eventType="valueChanged" id="sPm-eo-1eG"/>
                             </connections>
                         </segmentedControl>
-                        <rightBarButtonItems>
-                            <barButtonItem enabled="NO" id="tp4-KD-hr3">
-                                <connections>
-                                    <segue destination="0mw-Nu-NbU" kind="show" identifier="ToDetail" id="zUP-TN-hBX"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="add" id="TXM-8Q-kta">
-                                <connections>
-                                    <action selector="didTapAddButton:" destination="Nz0-6f-m7V" id="V9e-W2-uv3"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="icloud" catalog="system" changesSelectionAsPrimaryAction="YES" id="2gV-h2-anK">
-                                <connections>
-                                    <action selector="didTapCloudSync:" destination="Nz0-6f-m7V" id="chh-3Y-tZn"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="SmU-ll-0Vh">
+                            <connections>
+                                <action selector="didTapAddButton:" destination="Nz0-6f-m7V" id="KPr-uR-t9g"/>
+                                <segue destination="0mw-Nu-NbU" kind="show" identifier="ToDetail" id="xdV-NO-6o6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="filterSegment" destination="2un-C6-mZn" id="EUm-S3-pLz"/>
@@ -509,6 +503,89 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2532.3076923076924" y="51.895734597156398"/>
+        </scene>
+        <!--View Controller List Menu-->
+        <scene sceneID="423-xc-aDA">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="Mms-N6-mTo" customClass="ViewControllerListMenu" customModule="tSecreta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="7gA-t9-Q85">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Dx-Wy-OJL">
+                                <rect key="frame" x="-15" y="0.0" width="209" height="330"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BP-f0-hzt">
+                                        <rect key="frame" x="25" y="92" width="208" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="  Upload to cloud">
+                                            <imageReference key="image" image="icloud.and.arrow.up" catalog="system" symbolScale="large"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNf-sF-00a">
+                                        <rect key="frame" x="25" y="162" width="202" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="  Save to cloud">
+                                            <imageReference key="image" image="icloud.and.arrow.up.fill" catalog="system" symbolScale="large"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBA-LZ-g9w">
+                                        <rect key="frame" x="25" y="201" width="202" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="  Load &amp; Merge">
+                                            <imageReference key="image" image="icloud.and.arrow.down.fill" catalog="system" symbolScale="large"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF6-Ef-wQa">
+                                        <rect key="frame" x="25" y="63" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Logo Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOB-hz-9vy">
+                                        <rect key="frame" x="25" y="133" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRU-y5-Lyz">
+                                        <rect key="frame" x="25" y="279" width="184" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="  Back to Auth">
+                                            <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="default"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapBackButton:" destination="Mms-N6-mTo" eventType="touchUpInside" id="6R0-fK-VnR"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="System Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yev-gs-ixK">
+                                        <rect key="frame" x="25" y="250" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.90308779761904767" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w9F-iI-Fjk"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="menuView" destination="1Dx-Wy-OJL" id="qOq-IN-Uzw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UEm-UM-DZp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1710.7692307692307" y="782.70142180094786"/>
         </scene>
         <!--Password Generator-->
         <scene sceneID="eJH-hy-ucr">
@@ -903,11 +980,15 @@
         <image name="character.bubble" catalog="system" width="128" height="110"/>
         <image name="character.bubble.fill" catalog="system" width="128" height="110"/>
         <image name="character.textbox.ja" catalog="system" width="128" height="91"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
+        <image name="equal" catalog="system" width="128" height="72"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="eyes" catalog="system" width="128" height="99"/>
         <image name="house" catalog="system" width="128" height="106"/>
-        <image name="icloud" catalog="system" width="128" height="88"/>
+        <image name="icloud.and.arrow.down.fill" catalog="system" width="128" height="112"/>
+        <image name="icloud.and.arrow.up" catalog="system" width="128" height="106"/>
+        <image name="icloud.and.arrow.up.fill" catalog="system" width="128" height="106"/>
         <image name="lock.circle" catalog="system" width="128" height="121"/>
         <image name="lock.circle.fill" catalog="system" width="128" height="121"/>
         <image name="mail" catalog="system" width="128" height="93"/>

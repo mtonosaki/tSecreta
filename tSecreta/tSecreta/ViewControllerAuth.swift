@@ -29,6 +29,10 @@ class ViewControllerAuth: UIViewController {
         authenticate()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.addInfo("Ready. ")
+    }
+    
     // Need main thread
     private func authenticate() {
         
@@ -94,7 +98,8 @@ class ViewControllerAuth: UIViewController {
                 return
             }
             if success {
-                self.addInfo("Downloaded \(safeText.count) base64 length")
+                let countString = String.localizedStringWithFormat("%d", safeText.count)
+                self.addInfo("Downloaded \(countString) bytes as base64")
                 self.addInfo("Decoding encrypted data...")
                 let maybeJsonStr = EncryptUtils.rijndaelDecode(base64sec: safeText, filter: id)
                 guard let jsonStr = maybeJsonStr else {

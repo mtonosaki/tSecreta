@@ -76,11 +76,11 @@ final class ViewControllerDetail : UIViewController, UITextFieldDelegate, UIText
             action in
             self.setIconUI()
         }
-        let actionRemove = UIAction(title: "Remove", image: UIImage(systemName: "bag")) {
+        let actionRemove = UIAction(title: "Remove", image: UIImage(systemName: "pip.remove")) {
             action in
             self.removeIcon()
         }
-        return UIMenu(title: "Menu", children: [actionSet, actionRemove])
+        return UIMenu(title: "Logo Actions", children: [actionSet, actionRemove])
     }
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {

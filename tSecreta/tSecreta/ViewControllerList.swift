@@ -27,12 +27,11 @@ final class ViewControllerList : UITableViewController {
         tableView.sectionIndexTrackingBackgroundColor = UIColor(red: 1, green: 1, blue: 0.75, alpha: 1)
         tableView.sectionIndexMinimumDisplayRowCount = 4
     }
-    
+
     @IBAction func didFilterChanged(_ sender: Any) {
         resetList()
         tableView.reloadData()
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         resetList()
@@ -193,20 +192,31 @@ final class ViewControllerList : UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "ToDetail" {
-            guard let destination = segue.destination as? ViewControllerDetail else {
-                fatalError("\(segue.destination)")
-            }
-            if noteRequestedDetail != nil {
-                destination.note = noteRequestedDetail
-                noteRequestedDetail = nil
-                return
-            }
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                destination.note = getNote(at: indexPath)
-                return
-            }
+        
+        switch segue.identifier {
+            case "openMenu":
+                if let menu = segue.destination as? ViewControllerListMenu {
+                    menu.delegate = self
+                }
+                break
+            case "ToDetail":
+                guard let destination = segue.destination as? ViewControllerDetail else {
+                    fatalError("\(segue.destination)")
+                }
+                if noteRequestedDetail != nil {
+                    destination.note = noteRequestedDetail
+                    noteRequestedDetail = nil
+                    return
+                }
+                if let indexPath = self.tableView.indexPathForSelectedRow {
+                    destination.note = getNote(at: indexPath)
+                    return
+                }
+                break
+            case .none:
+                break
+            case .some(_):
+                break
         }
     }
     
@@ -214,8 +224,7 @@ final class ViewControllerList : UITableViewController {
         performSegue(withIdentifier: "ToDetail", sender: self)
     }
     
-    @IBAction func didTapCloudSync(_ sender: Any) {
-        
+    func syncToCloud() {
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(.iso8601PlusMilliSecondsJst)
@@ -242,10 +251,21 @@ final class ViewControllerList : UITableViewController {
         }
     }
     
-    @IBAction func didTapAddButton(_ sender: Any) {
+    func addNote() {
         let newNote = Note()
         noteList?.Notes.append(newNote)
         noteRequestedDetail = newNote
         performSegue(withIdentifier: "ToDetail", sender: self)
     }
+    
+    @IBAction func didTapAddButton(_ sender: Any) {
+        addNote()
+    }
  }
+
+extension ViewControllerList : HambergerMenuDelegate {
+    
+    func didTapBackToAuthentication() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+}
