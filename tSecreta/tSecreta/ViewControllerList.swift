@@ -81,6 +81,50 @@ final class ViewControllerList : UITableViewController {
         sectionOrder = sectionNotes.keys.sorted(by: { $0 < $1 })
     }
     
+    private func getNote(at indexPath: IndexPath) -> Note {
+        guard let notes = sectionNotes[sectionOrder[indexPath.section]] else {
+            fatalError()
+        }
+        let note = notes[indexPath.row]
+        return note
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+            case "openMenu":
+                if let menu = segue.destination as? ViewControllerListMenu {
+                    menu.delegate = self
+                }
+            case "ToDetail":
+                guard let destination = segue.destination as? ViewControllerDetail else {
+                    fatalError("\(segue.destination)")
+                }
+                if noteRequestedDetail != nil {
+                    destination.note = noteRequestedDetail
+                    noteRequestedDetail = nil
+                    return
+                }
+                if let indexPath = self.tableView.indexPathForSelectedRow {
+                    destination.note = getNote(at: indexPath)
+                    return
+                }
+            case .none:
+                break
+            case .some(_):
+                break
+        }
+    }
+    
+    @IBAction func didTapAddButton(_ sender: Any) {
+        let newNote = Note()
+        noteList?.Notes.append(newNote)
+        noteRequestedDetail = newNote
+        performSegue(withIdentifier: "ToDetail", sender: self)
+    }
+}
+
+extension ViewControllerList {
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return sectionOrder
     }
@@ -100,15 +144,6 @@ final class ViewControllerList : UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sectionNotes[sectionOrder[section]]?.count ?? 0
     }
-    
-    private func getNote(at indexPath: IndexPath) -> Note {
-        guard let notes = sectionNotes[sectionOrder[indexPath.section]] else {
-            fatalError()
-        }
-        let note = notes[indexPath.row]
-        return note
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as? ListCell else {
             fatalError()
@@ -155,7 +190,6 @@ final class ViewControllerList : UITableViewController {
                 }
             }
         )
-        //actionId.image = UIImage(named: "swipeId")
         actionId.backgroundColor = .systemGreen
         
         let actionPw = UIContextualAction(
@@ -173,58 +207,23 @@ final class ViewControllerList : UITableViewController {
                 }
             }
         )
-        //actionPw.image = UIImage(named: "swipePw")
         actionPw.backgroundColor = .systemOrange
-        
-//        let actionDelete = UIContextualAction(
-//            style: .normal,
-//            title: "Delete",
-//            handler: {
-//                (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
-//                success(true)
-//            }
-//        )
-//        //actionDelete.image = UIImage(named: "trash")
-//        actionDelete.backgroundColor = .systemRed
-        
+
         return UISwipeActionsConfiguration(actions: [actionPw, actionId])
-        
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        switch segue.identifier {
-            case "openMenu":
-                if let menu = segue.destination as? ViewControllerListMenu {
-                    menu.delegate = self
-                }
-                break
-            case "ToDetail":
-                guard let destination = segue.destination as? ViewControllerDetail else {
-                    fatalError("\(segue.destination)")
-                }
-                if noteRequestedDetail != nil {
-                    destination.note = noteRequestedDetail
-                    noteRequestedDetail = nil
-                    return
-                }
-                if let indexPath = self.tableView.indexPathForSelectedRow {
-                    destination.note = getNote(at: indexPath)
-                    return
-                }
-                break
-            case .none:
-                break
-            case .some(_):
-                break
-        }
-    }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ToDetail", sender: self)
     }
+}
+
+extension ViewControllerList : HambergerMenuDelegate {
+    func didTapBackToAuthentication() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
     
-    func syncToCloud() {
+    func didTapUploadToCloud() {
+        
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(.iso8601PlusMilliSecondsJst)
@@ -239,10 +238,12 @@ final class ViewControllerList : UITableViewController {
             UploadText(text: sec, userObjectId: userObjectId) {
                 (success, error) in
                 
-                if let error = error {
-                    self.showToast(message: error, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
-                } else {
-                    self.showToast(message: "Cloud Sync OK!", color: UIColor.blue, view: self.parent?.view ?? self.view)
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self.showToast(message: error, color: UIColor.systemRed, view: self.parent?.view ?? self.view)
+                    } else {
+                        self.showToast(message: "Cloud Sync OK!", color: UIColor.blue, view: self.parent?.view ?? self.view)
+                    }
                 }
             }
         }
@@ -251,21 +252,57 @@ final class ViewControllerList : UITableViewController {
         }
     }
     
-    func addNote() {
-        let newNote = Note()
-        noteList?.Notes.append(newNote)
-        noteRequestedDetail = newNote
-        performSegue(withIdentifier: "ToDetail", sender: self)
+    func didTapSaveLogosToCloud() async {
+        let notes = noteList?.Notes
+        guard let notes = notes else {
+            return
+        }
+        
+        let cn = try? AZSCloudStorageAccount(fromConnectionString: MySecret().azureBlob.AzureStorageConnectionString)
+        guard let cn = cn else {
+            return
+        }
+        var savedFile = Dictionary<String, Bool>()
+        let blobClient = cn.getBlobClient()
+        let blobContainer = blobClient.containerReference(fromName: "tsecret-logo")
+        guard let _ = try? await blobContainer.createContainerIfNotExists() else {
+            debugPrint("Error on creatring azure blob container. \(blobContainer.name)")
+            return
+        }
+        do {
+            var uploadCount = 0
+            for note in notes {
+                guard let logoFileName = logoDic?.string(forKey: note.ID ) else {
+                    continue
+                }
+                if let _ = savedFile[logoFileName] {
+                    continue
+                }
+                savedFile[logoFileName] = true
+                guard let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(logoFileName) else {
+                    debugPrint("Skipped to get an url of logo image in storage")
+                    continue
+                }
+                guard let data = try? Data(contentsOf: url) else {
+                    debugPrint("Skipped to read data from \(url.description)")
+                    continue
+                }
+                let blob = blobContainer.blockBlobReference(fromName: "\(userObjectId)/\(logoFileName)")
+                try await blob.upload(from: data)
+                uploadCount += 1
+                print("No.\(uploadCount) : Uploaded logo image \(logoFileName)")
+            }
+            if uploadCount > 0 {
+                showToast(message: "\(uploadCount) images have been uploaded.", color: .darkGray, view: self.view)
+            } else {
+                showToast(message: "No logo image uploaded.", color: .darkGray, view: self.view)
+            }
+        }
+        catch {
+            showToast(message: "logo upload error", color: .darkGray, view: self.view)
+        }
     }
     
-    @IBAction func didTapAddButton(_ sender: Any) {
-        addNote()
-    }
- }
-
-extension ViewControllerList : HambergerMenuDelegate {
-    
-    func didTapBackToAuthentication() {
-        self.navigationController?.popToRootViewController(animated: true)
+    func didTapLoadAndMergeLogosFromCloud() {
     }
 }

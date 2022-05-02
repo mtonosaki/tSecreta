@@ -148,7 +148,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="jBl-3D-33M">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="equal" catalog="system" changesSelectionAsPrimaryAction="YES" id="2gV-h2-anK">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menuHumburger3" style="plain" changesSelectionAsPrimaryAction="YES" id="2gV-h2-anK">
                             <connections>
                                 <segue destination="Mms-N6-mTo" kind="presentation" identifier="openMenu" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Su0-KE-dhP"/>
                             </connections>
@@ -523,6 +523,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="  Upload to cloud">
                                             <imageReference key="image" image="icloud.and.arrow.up" catalog="system" symbolScale="large"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapUploadToCloudButton:" destination="Mms-N6-mTo" eventType="touchUpInside" id="jK4-qg-XGH"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNf-sF-00a">
                                         <rect key="frame" x="25" y="162" width="202" height="31"/>
@@ -531,6 +534,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="  Save to cloud">
                                             <imageReference key="image" image="icloud.and.arrow.up.fill" catalog="system" symbolScale="large"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapSaveLogosToCloud:" destination="Mms-N6-mTo" eventType="touchUpInside" id="xlI-pk-uDy"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBA-LZ-g9w">
                                         <rect key="frame" x="25" y="201" width="202" height="31"/>
@@ -539,6 +545,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="  Load &amp; Merge">
                                             <imageReference key="image" image="icloud.and.arrow.down.fill" catalog="system" symbolScale="large"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapLoadAndMergeLogosFromCloud:" destination="Mms-N6-mTo" eventType="touchUpInside" id="XWg-iq-I5o"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF6-Ef-wQa">
                                         <rect key="frame" x="25" y="63" width="109" height="21"/>
@@ -982,7 +991,6 @@
         <image name="character.textbox.ja" catalog="system" width="128" height="91"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
-        <image name="equal" catalog="system" width="128" height="72"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="eyes" catalog="system" width="128" height="99"/>
         <image name="house" catalog="system" width="128" height="106"/>
@@ -994,6 +1002,7 @@
         <image name="mail" catalog="system" width="128" height="93"/>
         <image name="mail.stack" catalog="system" width="128" height="122"/>
         <image name="mail.stack.fill" catalog="system" width="128" height="122"/>
+        <image name="menuHumburger3" width="33.333332061767578" height="33.333332061767578"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>

@@ -10,6 +10,9 @@ import Tono
 
 protocol HambergerMenuDelegate: class {
     func didTapBackToAuthentication()
+    func didTapUploadToCloud()
+    func didTapSaveLogosToCloud() async
+    func didTapLoadAndMergeLogosFromCloud()
 }
 
 final class ViewControllerListMenu : UIViewController {
@@ -56,6 +59,27 @@ final class ViewControllerListMenu : UIViewController {
             self.dismiss(animated: false) {
                 delegate.didTapBackToAuthentication()
             }
+        }
+    }
+    @IBAction func didTapUploadToCloudButton(_ sender: Any) {
+        if let delegate = delegate {
+            delegate.didTapUploadToCloud()
+            self.dismiss(animated: true)
+        }
+    }
+    @IBAction func didTapSaveLogosToCloud(_ sender: Any) {
+        if let delegate = delegate {
+            Task.init {
+                await delegate.didTapSaveLogosToCloud()
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    
+    @IBAction func didTapLoadAndMergeLogosFromCloud(_ sender: Any) {
+        if let delegate = delegate {
+            delegate.didTapLoadAndMergeLogosFromCloud()
+            self.dismiss(animated: true)
         }
     }
 }

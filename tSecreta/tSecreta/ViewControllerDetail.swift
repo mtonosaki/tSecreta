@@ -222,9 +222,6 @@ extension ViewControllerDetail: PHPickerViewControllerDelegate  {
         guard let result = results.first else {
             return
         }
-        guard let assetIdentifier = result.assetIdentifier else {
-            return
-        }
         let itemProvider = result.itemProvider
         guard itemProvider.canLoadObject(ofClass: UIImage.self) else {
             return;
@@ -234,20 +231,86 @@ extension ViewControllerDetail: PHPickerViewControllerDelegate  {
             if let image = image as? UIImage {
                 DispatchQueue.main.async {
                     self?.imageLogo.image = image
-                    self?.saveLogoPicture(image: image, assetIdentifier: assetIdentifier)
                 }
+                self?.saveLogoPicture(image: image, defaultName: result.assetIdentifier)
             }
         }
     }
     
-    func saveLogoPicture(image: UIImage, assetIdentifier: String) {
-        let filename = "\(assetIdentifier.replacingOccurrences(of: "/", with: "-")).png"
+    func calcImageHash(image: UIImage, defaultHash: String) -> String {
+        // shrink image size to 8x8
+        let targetWidth: CGFloat = 8
+        let canvasSize = CGSize(width: targetWidth, height: CGFloat(ceil(targetWidth / image.size.width * image.size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, image.scale)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        image.draw(in: CGRect(origin: .zero, size: canvasSize))
+        guard let image2 = UIGraphicsGetImageFromCurrentImageContext() else {
+            return defaultHash
+        }
+        
+        guard let cgImage = image2.cgImage else {
+            return defaultHash
+        }
+        guard let cfdata = cgImage.dataProvider.unsafelyUnwrapped.data else {
+            return defaultHash
+        }
+        guard let data = CFDataGetBytePtr(cfdata) else {
+            return defaultHash
+        }
+        let W = Int(cgImage.width)
+        let H = Int(cgImage.height)
+        let WH = W * H
+        var mask = UInt64(1) << (WH - 1)
+        var averageValue: UInt64 = 0
+        var hashCode: UInt64 = 0
+        
+        for y in 0..<H {
+            for x in 0..<W {
+                let pos = cgImage.bytesPerRow * y + x * (cgImage.bitsPerPixel / 8)
+                let gray = (CGFloat(data[pos + 0]) + CGFloat(data[pos + 1]) + CGFloat(data[pos + 2])) / 3.0
+                let alpha = CGFloat(data[pos + 3]) / 255.0
+                averageValue += UInt64(gray * alpha)
+            }
+        }
+        averageValue /= UInt64(WH)
+        for y in 0..<H {
+            for x in 0..<W {
+                let pos = cgImage.bytesPerRow * y + x * (cgImage.bitsPerPixel / 8)
+                let gray = (CGFloat(data[pos + 0]) + CGFloat(data[pos + 1]) + CGFloat(data[pos + 2])) / 3.0
+                let alpha = CGFloat(data[pos + 3]) / 255.0
+                let pixel = UInt64(gray * alpha)
+                if pixel >= averageValue {
+                    hashCode |= mask
+                }
+                mask >>= 1
+            }
+        }
+
+        let hashData = Data(bytes: &hashCode, count: MemoryLayout<UInt64>.size)
+        let hashStr = hashData.map {
+            byte in
+            return String(NSString(format:"%02x", byte))
+        }.joined()
+        return hashStr
+    }
+    
+    func saveLogoPicture(image: UIImage, defaultName: String?) {
+        
+        guard let data = image.pngData() else {
+            showToast(message: "Cannot got logo image data.", color: .darkGray, view: self.view)
+            return
+        }
+        let hash = calcImageHash(image: image, defaultHash: defaultName ?? "no-name")
+        let filename = "\(hash).png"
+        print("saved logo image \(filename)")
+
         guard let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(filename) else {
             return
         }
         
-        if let data = image.pngData(),
-           let logoDic = logoDic,
+        if let logoDic = logoDic,
            let note = note {
             do {
                 try data.write(to: url)
