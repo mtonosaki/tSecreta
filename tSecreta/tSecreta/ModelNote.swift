@@ -19,6 +19,7 @@ public enum FieldNames: String {
     case isFilterWork = "isFilterWork"   // "True" / "False"
     case memo = "Memo"
     case createdDateTime = "CreatedDateTime" // "yyyy/mm/dd HH:MM:SS"
+    case logoFilename = "logoFilename"
 }
 
 public struct NoteHistRecord : Codable {
@@ -39,7 +40,20 @@ public class Note  : Codable {
         return histList?.last?.Value
     }
     
-    public func setValue(field: FieldNames, text: String) {
+    public func removeValueNoHistory(field: FieldNames) {
+        UniversalData.removeValue(forKey: field.rawValue)
+    }
+
+    public func setValueNoHistory(field: FieldNames, text: String) {
+        UniversalData[field.rawValue] = Array<NoteHistRecord>()
+        var histList = UniversalData[field.rawValue]!
+        let newItem = NoteHistRecord(DT: Date(), Value: text)
+        histList.append(newItem)
+        UniversalData[field.rawValue] = histList
+        normalize(field)
+    }
+    
+    public func setValueToHistory(field: FieldNames, text: String) {
         
         if UniversalData.keys.contains(field.rawValue) == false {
             UniversalData[field.rawValue] = Array<NoteHistRecord>()

@@ -3,7 +3,7 @@
 //  tSecreta
 //
 //  Created by Manabu Tonosaki on 2021/11/29.
-//  MIT License (c)2021 Manabu Tonosaki all rights reserved.
+//  MIT License (c)2022 Manabu Tonosaki all rights reserved.
 
 import UIKit
 import Tono
@@ -12,7 +12,7 @@ protocol HambergerMenuDelegate: class {
     func didTapBackToAuthentication()
     func didTapUploadToCloud()
     func didTapSaveLogosToCloud() async
-    func didTapLoadAndMergeLogosFromCloud()
+    func didTapLoadAndMergeLogosFromCloud() async
 }
 
 final class ViewControllerListMenu : UIViewController {
@@ -78,8 +78,10 @@ final class ViewControllerListMenu : UIViewController {
     
     @IBAction func didTapLoadAndMergeLogosFromCloud(_ sender: Any) {
         if let delegate = delegate {
-            delegate.didTapLoadAndMergeLogosFromCloud()
-            self.dismiss(animated: true)
+            Task.init {
+                await delegate.didTapLoadAndMergeLogosFromCloud()
+                self.dismiss(animated: true)
+            }
         }
     }
 }

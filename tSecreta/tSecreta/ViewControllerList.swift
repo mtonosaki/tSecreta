@@ -18,7 +18,6 @@ final class ViewControllerList : UITableViewController {
     private var sectionNotes = Dictionary<String, Array<Note>>()
     private var sectionOrder = Array<String>()
     private var noteRequestedDetail: Note? = nil
-    private let logoDic = UserDefaults(suiteName: "com.tomarika.tSecreta.logourl")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,7 +157,7 @@ extension ViewControllerList {
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
         var isLogoLoaded = false
-        if let logoFileName = logoDic?.string(forKey: note.ID ) {
+        if let logoFileName = note.getValue(field: .logoFilename) {
             if let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(logoFileName) {
                 if let data = try? Data(contentsOf: url) {
                     let image = UIImage(data: data)
@@ -218,6 +217,7 @@ extension ViewControllerList {
 }
 
 extension ViewControllerList : HambergerMenuDelegate {
+    
     func didTapBackToAuthentication() {
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -272,7 +272,7 @@ extension ViewControllerList : HambergerMenuDelegate {
         do {
             var uploadCount = 0
             for note in notes {
-                guard let logoFileName = logoDic?.string(forKey: note.ID ) else {
+                guard let logoFileName = note.getValue(field: .logoFilename) else {
                     continue
                 }
                 if let _ = savedFile[logoFileName] {
@@ -303,6 +303,48 @@ extension ViewControllerList : HambergerMenuDelegate {
         }
     }
     
-    func didTapLoadAndMergeLogosFromCloud() {
+    func didTapLoadAndMergeLogosFromCloud() async {
+        
+        guard let notes = noteList?.Notes else {
+            return
+        }
+        
+        let cn = try? AZSCloudStorageAccount(fromConnectionString: MySecret().azureBlob.AzureStorageConnectionString)
+        guard let cn = cn else {
+            return
+        }
+        var loadedFile = Dictionary<String, Bool>()
+        let blobClient = cn.getBlobClient()
+        let blobContainer = blobClient.containerReference(fromName: "tsecret-logo")
+        guard let _ = try? await blobContainer.createContainerIfNotExists() else {
+            debugPrint("Error on creatring azure blob container. \(blobContainer.name)")
+            return
+        }
+        var downloadedCount = 0
+        for note in notes {
+            guard let logoFileName = note.getValue(field: .logoFilename) else {
+                continue
+            }
+            if let _ = loadedFile[logoFileName] {
+                continue
+            }
+            loadedFile[logoFileName] = true
+            let blob = blobContainer.blockBlobReference(fromName: "\(userObjectId)/\(logoFileName)")
+            if let data = try? await blob.downloadToData() {
+                let message = await saveLogoPicture(imageData: data, filename: logoFileName, note: note)
+                if let message = message {
+                    print(message)
+                } else {
+                    downloadedCount += 1
+                }
+            }
+        }
+        if downloadedCount > 0 {
+            showToast(message: "\(downloadedCount) images have been downloaded.", color: .darkGray, view: self.view)
+            resetList()
+            tableView.reloadData()
+        } else {
+            showToast(message: "No logo image downloaded.", color: .darkGray, view: self.view)
+        }
     }
 }
