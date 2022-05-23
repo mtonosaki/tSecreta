@@ -166,12 +166,18 @@
                                 <action selector="didFilterChanged:" destination="Nz0-6f-m7V" eventType="valueChanged" id="sPm-eo-1eG"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="SmU-ll-0Vh">
-                            <connections>
-                                <action selector="didTapAddButton:" destination="Nz0-6f-m7V" id="KPr-uR-t9g"/>
-                                <segue destination="0mw-Nu-NbU" kind="show" identifier="ToDetail" id="xdV-NO-6o6"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem id="ch7-mB-kcS">
+                                <connections>
+                                    <segue destination="0mw-Nu-NbU" kind="show" identifier="ToDetail" id="mrB-qD-eiY"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="SmU-ll-0Vh">
+                                <connections>
+                                    <action selector="didTapAddButton:" destination="Nz0-6f-m7V" id="nur-go-Ksi"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="filterSegment" destination="2un-C6-mZn" id="EUm-S3-pLz"/>
