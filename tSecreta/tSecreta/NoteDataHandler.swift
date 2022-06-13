@@ -53,9 +53,14 @@ public func DownloadText(userObjectId: String, callback: @escaping (Bool, String
     }
 }
 
+public enum ImageHashMode {
+    case GRAY1
+    case RGB3
+}
+
 // Calculate hash code of an image implemented based on below source code.
 // see also https://github.com/coenm/ImageHash/blob/develop/src/ImageHash/HashAlgorithms/AverageHash.cs
-private func getImageHash(image: UIImage, defaultHash: String) -> String {
+private func getImageHash(mode: ImageHashMode, image: UIImage, defaultHash: String) -> String {
 
     let targetWidth: CGFloat = 8
     let canvasSize = CGSize(width: targetWidth, height: CGFloat(ceil(targetWidth / image.size.width * image.size.height)))
@@ -81,35 +86,59 @@ private func getImageHash(image: UIImage, defaultHash: String) -> String {
     let W = Int(cgImage.width)
     let H = Int(cgImage.height)
     let WH = W * H
-    var mask = UInt64(1) << (WH - 1)
-    var averageValue: UInt64 = 0
-    var hashCode: UInt64 = 0
     
-    for y in 0..<H {
-        for x in 0..<W {
-            let pos = cgImage.bytesPerRow * y + x * (cgImage.bitsPerPixel / 8)
-            let gray = (CGFloat(data[pos + 0]) + CGFloat(data[pos + 1]) + CGFloat(data[pos + 2])) / 3.0
-            averageValue += UInt64(gray)
-        }
-    }
-    averageValue /= UInt64(WH)
-    for y in 0..<H {
-        for x in 0..<W {
-            let pos = cgImage.bytesPerRow * y + x * (cgImage.bitsPerPixel / 8)
-            let gray = (CGFloat(data[pos + 0]) + CGFloat(data[pos + 1]) + CGFloat(data[pos + 2])) / 3.0
-            let pixel = UInt64(gray)
-            if pixel >= averageValue {
-                hashCode |= mask
+    var hashStr = ""
+    for channel in (mode == .RGB3 ? 1 : 0)..<(1 + (mode == .RGB3 ? 3 : 0)){
+        var mask = UInt64(1) << (WH - 1)
+        var averageValue: UInt64 = 0
+        var hashCode: UInt64 = 0
+        for y in 0..<H {
+            for x in 0..<W {
+                let pos = cgImage.bytesPerRow * y + x * (cgImage.bitsPerPixel / 8)
+                switch channel {
+                    case 1:
+                        averageValue += UInt64(CGFloat(data[pos + 0]))
+                    case 2:
+                        averageValue += UInt64(CGFloat(data[pos + 1]))
+                    case 3:
+                        averageValue += UInt64(CGFloat(data[pos + 2]))
+                    default:
+                        averageValue += UInt64((CGFloat(data[pos + 0]) + CGFloat(data[pos + 1]) + CGFloat(data[pos + 2])) / 3.0)
+                }
             }
-            mask >>= 1
+        }
+        averageValue /= UInt64(WH)
+        for y in 0..<H {
+            for x in 0..<W {
+                let pos = cgImage.bytesPerRow * y + x * (cgImage.bitsPerPixel / 8)
+                var pixel: UInt64
+                switch channel {
+                    case 1:
+                        pixel = UInt64(CGFloat(data[pos + 0]))
+                    case 2:
+                        pixel = UInt64(CGFloat(data[pos + 1]))
+                    case 3:
+                        pixel = UInt64(CGFloat(data[pos + 2]))
+                    default:
+                        pixel = UInt64((CGFloat(data[pos + 0]) + CGFloat(data[pos + 1]) + CGFloat(data[pos + 2])) / 3.0)
+                }
+                if pixel >= averageValue {
+                    hashCode |= mask
+                }
+                mask >>= 1
+            }
+        }
+
+        let hashData = Data(bytes: &hashCode, count: MemoryLayout<UInt64>.size)
+        let hashStr0 = hashData.map {
+            byte in
+            return String(NSString(format:"%02x", byte))
+        }.joined()
+        hashStr += hashStr0
+        if channel > 0 && channel < 3 {
+            hashStr += "-"
         }
     }
-
-    let hashData = Data(bytes: &hashCode, count: MemoryLayout<UInt64>.size)
-    let hashStr = hashData.map {
-        byte in
-        return String(NSString(format:"%02x", byte))
-    }.joined()
     return hashStr
 }
 
@@ -118,9 +147,8 @@ public func saveLogoPicture(image: UIImage, defaultName: String?, note: Note) as
     guard let data = image.pngData() else {
         return "Cannot got logo image data."
     }
-    let hash = getImageHash(image: image, defaultHash: defaultName ?? "no-name")
+    let hash = getImageHash(mode: .RGB3, image: image, defaultHash: defaultName ?? "no-name")
     let filename = "logo-\(hash).png"
-    print("saved logo image \(filename)")
     let message = await saveLogoPicture(imageData: data, filename: filename, note: note)
     return message
 }
@@ -130,6 +158,7 @@ public func saveLogoPicture(imageData: Data, filename: String, note: Note) async
     guard let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(filename) else {
         return "Cannot got logo url"
     }
+    print("saving logo image \(url)")
     
     do {
         try imageData.write(to: url)
