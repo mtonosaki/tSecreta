@@ -25,6 +25,7 @@
 		02B997E82758684C00922473 /* UIViewController+showToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B997E72758684C00922473 /* UIViewController+showToast.swift */; };
 		02C3FC8F27944863002A6C5D /* ViewControllerHistoryTabControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FC8E27944863002A6C5D /* ViewControllerHistoryTabControl.swift */; };
 		02C453882757B44D009E7AB9 /* ModelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C453872757B44D009E7AB9 /* ModelNote.swift */; };
+		02C7ADFE28D0CDFC00A6602C /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 02C7ADFD28D0CDFC00A6602C /* MSAL */; };
 		02CE8023281F564200A1C481 /* ViewControllerListMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CE8022281F564200A1C481 /* ViewControllerListMenu.swift */; };
 		02D860FF2757A5D700D643CF /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02D860FE2757A5D700D643CF /* CryptoSwift */; };
 		02D861012757A64B00D643CF /* NoteDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D861002757A64B00D643CF /* NoteDataHandler.swift */; };
@@ -38,7 +39,6 @@
 		02EB9910274E330A0088B99D /* tSecretaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB990F274E330A0088B99D /* tSecretaUITests.swift */; };
 		02EB9912274E330A0088B99D /* tSecretaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */; };
 		02F3550427AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3550327AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift */; };
-		02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 02FD0D7E27579C58002E71D5 /* MSAL */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,8 +104,8 @@
 			files = (
 				0291C86127578464004DD5D0 /* AZSClient.framework in Frameworks */,
 				02D860FF2757A5D700D643CF /* CryptoSwift in Frameworks */,
-				02FD0D7F27579C58002E71D5 /* MSAL in Frameworks */,
 				0291C8622757864C004DD5D0 /* libxml2.2.tbd in Frameworks */,
+				02C7ADFE28D0CDFC00A6602C /* MSAL in Frameworks */,
 				02AD85452782C40E00A63FE1 /* Tono in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,9 +243,9 @@
 			);
 			name = tSecreta;
 			packageProductDependencies = (
-				02FD0D7E27579C58002E71D5 /* MSAL */,
 				02D860FE2757A5D700D643CF /* CryptoSwift */,
 				02AD85442782C40E00A63FE1 /* Tono */,
+				02C7ADFD28D0CDFC00A6602C /* MSAL */,
 			);
 			productName = tSecreta;
 			productReference = 02EB98EB274E33090088B99D /* tSecreta.app */;
@@ -320,9 +320,9 @@
 			);
 			mainGroup = 02EB98E2274E33090088B99D;
 			packageReferences = (
-				02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
 				02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */,
+				02C7ADFC28D0CDFC00A6602C /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
 			);
 			productRefGroup = 02EB98EC274E33090088B99D /* Products */;
 			projectDirPath = "";
@@ -495,7 +495,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -551,7 +551,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -795,20 +795,20 @@
 				kind = branch;
 			};
 		};
+		02C7ADFC28D0CDFC00A6602C /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AzureAD/microsoft-authentication-library-for-objc.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.3;
+			};
+		};
 		02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 1.4.2;
-			};
-		};
-		02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AzureAD/microsoft-authentication-library-for-objc";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.1.24;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -819,15 +819,15 @@
 			package = 02AD85432782C40E00A63FE1 /* XCRemoteSwiftPackageReference "TonoSwift" */;
 			productName = Tono;
 		};
+		02C7ADFD28D0CDFC00A6602C /* MSAL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02C7ADFC28D0CDFC00A6602C /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
+			productName = MSAL;
+		};
 		02D860FE2757A5D700D643CF /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02D860FD2757A5D700D643CF /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
-		};
-		02FD0D7E27579C58002E71D5 /* MSAL */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02FD0D7D27579C58002E71D5 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
-			productName = MSAL;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

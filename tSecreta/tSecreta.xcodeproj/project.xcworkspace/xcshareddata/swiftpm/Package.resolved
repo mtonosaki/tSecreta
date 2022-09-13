@@ -1,34 +1,32 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "CryptoSwift",
-        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "12f2389aca4a07e0dd54c86ec23d0721ed88b8db",
-          "version": "1.4.3"
-        }
-      },
-      {
-        "package": "MSAL",
-        "repositoryURL": "https://github.com/AzureAD/microsoft-authentication-library-for-objc",
-        "state": {
-          "branch": null,
-          "revision": "de9e253b3bf5f41d4c5ef177cb5dcc5f45d8071f",
-          "version": "1.1.26"
-        }
-      },
-      {
-        "package": "Tono",
-        "repositoryURL": "https://github.com/mtonosaki/TonoSwift.git",
-        "state": {
-          "branch": "main",
-          "revision": "ab51eb6a255cb0690c031754ac0de5bf0103d420",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "cryptoswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
+      "state" : {
+        "revision" : "12f2389aca4a07e0dd54c86ec23d0721ed88b8db",
+        "version" : "1.4.3"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "microsoft-authentication-library-for-objc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AzureAD/microsoft-authentication-library-for-objc",
+      "state" : {
+        "revision" : "388018336872c5af694bc7fec987476ac5bc2b7b",
+        "version" : "1.2.3"
+      }
+    },
+    {
+      "identity" : "tonoswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mtonosaki/TonoSwift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ab51eb6a255cb0690c031754ac0de5bf0103d420"
+      }
+    }
+  ],
+  "version" : 2
 }

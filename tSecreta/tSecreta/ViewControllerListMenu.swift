@@ -8,7 +8,7 @@
 import UIKit
 import Tono
 
-protocol HambergerMenuDelegate: class {
+protocol HambergerMenuDelegate: AnyObject {
     func didTapBackToAuthentication()
     func didTapUploadToCloud()
     func didTapSaveLogosToCloud() async
