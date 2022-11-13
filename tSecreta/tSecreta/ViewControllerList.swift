@@ -308,7 +308,6 @@ extension ViewControllerList : HambergerMenuDelegate {
         guard let notes = noteList?.Notes else {
             return
         }
-        
         let cn = try? AZSCloudStorageAccount(fromConnectionString: MySecret().azureBlob.AzureStorageConnectionString)
         guard let cn = cn else {
             return
