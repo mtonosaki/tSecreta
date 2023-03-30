@@ -6,6 +6,7 @@
 //  MIT License (c)2021 Manabu Tonosaki all rights reserved.
 
 import Foundation
+import Tono
 
 public enum FieldNames: String {
     case na = "(n/a)"
@@ -22,14 +23,113 @@ public enum FieldNames: String {
     case logoFilename = "logoFilename"
 }
 
-public struct NoteHistRecord : Codable {
+public struct NoteHistRecord {
     public var DT: Date
     public var Value: String
+    
+    public func makeInstanceCode() -> String {
+        var ret = ""
+        ret.append("HIST:")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: "Etc/GMT")
+        ret.append(dateFormatter.string(from: DT))
+        ret.append("=")
+        ret.append(Value.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "")
+        return ret
+    }
+    
+    public static func makeObjectFrom(_ lines: [String.SubSequence], startIndex: Int) throws -> (NoteHistRecord, Int) {
+        var step = startIndex
+        
+        step += 1
+        var line = lines[step];
+        if !line.starts(with: "HIST:") {
+            throw FormatError.UnexpectedHistoryFormat
+        }
+
+        var pos = line.firstIndex(of: "=") ?? line.startIndex
+        var dtstr = String(line[line.index(line.startIndex, offsetBy: 5)..<pos])
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: "Etc/GMT")
+        let dt = dateFormatter.date(from: dtstr)
+        guard let dt = dt else {
+            throw FormatError.dateTimeFormatError
+        }
+        let val = String(line[line.index(pos, offsetBy: 1)..<line.endIndex])
+        
+        return (NoteHistRecord(DT: dt, Value: val.removingPercentEncoding ?? val), step)
+    }
 }
 
-public class Note  : Codable {
+public class Note {
     public var ID: String
     public var UniversalData = Dictionary<String, Array<NoteHistRecord>>()
+    
+    public func makeInstanceCode() -> String {
+        var ret = ""
+
+        ret.append("%NOTE%-\(ID)")
+        ret.append("\n")
+        ret.append("\(UniversalData.count)")
+        ret.append("\n")
+        for kv in UniversalData {
+            ret.append("\(kv.key)=\(kv.value.count)")
+            ret.append("\n")
+            for hist in kv.value {
+                ret.append(hist.makeInstanceCode())
+                ret.append("\n")
+            }
+        }
+        return ret
+    }
+    
+    public static func makeObjectFrom(_ lines: [String.SubSequence], startIndex: Int) throws -> (Note, Int) {
+        do {
+            let ret = Note()
+            var step = startIndex
+            
+            step += 1
+            var line = lines[step]
+            if !line.starts(with: "%NOTE%-") {
+                throw FormatError.unexpectedNoteIdPrefix
+            }
+            ret.ID = String(StrUtil.mid(line, start: 7))
+            
+            step += 1
+            line = lines[step]
+            let universalDataCont = Int(line) ?? -1
+            if universalDataCont < 0 || universalDataCont > 9999 {
+                throw FormatError.universaCountError
+            }
+            ret.UniversalData.removeAll()
+            for _ in 0..<universalDataCont {
+                step += 1
+                line = lines[step]
+                let kn = line.split(separator: "=")
+                var key = String(kn[0])
+                var historyCount = Int(kn[1]) ?? -1
+                if historyCount < 0 || historyCount > 9999 {
+                    throw FormatError.historyCountError
+                }
+                ret.UniversalData[key] = []
+                for _ in 0..<historyCount {
+                    let (noteHistoryRecord, lastStep) = try NoteHistRecord.makeObjectFrom(lines, startIndex: step)
+                    ret.UniversalData[key]?.append(noteHistoryRecord);
+                    step = lastStep
+                }
+            }
+            
+            return (ret, step)
+        }
+        catch {
+            throw FormatError.unexpectedNoteIdPrefix
+        }
+    }
     
     init() {
         ID = UUID().uuidString
@@ -144,8 +244,116 @@ public class Note  : Codable {
     }
 }
 
-public class NoteList  : Codable {
+public class NoteList {
     public var Attributes = Dictionary<String, String>()
     public var Notes = Array<Note>()
+    
+    public func version() -> String {
+        return self.Attributes["Version"] ?? ""
+    }
+    
+    public func makeInstanceCode() -> String {
+        var ret = ""
+        
+        ret.append("TSECRET:DATA:VERSION:")
+        ret.append(version())
+        ret.append("\n")
+        
+        ret.append("%%%%----SEGMENT-ATTRIBUTES----%%%%")
+        ret.append("\n")
+        ret.append("\(self.Attributes.count)")
+        ret.append("\n")
+        for kv in self.Attributes {
+            ret.append("\(kv.key)=\(kv.value.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "")")
+            ret.append("\n")
+        }
+                
+        ret.append("%%%%----SEGMENT-NOTES----%%%%")
+        ret.append("\n")
+        ret.append("\(Notes.count)")
+        ret.append("\n")
+        for note in self.Notes {
+            ret.append(note.makeInstanceCode())
+        }
+
+        ret.append("TSECRET:DATA:END")
+        return ret
+    }
+    
+    public static func makeObjectFrom(str: String, expectedVersion: String? = nil) throws -> NoteList {
+        let ret = NoteList()
+        let lines = str.split(separator: "\n")
+        var step = 0
+        
+        var line = lines[step]
+        let startTag = "TSECRET:DATA:VERSION:"
+        if !line.starts(with: startTag) {
+            throw FormatError.startTagIsNotExpectedOne
+        }
+        
+        if let expectedVersion = expectedVersion {
+            let version = StrUtil.left(line, length: startTag.count)
+            if version != expectedVersion {
+                throw FormatError.versionNumberIsNotSame
+            }
+        }
+        
+        step += 1
+        line = lines[step]
+        if line != "%%%%----SEGMENT-ATTRIBUTES----%%%%" {
+            throw FormatError.segmentError1
+        }
+        
+        ret.Attributes.removeAll()
+        step += 1
+        line = lines[step]
+        let attributeCount = Int(line) ?? -1
+        if attributeCount > 99999 || attributeCount < 0 {
+            throw FormatError.attributeCountOverflow
+        }
+        for _ in 0..<attributeCount {
+            step += 1
+            line = lines[step];
+            guard let pos = line.firstIndex(of: "=") else {
+                throw FormatError.segmentError1
+            }
+            let key = line[line.startIndex..<pos]
+            let val = line[line.index(pos, offsetBy: 1)..<line.endIndex]
+            ret.Attributes[String(key)] = val.removingPercentEncoding
+        }
+        step += 1
+        line = lines[step];
+        if line != "%%%%----SEGMENT-NOTES----%%%%" {
+            throw FormatError.segmentError2
+        }
+
+        step += 1
+        line = lines[step];
+        let noteCount = Int(line) ?? -1
+        if noteCount > 99999 || noteCount < 0 {
+            throw FormatError.noteCountOverflow
+        }
+        ret.Notes.removeAll()
+        for _ in 0..<noteCount {
+            let (note, lastStep) = try Note.makeObjectFrom(lines, startIndex: step)
+            step = lastStep
+            ret.Notes.append(note)
+        }
+
+        return ret
+    }
 }
 
+enum FormatError : Error {
+    case startTagIsNotExpectedOne
+    case versionNumberIsNotSame
+    case segmentError1
+    case segmentError2
+    case attributeCountOverflow
+    case noteCountOverflow
+    case unexpectedNoteIdPrefix
+    case universaCountError
+    case historyCountError
+    case UnexpectedHistoryFormat
+    case dateTimeFormatError
+}

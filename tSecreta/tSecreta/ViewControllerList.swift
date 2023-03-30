@@ -117,6 +117,8 @@ final class ViewControllerList : UITableViewController {
     
     @IBAction func didTapAddButton(_ sender: Any) {
         let newNote = Note()
+        newNote.setFlag(.isFilterHome, true)
+        newNote.setFlag(.isFilterWork, true)
         noteList?.Notes.append(newNote)
         noteRequestedDetail = newNote
         performSegue(withIdentifier: "ToDetail", sender: self)
@@ -225,17 +227,13 @@ extension ViewControllerList : HambergerMenuDelegate {
     func didTapUploadToCloud() {
         
         do {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .formatted(.iso8601PlusMilliSecondsJst)
-            let jsonPlaneData = try encoder.encode(noteList!)
-            let jsonPlane = String(data: jsonPlaneData, encoding: .utf8)!
-                        
-            let sec = EncryptUtils.rijndaelEncode(planeText: jsonPlane, filter: userObjectId)
-            guard let sec = sec else {
+            let planeCode = noteList!.makeInstanceCode()
+            let secureCode = EncryptUtils.rijndaelEncode(planeText: planeCode, filter: userObjectId)
+            guard let secureCode = secureCode else {
                 showToast(message: "JSON encoding error", color: UIColor.systemRed, view: self.parent?.view ?? self.view)
                 return;
             }
-            UploadText(text: sec, userObjectId: userObjectId) {
+            UploadText(text: secureCode, userObjectId: userObjectId) {
                 (success, error) in
                 
                 DispatchQueue.main.async {

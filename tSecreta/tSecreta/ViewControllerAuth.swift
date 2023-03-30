@@ -93,29 +93,23 @@ class ViewControllerAuth: UIViewController {
         DownloadText(userObjectId: id){
             (success, text) in
 
-            guard let safeText = text else {
+            guard let secureText = text else {
                 self.addError("Cloud data downloading error")
                 return
             }
             if success {
-                let countString = String.localizedStringWithFormat("%d", safeText.count)
-                self.addInfo("Downloaded \(countString) bytes as base64")
+                let dataBytes = String.localizedStringWithFormat("%d", secureText.count)
+                self.addInfo("Downloaded \(dataBytes) bytes as base64")
                 self.addInfo("Decoding encrypted data...")
-                let maybeJsonStr = EncryptUtils.rijndaelDecode(base64sec: safeText, filter: id)
-                guard let jsonStr = maybeJsonStr else {
+                
+                let maybePlaneCode = EncryptUtils.rijndaelDecode(base64sec: secureText, filter: id)
+                guard let planeCode = maybePlaneCode else {
                     self.addError("Downloaded json is broken.")
-                    return
-                }
-                guard let jsonData = jsonStr.data(using: .utf8) else {
-                    self.showToast(message: "Json Decoding error", color: UIColor.red, view: self.view)
                     return
                 }
                 
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .formatted(.iso8601PlusMilliSeconds)
-                    let notes = try decoder.decode(NoteList.self, from: jsonData)
-                    
+                    let notes = try NoteList.makeObjectFrom(str: planeCode)
                     callback(true, nil, notes)
                     return
                 }
@@ -123,9 +117,9 @@ class ViewControllerAuth: UIViewController {
                     self.addError(ex.localizedDescription)
                 }
             } else {
-                self.addError(safeText)
+                self.addError(secureText)
             }
-            callback(success, safeText, nil)
+            callback(success, secureText, nil)
         }
     }
     
