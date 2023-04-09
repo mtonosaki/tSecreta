@@ -44,13 +44,13 @@ public struct NoteHistRecord {
         var step = startIndex
         
         step += 1
-        var line = lines[step];
+        let line = lines[step];
         if !line.starts(with: "HIST:") {
             throw FormatError.UnexpectedHistoryFormat
         }
 
-        var pos = line.firstIndex(of: "=") ?? line.startIndex
-        var dtstr = String(line[line.index(line.startIndex, offsetBy: 5)..<pos])
+        let pos = line.firstIndex(of: "=") ?? line.startIndex
+        let dtstr = String(line[line.index(line.startIndex, offsetBy: 5)..<pos])
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
@@ -111,8 +111,8 @@ public class Note {
                 step += 1
                 line = lines[step]
                 let kn = line.split(separator: "=")
-                var key = String(kn[0])
-                var historyCount = Int(kn[1]) ?? -1
+                let key = String(kn[0])
+                let historyCount = Int(kn[1]) ?? -1
                 if historyCount < 0 || historyCount > 9999 {
                     throw FormatError.historyCountError
                 }
