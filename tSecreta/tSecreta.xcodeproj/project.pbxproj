@@ -38,7 +38,7 @@
 		02EB9910274E330A0088B99D /* tSecretaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB990F274E330A0088B99D /* tSecretaUITests.swift */; };
 		02EB9912274E330A0088B99D /* tSecretaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */; };
 		02F3550427AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3550327AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift */; };
-		E11B8AB7291E97EB00AE7F4A /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11B8AB6291E97EB00AE7F4A /* MySecret.swift */; };
+		E1A192FF2CD9F41100747395 /* MySecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A192FE2CD9F41100747395 /* MySecret.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +94,7 @@
 		02EB990F274E330A0088B99D /* tSecretaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITests.swift; sourceTree = "<group>"; };
 		02EB9911274E330A0088B99D /* tSecretaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tSecretaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		02F3550327AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPasswordGenerator.swift; sourceTree = "<group>"; };
-		E11B8AB6291E97EB00AE7F4A /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
+		E1A192FE2CD9F41100747395 /* MySecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySecret.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 		02B0FE172754F540007337F6 /* Secret */ = {
 			isa = PBXGroup;
 			children = (
-				E11B8AB6291E97EB00AE7F4A /* MySecret.swift */,
+				E1A192FE2CD9F41100747395 /* MySecret.swift */,
 			);
 			name = Secret;
 			sourceTree = "<group>";
@@ -236,6 +236,7 @@
 				02EB98E7274E33090088B99D /* Sources */,
 				02EB98E8274E33090088B99D /* Frameworks */,
 				02EB98E9274E33090088B99D /* Resources */,
+				E1A193002CD9F4F900747395 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -362,12 +363,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E1A193002CD9F4F900747395 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcrun agvtool next-version\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		02EB98E7274E33090088B99D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				02EB98F3274E33090088B99D /* ViewControllerAuth.swift in Sources */,
+				E1A192FF2CD9F41100747395 /* MySecret.swift in Sources */,
 				025D2AD9275886F000D7B165 /* ViewControllerDetail.swift in Sources */,
 				02CE8023281F564200A1C481 /* ViewControllerListMenu.swift in Sources */,
 				0245DC7D27943A65008BAFA6 /* ViewControllerHistory.swift in Sources */,
@@ -377,7 +399,6 @@
 				02464FD227552CAF009024F5 /* EncryptUtils.swift in Sources */,
 				02B0FE1127546141007337F6 /* ViewControllerAuth+Cloud.swift in Sources */,
 				02C3FC8F27944863002A6C5D /* ViewControllerHistoryTabControl.swift in Sources */,
-				E11B8AB7291E97EB00AE7F4A /* MySecret.swift in Sources */,
 				02EB98EF274E33090088B99D /* AppDelegate.swift in Sources */,
 				02C453882757B44D009E7AB9 /* ModelNote.swift in Sources */,
 				02F3550427AA7A7F00BADB4A /* ViewControllerPasswordGenerator.swift in Sources */,
@@ -570,7 +591,7 @@
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 42235ECE62;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -602,6 +623,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -614,7 +636,7 @@
 				CODE_SIGN_ENTITLEMENTS = tSecreta/tSecreta.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 42235ECE62;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -645,6 +667,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "tSecreta/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -654,7 +677,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 42235ECE62;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -680,7 +703,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 42235ECE62;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -704,7 +727,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 42235ECE62;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -727,7 +750,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 42235ECE62;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

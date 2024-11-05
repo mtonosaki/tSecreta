@@ -174,6 +174,33 @@ extension ViewControllerList {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let note = self.getNote(at: indexPath)
+            if note.getFlag(.isDeleted) == false {
+                return UISwipeActionsConfiguration(actions: [])
+            }
+            
+            let actionDelete = UIContextualAction(
+                style: .normal,
+                title:  "delete",
+                handler: {
+                    (action: UIContextualAction, view: UIView, success :(Bool) -> Void) in
+                        for i in 0..<(self.noteList?.Notes.count ?? 0) {
+                        if( self.noteList?.Notes[i].ID == note.ID){
+                            success(true)
+                            self.noteList?.Notes.remove(at: i)
+                            self.resetList()
+                            tableView.reloadData()
+                            break
+                        }
+                    }
+                }
+            )
+            actionDelete.backgroundColor = .systemRed
+            return UISwipeActionsConfiguration(actions: [actionDelete])
+        }
+
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let actionId = UIContextualAction(

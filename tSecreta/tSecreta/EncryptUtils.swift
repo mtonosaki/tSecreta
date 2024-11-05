@@ -74,7 +74,7 @@ public struct EncryptUtils {
     
     public static func rijndaelDecode(base64sec: String, filter: String) -> String? {
 
-        let secParam = MySecret().key
+        let secParam = MySecret().keyRead
         let f1 = Character(String(base64sec.prefix(1)))
         let ivN = base64sec.distance(from:base64sec.startIndex, to:secParam.TEXTSET64.firstIndex(of: f1)! )
         let iv = String(StrUtil.mid(base64sec, start: 1, length: ivN + secParam.IVNPP))
@@ -86,7 +86,7 @@ public struct EncryptUtils {
     
     public static func rijndaelEncode(planeText: String, filter: String) -> String? {
         
-        let secParam = MySecret().key
+        let secParam = MySecret().keyWrite
         let ivN = 0
         var iv = ""
         
